@@ -5,8 +5,24 @@ import Search from "./pages/Search"
 import Explore from "./pages/Explore"
 import Details from "./pages/Details"
 import MobileNavigation from "./components/MobileNavigation"
+import axios from "axios"
+import { useEffect } from "react"
 
 const App = () => {
+
+  useEffect(() => {
+    const fetchTrendingData = async () => {
+      try {
+        const response = await axios.get('/trending/all/week')
+        console.log(response)
+      } catch (error) {
+        console.log(error)
+      }
+    }
+
+    fetchTrendingData()
+  }, [])
+
   return (
     <div className="bg-black text-white h-screen">
       <Navbar />
