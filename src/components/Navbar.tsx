@@ -17,18 +17,18 @@ const Navbar = () => {
   }
 
   return (
-    <nav className="bg-neutral-900 w-full h-16 flex items-center justify-between px-2 md:px-10">
+    <nav className="bg-neutral-900 w-full h-16 flex items-center justify-between px-8 md:px-10">
       <div className="flex items-center gap-20">
         <Link to="/" className="text-lime-600 text-2xl font-bold cursor-pointer">CINEMAX</Link>
 
         <div className="hidden lg:flex items-center gap-8 ">
-          <Link to="/explore" className={menuClass}>TV Shows</Link>
-          <Link to="/explore" className={menuClass}>Movies</Link>
-          <Link to="/explore" className={menuClass}>Popular</Link>
+          <Link to="/explore/tvshows" className={menuClass}>TV Shows</Link>
+          <Link to="/explore/movies" className={menuClass}>Movies</Link>
+          <Link to="/explore/popular" className={menuClass}>Popular</Link>
         </div>
       </div>
       <div className="flex items-center gap-4 md:gap-8">
-        <div className="flex items-center gap-2">
+        <div className="hidden lg:flex items-center gap-2">
           <form onSubmit={handleSearch}>
             <input 
               value={searchQuery} 

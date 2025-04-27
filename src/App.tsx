@@ -4,6 +4,7 @@ import Home from "./pages/Home"
 import Search from "./pages/Search"
 import Explore from "./pages/Explore"
 import Details from "./pages/Details"
+import MobileNavigation from "./components/MobileNavigation"
 
 const App = () => {
   return (
@@ -13,10 +14,11 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/search" element={<Search />} />
-          <Route path="/explore" element={<Explore />} />
-          <Route path="/explore/:id" element={<Details />} />
+          <Route path="/explore/:path" element={<Explore />} />
+          <Route path="/explore/details/:id" element={<Details />} />
         </Routes>
       </main>
+      <MobileNavigation />
     </div>
   )
 }
