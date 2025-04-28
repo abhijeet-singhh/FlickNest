@@ -1,18 +1,33 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-const initialState = {
+export interface BannerData {
+    backdrop_path: string;
+    id: number;
+    title?: string;
+    name?: string;
+    overview?: string;
+    poster_path?: string;
+    vote_average?: number;
+}
+
+interface MovieState {
+    bannerData: BannerData[]
+    imageURL: string
+}
+
+const initialState: MovieState = {
     bannerData : [],
-    imageURL : []
+    imageURL : ''
 }
 
 export const movieSlice = createSlice({
     name: 'movie',
     initialState,
     reducers : {
-        setBannerData: (state, action) => {
+        setBannerData: (state, action: PayloadAction<BannerData[]>) => {
             state.bannerData = action.payload
         },
-        setImageURL: (state, action) => {
+        setImageURL: (state, action: PayloadAction<string>) => {
             state.imageURL = action.payload
         }
     }

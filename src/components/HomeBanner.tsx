@@ -1,9 +1,6 @@
 import { useSelector } from "react-redux"
 import { RootState } from "../app/store"
-
-interface BannerData {
-  backdrop_path: string;
-}
+import { BannerData } from "../app/features/movieSlice"
 
 const HomeBanner = () => {
 
@@ -15,7 +12,7 @@ const HomeBanner = () => {
       <div className="flex">
         {bannerData.map((data, index) => (
           <div key={index} className="min-w-full max-h-[95vh]">
-            <img src={imageURL+data.backdrop_path} className="w-full h-full object-cover" />
+            <img src={imageURL+data.backdrop_path} loading="lazy" className="w-full h-full object-cover" />
           </div>
         ))}
       </div>
