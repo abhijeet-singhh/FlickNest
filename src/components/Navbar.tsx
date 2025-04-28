@@ -17,7 +17,7 @@ const Navbar = () => {
   }
 
   return (
-    <nav className="bg-neutral-900 w-full h-16 flex items-center justify-between px-8 md:px-10">
+    <nav className="bg-neutral-900 fixed top-0 opacity-75 w-full h-14 lg:h-16 flex items-center justify-between px-8 md:px-10">
       <div className="flex items-center gap-20">
         <Link to="/" className="text-lime-600 text-2xl font-bold cursor-pointer">CINEMAX</Link>
 

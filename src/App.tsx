@@ -7,21 +7,36 @@ import Details from "./pages/Details"
 import MobileNavigation from "./components/MobileNavigation"
 import axios from "axios"
 import { useEffect } from "react"
+import { useDispatch } from "react-redux"
+import { setBannerData, setImageURL } from "./app/features/movieSlice"
 
 const App = () => {
+
+  const dispatch = useDispatch()
 
   useEffect(() => {
     const fetchTrendingData = async () => {
       try {
         const response = await axios.get('/trending/all/week')
-        console.log(response)
+        dispatch(setBannerData(response.data.results))
       } catch (error) {
         console.log(error)
       }
     }
 
+    const fetchConfigurationData = async () => {
+      try{
+        const response = await axios.get('/configuration')
+        dispatch(setImageURL(response.data.images.secure_base_url+"original"))
+      } catch(error) {
+        console.log(error)
+      }
+    }
+    
     fetchTrendingData()
-  }, [])
+    fetchConfigurationData()
+  }, [dispatch])
+
 
   return (
     <div className="bg-black text-white h-screen">
