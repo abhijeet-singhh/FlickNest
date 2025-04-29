@@ -6,10 +6,10 @@ import { NavLink } from "react-router-dom"
 
 const MobileNavigation = () => {
   const iconClass = "text-neutral-400"
-  const activeIconClass = "text-lime-600"
+  const activeIconClass = "text-[#B1D690]"
 
   return (
-    <div className="lg:hidden flex items-center justify-between h-16 w-full bg-neutral-900 fixed bottom-0 px-8">
+    <div className="lg:hidden flex items-center justify-between h-16 w-full bg-[#0F0F0F] fixed bottom-0 px-8">
       <NavLink
         to="/"
         className={({ isActive }) => isActive ? activeIconClass : iconClass}
