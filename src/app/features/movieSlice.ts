@@ -8,6 +8,7 @@ export interface BannerData {
     overview?: string;
     poster_path?: string;
     vote_average?: number;
+    popularity?: number;
 }
 
 interface MovieState {
