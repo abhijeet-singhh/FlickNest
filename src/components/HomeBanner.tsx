@@ -9,7 +9,7 @@ const HomeBanner = () => {
 
   return (
     <section className="w-full h-[32vh] lg:h-[90vh] relative overflow-hidden rounded">
-      <div className="flex overflow-x-auto snap-x snap-mandatory h-full">
+      <div className="flex overflow-x-auto snap-x snap-mandatory h-full custom-scrollbar">
         {bannerData.map((data, index) => (
           <div
             key={index}
