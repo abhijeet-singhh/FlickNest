@@ -3,7 +3,7 @@ import { CiSearch } from "react-icons/ci"
 import { FaUserAlt } from "react-icons/fa"
 import { Link, useNavigate } from "react-router-dom"
 
-const menuClass: string = "text-white hover:text-[#B1D690] cursor-pointer transition-colors duration-300"
+const menuClass: string = "text-white hover:text-[#abf471] cursor-pointer transition-colors duration-300"
 
 const Navbar = () => {
   const [searchQuery, setSearchQuery] = useState('')
@@ -19,7 +19,7 @@ const Navbar = () => {
   return (
     <nav className="bg-[#0F0F0F] fixed top-0 z-50 opacity-75 w-full h-14 lg:h-16 flex items-center justify-between px-8 md:px-10">
       <div className="flex items-center gap-20">
-        <Link to="/" className="text-[#B1D690] text-2xl font-bold cursor-pointer">CINEMAX</Link>
+        <Link to="/" className="text-[#abf471] text-2xl font-bold cursor-pointer">CINEMAX</Link>
 
         <div className="hidden lg:flex items-center gap-8 ">
           <Link to="/explore/tvshows" className={menuClass}>TV Shows</Link>
