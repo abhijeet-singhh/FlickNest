@@ -1,44 +1,74 @@
-import { useEffect, useRef, useState } from "react"
-import { useSelector } from "react-redux"
-import { RootState } from "../app/store"
-import { BannerData } from "../app/features/movieSlice"
-import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md"
+import { useEffect, useRef, useState, useCallback } from "react";
+import { useSelector } from "react-redux";
+import { RootState } from "../app/store";
+import { BannerData } from "../app/features/movieSlice";
+import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md";
+
 const HomeBanner = () => {
   const bannerData = useSelector((state: RootState) => state.movieData.bannerData ?? []) as BannerData[]
   const imageURL = useSelector((state: RootState) => state.movieData.imageURL)
-  const scrollRef = useRef<HTMLDivElement>(null)
-  const [currentIndex, setCurrentIndex] = useState(0)
-  const slideCount = bannerData.length
-  const scrollToIndex = (index: number) => {
-    if (scrollRef.current) {
-      const width = scrollRef.current.offsetWidth
-      scrollRef.current.scrollTo({
-        left: width * index,
-        behavior: "smooth"
-      })
-    }
-  }
-  const handleNext = () => {
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % slideCount)
-  }
-  const handlePrevious = () => {
-    setCurrentIndex((prevIndex) => (prevIndex - 1 + slideCount) % slideCount)
-  }
-  // Auto-scroll every 5 seconds
-  useEffect(() => {
-    const interval = setInterval(() => {
-      handleNext()
-    }, 5000)
-    return () => clearInterval(interval)
-  }, [slideCount])
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const autoScrollRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+  const slideCount = bannerData.length;
 
+  // Memoize scroll function to avoid recreating it on every render
+  const scrollToIndex = useCallback((index: number) => {
+    if (!scrollRef.current) return;
+    
+    const width = scrollRef.current.offsetWidth;
+    scrollRef.current.scrollTo({
+      left: width * index,
+      behavior: "smooth"
+    });
+  }, []);
+
+  const handleNext = useCallback(() => {
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % slideCount);
+  }, [slideCount]);
+
+  const handlePrevious = useCallback(() => {
+    setCurrentIndex((prevIndex) => (prevIndex - 1 + slideCount) % slideCount);
+  }, [slideCount]);
+
+  // Reset auto-scroll when component mounts or dependencies change
   useEffect(() => {
-    scrollToIndex(currentIndex)
-  }, [currentIndex])
+    const startAutoScroll = () => {
+      if (autoScrollRef.current) clearInterval(autoScrollRef.current);
+      
+      // Only start auto-scroll if there are multiple slides and not paused
+      if (slideCount > 1 && !isPaused) {
+        autoScrollRef.current = setInterval(handleNext, 5000);
+      }
+    };
+
+    startAutoScroll();
+
+    // Cleanup on unmount
+    return () => {
+      if (autoScrollRef.current) clearInterval(autoScrollRef.current);
+    };
+  }, [handleNext, slideCount, isPaused]);
+
+  // Scroll to the updated index whenever it changes
+  useEffect(() => {
+    scrollToIndex(currentIndex);
+  }, [currentIndex, scrollToIndex]);
+
+  // Pause auto-scroll when user interacts with banner
+  const pauseAutoScroll = () => setIsPaused(true);
+  const resumeAutoScroll = () => setIsPaused(false);
+
+  // Don't render if no banner data
+  if (!bannerData.length) return null;
+
   return (
     <section className="w-full h-[32vh] lg:h-[90vh] relative overflow-hidden rounded">
       <div
         ref={scrollRef}
+        onMouseEnter={pauseAutoScroll}
+        onMouseLeave={resumeAutoScroll}
         className="flex overflow-x-hidden snap-x snap-mandatory h-full custom-scrollbar"
       >
         {bannerData.map((data, index) => (
