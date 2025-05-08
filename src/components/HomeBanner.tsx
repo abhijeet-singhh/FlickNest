@@ -12,16 +12,14 @@ const HomeBanner = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
   const slideCount = bannerData.length;
+  const isMobile = window.innerWidth <= 768
 
   // Memoize scroll function to avoid recreating it on every render
   const scrollToIndex = useCallback((index: number) => {
     if (!scrollRef.current) return;
 
     const width = scrollRef.current.offsetWidth;
-    scrollRef.current.scrollTo({
-      left: width * index,
-      behavior: "smooth"
-    });
+    scrollRef.current.scrollLeft = width * index;
   }, []);
 
   const handleNext = useCallback(() => {
@@ -34,22 +32,26 @@ const HomeBanner = () => {
 
   // Reset auto-scroll when component mounts or dependencies change
   useEffect(() => {
-    const startAutoScroll = () => {
       if (autoScrollRef.current) clearInterval(autoScrollRef.current);
 
       // Only start auto-scroll if there are multiple slides and not paused
       if (slideCount > 1 && !isPaused) {
-        autoScrollRef.current = setInterval(handleNext, 4000);
+        autoScrollRef.current = setInterval(() => {
+          setCurrentIndex((prevIndex) => {
+            if (prevIndex + 1 >= slideCount) {
+              return 0;
+            } else {
+              return prevIndex + 1;
+            }
+          })
+        }, 4000);
       }
-    };
-
-    startAutoScroll();
 
     // Cleanup on unmount
     return () => {
       if (autoScrollRef.current) clearInterval(autoScrollRef.current);
     };
-  }, [handleNext, slideCount, isPaused]);
+  }, [slideCount, isPaused, isMobile]);
 
   // Scroll to the updated index whenever it changes
   useEffect(() => {
@@ -84,10 +86,12 @@ const HomeBanner = () => {
 
       <div
         ref={scrollRef}
-        className="flex overflow-x-auto md:overflow-x-hidden snap-x snap-mandatory h-full custom-scrollbar"
+        className="flex overflow-x-auto md:overflow-x-hidden snap-x snap-mandatory h-full custom-scrollbar scroll-smooth"
         role="region"
         aria-roledescription="carousel"
         aria-label="Movie highlights"
+        onTouchStart={pauseAutoScroll}
+        onTouchEnd={resumeAutoScroll}
       >
         {bannerData.map((data, index) => (
           <div
@@ -97,7 +101,7 @@ const HomeBanner = () => {
             aria-roledescription="slide"
             aria-label={`${index + 1} of ${slideCount}`}
           >
-            <div className="w-full h-full bg-gray-800 animate-pulse">
+            <div className="w-full h-full bg-gray-800 ">
               <img
                 src={imageURL + data.backdrop_path}
                 loading={index === 0 ? "eager" : "lazy"}
@@ -110,6 +114,7 @@ const HomeBanner = () => {
             <div className="absolute bottom-0 inset-0 bg-gradient-to-t from-black/95 via-black/60 to-transparent flex flex-col justify-end">
               <div className="flex justify-between items-end px-4 mb-2 md:mb-8 md:px-16 pb-6 md:pb-10 w-full">
                 <div className="text-white lg:max-w-[60%] space-y-2 md:space-y-4">
+                  <h2 className="text-[#B1D690] text-[12px] md:text-xl">#{index} Spotlight</h2>
                   <h2 className="text-3xl md:text-5xl font-bold tracking-tight drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
                     {data.title || data.name}
                   </h2>
