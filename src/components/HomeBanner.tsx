@@ -114,11 +114,11 @@ const HomeBanner = () => {
             <div className="absolute bottom-0 inset-0 bg-gradient-to-t from-black/95 via-black/60 to-transparent flex flex-col justify-end">
               <div className="flex justify-between items-end px-4 mb-2 md:mb-8 md:px-16 pb-6 md:pb-10 w-full">
                 <div className="text-white lg:max-w-[60%] space-y-2 md:space-y-4">
-                  <h2 className="text-[#B1D690] text-[12px] md:text-xl">#{index} Spotlight</h2>
+                  <h2 className="text-[#B1D690] text-[12px] md:text-xl md:ml-2">#{index} Spotlight</h2>
                   <h2 className="text-3xl md:text-5xl font-bold tracking-tight drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
                     {data.title || data.name}
                   </h2>
-                  <p className="text-sm md:text-lg line-clamp-2 lg:line-clamp-3 text-gray-200 font-medium">
+                  <p className="text-sm md:text-[17px] line-clamp-2 lg:line-clamp-3 text-gray-200 font-medium">
                     {data.overview}
                   </p>
                   <div className="flex flex-wrap items-center gap-3 text-sm">

@@ -15,32 +15,34 @@ const TrendingSection = () => {
         scrollRef.current?.scrollBy({ left: 304, behavior: "smooth" });
     };
     return (
-        <div className="mt-10 mx-5">
-            <h3 className="text-[#B1D690] text-2xl font-bold">Trending</h3>
+        <div className="mt-3 md:mt-10 mx-2 md:mx-5">
+            <h3 className="text-[#B1D690] text-xl md:text-2xl font-bold">Trending</h3>
             <div className="flex">
-                <div ref={scrollRef} className="pb-10 overflow-x-hidden scrollbar-hide scroll-smooth">
-                    <div className="flex gap-10 w-max mt-5 mx-10 flex-shrink-0">
+                <div ref={scrollRef} className="pb-10 overflow-x-hidden scrollbar-hide scroll-smooth snap-x snap-mandatory">
+                    <div className="flex md:gap-5 w-max mt-5 mx-10 flex-shrink-0">
                         {top10Trending.map((data, index) => {
                             const displayIndex = String(index + 1).padStart(2, '0');
                             return (
-                                <Card 
-                                    key={`trendingcard-${data.id || index}`} 
-                                    data={data} 
-                                    indexLabel={displayIndex} 
-                                />
+                                <div className="snap-start">
+                                    <Card
+                                        key={`trendingcard-${data.id || index}`}
+                                        data={data}
+                                        indexLabel={displayIndex}
+                                    />
+                                </div>
                             )
                         })}
                     </div>
                 </div>
-                <div className="w-14 px-5 pb-5 flex flex-col gap-4 justify-center">
-                    <button 
-                        onClick={scrollLeft} 
+                <div className="w-14 px-5 pb-5 hidden md:flex flex-col gap-4 justify-center">
+                    <button
+                        onClick={scrollLeft}
                         className="bg-zinc-700 rounded h-28 w-10 flex items-center justify-center cursor-pointer hover:bg-zinc-600"
                     >
                         <MdKeyboardArrowLeft size={28} />
                     </button>
-                    <button 
-                        onClick={scrollRight} 
+                    <button
+                        onClick={scrollRight}
                         className="bg-zinc-700 rounded h-28 w-10 flex items-center justify-center cursor-pointer hover:bg-zinc-600"
                     >
                         <MdKeyboardArrowRight size={28} />
