@@ -86,7 +86,7 @@ const HomeBanner = () => {
 
       <div
         ref={scrollRef}
-        className="flex overflow-x-auto md:overflow-x-hidden snap-x snap-mandatory h-full custom-scrollbar scroll-smooth"
+        className="flex overflow-x-auto md:overflow-x-hidden snap-x snap-mandatory h-full scrollbar-hide custom-scrollbar scroll-smooth"
         role="region"
         aria-roledescription="carousel"
         aria-label="Movie highlights"
