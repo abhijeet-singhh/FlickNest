@@ -11,14 +11,27 @@ export interface BannerData {
     popularity?: number;
 }
 
+export interface TrendingData {
+    backdrop_path: string;
+    id: number;
+    title?: string;
+    name?: string;
+    overview?: string;
+    poster_path?: string;
+    vote_average?: number;
+    popularity?: number;
+}
+
 interface MovieState {
     bannerData: BannerData[]
     imageURL: string
+    trendingData: TrendingData[]
 }
 
 const initialState: MovieState = {
     bannerData : [],
-    imageURL : ''
+    imageURL : '',
+    trendingData: []
 }
 
 export const movieSlice = createSlice({
@@ -30,10 +43,13 @@ export const movieSlice = createSlice({
         },
         setImageURL: (state, action: PayloadAction<string>) => {
             state.imageURL = action.payload
-        }
+        },
+        setTrendingData: (state, action: PayloadAction<BannerData[]>) => {
+            state.trendingData = action.payload
+        },
     }
 })
 
-export const { setBannerData, setImageURL } = movieSlice.actions
+export const { setBannerData, setImageURL, setTrendingData } = movieSlice.actions
 
 export default movieSlice.reducer

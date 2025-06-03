@@ -8,7 +8,7 @@ import MobileNavigation from "./components/MobileNavigation"
 import axios from "axios"
 import { useEffect } from "react"
 import { useDispatch } from "react-redux"
-import { setBannerData, setImageURL } from "./app/features/movieSlice"
+import { setBannerData, setImageURL, setTrendingData } from "./app/features/movieSlice"
 
 const App = () => {
 
@@ -24,6 +24,15 @@ const App = () => {
       }
     }
 
+    const fetchTrendingDataByDay = async () => {
+      try{
+        const response = await axios.get('trending/all/day')
+        dispatch(setTrendingData(response.data.results))
+      } catch(error) {
+        console.log(error)
+      }
+    }
+
     const fetchConfigurationData = async () => {
       try{
         const response = await axios.get('/configuration')
@@ -34,6 +43,7 @@ const App = () => {
     }
     
     fetchTrendingData()
+    fetchTrendingDataByDay()
     fetchConfigurationData()
   }, [dispatch])
 
