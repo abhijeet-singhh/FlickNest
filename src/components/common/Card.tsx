@@ -20,6 +20,8 @@ const Card = ({ data }: CardProps) => {
                     src={`${imageURL}/${data.poster_path}`} 
                     alt={title}
                     loading="lazy" 
+                    decoding="async"
+                    fetchPriority="high"
                     className="w-full h-full object-cover" 
                 />
             </div>

@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../store";
 import { MovieData } from "../../types/movie.types";
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight, MdStarRate, MdVisibility } from "react-icons/md";
-import { BANNER_AUTO_SCROLL_DELAY } from "../../utils/constants";
+import { BANNER_AUTO_SCROLL_DELAY, BANNER_SLIDES_TO_SHOW } from "../../utils/constants";
 import { formatPopularity, formatRating } from "../../utils/formatters";
 
 const HomeBanner = () => {
@@ -35,7 +35,7 @@ const HomeBanner = () => {
 
     if (slideCount > 1 && !isPaused) {
       autoScrollRef.current = setInterval(() => {
-        setCurrentIndex((prevIndex) => (prevIndex + 1) % slideCount);
+        setCurrentIndex((prevIndex) => (prevIndex + 1) % BANNER_SLIDES_TO_SHOW);
       }, BANNER_AUTO_SCROLL_DELAY);
     }
 
@@ -94,6 +94,8 @@ const HomeBanner = () => {
               <img
                 src={imageURL + data.backdrop_path}
                 loading={index === 0 ? "eager" : "lazy"}
+                decoding="async"
+                fetchPriority="high"
                 className="w-full h-full object-cover transform transition-transform duration-500"
                 alt={data.title || data.name}
               />

@@ -1,7 +1,7 @@
 export const APP_TITLE = 'CINEMAX';
 
 export const BANNER_AUTO_SCROLL_DELAY = 4000;
-export const BANNER_SLIDES_TO_SHOW = 10;
+export const BANNER_SLIDES_TO_SHOW = 20;
 
 export const MENU_ITEMS = [
     { path: '/explore/tvshows', label: 'TV Shows' },

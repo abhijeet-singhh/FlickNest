@@ -27,7 +27,7 @@ const TrendingSection = () => {
                     style={{willChange: 'transform'}} 
                     className="pb-10 overflow-x-hidden scrollbar-hide scroll-smooth transition-all snap-x snap-mandatory"
                 >
-                    <div className="flex md:gap-5 w-max mt-5 mx-10 flex-shrink-0">
+                    <div className="flex gap-0 md:gap-5 w-max mt-5 mx-0 md:mx-10 flex-shrink-0">
                         {top10Trending.map((data, index) => {
                             const displayIndex = String(index + 1).padStart(2, '0');
                             return (
