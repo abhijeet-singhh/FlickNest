@@ -1,16 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-
-export interface MovieData {
-    backdrop_path: string;
-    id: number;
-    title?: string;
-    name?: string;
-    overview?: string;
-    poster_path?: string;
-    vote_average?: number;
-    popularity?: number;
-    release_date?: string;
-}
+import { MovieData } from "../../types/movie.types";
 
 interface MovieState {
     bannerData: MovieData[]

@@ -1,8 +1,10 @@
 import { useEffect, useRef, useState, useCallback } from "react";
 import { useSelector } from "react-redux";
-import { RootState } from "../app/store";
-import { MovieData } from "../app/features/movieSlice";
+import { RootState } from "../../store";
+import { MovieData } from "../../types/movie.types";
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight, MdStarRate, MdVisibility } from "react-icons/md";
+import { BANNER_AUTO_SCROLL_DELAY } from "../../utils/constants";
+import { formatPopularity, formatRating } from "../../utils/formatters";
 
 const HomeBanner = () => {
   const bannerData = useSelector((state: RootState) => state.movieData.bannerData ?? []) as MovieData[]
@@ -12,12 +14,10 @@ const HomeBanner = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
   const slideCount = bannerData.length;
-  const isMobile = window.innerWidth <= 768
+  const isMobile = window.innerWidth <= 768;
 
-  // Memoize scroll function to avoid recreating it on every render
   const scrollToIndex = useCallback((index: number) => {
     if (!scrollRef.current) return;
-
     const width = scrollRef.current.offsetWidth;
     scrollRef.current.scrollLeft = width * index;
   }, []);
@@ -30,39 +30,27 @@ const HomeBanner = () => {
     setCurrentIndex((prevIndex) => (prevIndex - 1 + slideCount) % slideCount);
   }, [slideCount]);
 
-  // Reset auto-scroll when component mounts or dependencies change
   useEffect(() => {
-      if (autoScrollRef.current) clearInterval(autoScrollRef.current);
+    if (autoScrollRef.current) clearInterval(autoScrollRef.current);
 
-      // Only start auto-scroll if there are multiple slides and not paused
-      if (slideCount > 1 && !isPaused) {
-        autoScrollRef.current = setInterval(() => {
-          setCurrentIndex((prevIndex) => {
-            if (prevIndex + 1 >= slideCount) {
-              return 0;
-            } else {
-              return prevIndex + 1;
-            }
-          })
-        }, 4000);
-      }
+    if (slideCount > 1 && !isPaused) {
+      autoScrollRef.current = setInterval(() => {
+        setCurrentIndex((prevIndex) => (prevIndex + 1) % slideCount);
+      }, BANNER_AUTO_SCROLL_DELAY);
+    }
 
-    // Cleanup on unmount
     return () => {
       if (autoScrollRef.current) clearInterval(autoScrollRef.current);
     };
   }, [slideCount, isPaused, isMobile]);
 
-  // Scroll to the updated index whenever it changes
   useEffect(() => {
     scrollToIndex(currentIndex);
   }, [currentIndex, scrollToIndex]);
 
-  // Pause auto-scroll when user interacts with banner
   const pauseAutoScroll = () => setIsPaused(true);
   const resumeAutoScroll = () => setIsPaused(false);
 
-  // Don't render if no banner data
   if (!bannerData.length) return null;
 
   return (
@@ -70,16 +58,17 @@ const HomeBanner = () => {
       className="w-full h-[40vh] lg:h-[85vh] relative overflow-hidden rounded-xl shadow-2xl"
       aria-label="Featured movies carousel"
     >
-
       <div className="absolute bottom-4 left-0 right-0 z-10 hidden md:flex justify-center gap-1.5 sm:gap-2">
         {bannerData.map((_, index) => (
           <button
             key={`indicator-${index}`}
             onClick={() => setCurrentIndex(index)}
-            className={`h-1.5 rounded-full transition-all duration-300 ${currentIndex === index
-              ? "bg-[#B1D690] w-8"
-              : "bg-white/30 w-3 hover:bg-white/60"
-              }`}
+            className={`h-1.5 rounded-full transition-all duration-300 ${
+              currentIndex === index
+                ? "bg-[#B1D690] w-8"
+                : "bg-white/30 w-3 hover:bg-white/60"
+            }`}
+            aria-label={`Go to slide ${index + 1}`}
           />
         ))}
       </div>
@@ -101,20 +90,21 @@ const HomeBanner = () => {
             aria-roledescription="slide"
             aria-label={`${index + 1} of ${slideCount}`}
           >
-            <div className="w-full h-full bg-gray-800 ">
+            <div className="w-full h-full bg-gray-800">
               <img
                 src={imageURL + data.backdrop_path}
                 loading={index === 0 ? "eager" : "lazy"}
                 className="w-full h-full object-cover transform transition-transform duration-500"
-                alt=""
-                aria-hidden="true"
+                alt={data.title || data.name}
               />
             </div>
 
             <div className="absolute bottom-0 inset-0 bg-gradient-to-t from-black/95 via-black/60 to-transparent flex flex-col justify-end">
               <div className="flex justify-between items-end px-4 mb-2 md:mb-8 md:px-16 pb-6 md:pb-10 w-full">
                 <div className="text-white lg:max-w-[60%] space-y-2 md:space-y-4">
-                  <h2 className="text-[#B1D690] text-[12px] md:text-xl md:ml-2">#{index + 1} Spotlight</h2>
+                  <h2 className="text-[#B1D690] text-[12px] md:text-xl md:ml-2">
+                    #{index + 1} Spotlight
+                  </h2>
                   <h2 className="text-3xl md:text-5xl font-bold tracking-tight drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
                     {data.title || data.name}
                   </h2>
@@ -126,7 +116,7 @@ const HomeBanner = () => {
                       onMouseEnter={pauseAutoScroll}
                       onMouseLeave={resumeAutoScroll}
                       className="bg-[#B1D690] hover:bg-[#9fc57d] transition-all duration-300 rounded-full px-3 py-1.5 md:px-6 md:py-2 text-neutral-900 font-semibold md:font-bold shadow-lg hover:shadow-xl active:scale-95 focus:ring-2 focus:ring-white"
-                      aria-label={`View details for ${data.title || data.name}`}
+                      aria-label={`Watch ${data.title || data.name}`}
                     >
                       Watch Now
                     </button>
@@ -142,12 +132,12 @@ const HomeBanner = () => {
                     <div className="hidden md:flex items-center gap-3 ml-1 mt-2 md:mt-0 md:ml-4 text-gray-300">
                       <span className="flex items-center gap-1">
                         <MdStarRate className="text-yellow-400" />
-                        {Number(data.vote_average).toFixed(1)}
+                        {formatRating(data.vote_average)}
                       </span>
                       <span className="text-gray-500">•</span>
                       <span className="flex items-center gap-1">
                         <MdVisibility className="text-blue-300" />
-                        {Number(data.popularity).toFixed(0)}
+                        {formatPopularity(data.popularity)}
                       </span>
                     </div>
                   </div>
@@ -182,5 +172,6 @@ const HomeBanner = () => {
       )}
     </section>
   );
-}
-export default HomeBanner
+};
+
+export default HomeBanner;

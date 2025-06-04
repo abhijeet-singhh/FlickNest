@@ -3,12 +3,12 @@ import { createRoot } from 'react-dom/client'
 import { BrowserRouter } from 'react-router-dom'
 import './index.css'
 import App from './App.tsx'
-import axios from 'axios'
 import { Provider } from 'react-redux'
-import { store } from './app/store.ts'
+import { store } from './store/index.ts'
+import { configService } from './api/services/configService'
 
-axios.defaults.baseURL = "https://api.themoviedb.org/3"
-axios.defaults.headers.common['Authorization'] = `Bearer ${import.meta.env.VITE_REACT_APP_ACCESS_TOKEN}`
+// Initialize API configuration
+configService.initialize()
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>

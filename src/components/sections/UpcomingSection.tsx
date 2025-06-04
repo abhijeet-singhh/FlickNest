@@ -1,10 +1,9 @@
 import { useSelector } from "react-redux"
-import { RootState } from "../app/store"
-import { MovieData } from "../app/features/movieSlice"
-import Card from "./Card"
+import { RootState } from "../../store"
+import Card from "../common/Card"
+import { MovieData } from "../../types/movie.types"
 
 const UpcomingSection = () => {
-
     const upcomingData = useSelector((state: RootState) => state.movieData.upcomingData ?? []) as MovieData[]
     const upcomingDataSliced = upcomingData.slice(0, 12)
 
@@ -15,7 +14,7 @@ const UpcomingSection = () => {
                 {upcomingDataSliced.map((data, index) => {
                     const displayIndex = String(index + 1).padStart(2, '0');
                     return (
-                        <div key={index} className="w-[160px] md:w-[210px] flex-shrink-0">
+                        <div key={`upcoming-${data.id || index}`} className="w-[160px] md:w-[210px] flex-shrink-0">
                             <Card data={data} indexLabel={displayIndex} />
                         </div>
                     )

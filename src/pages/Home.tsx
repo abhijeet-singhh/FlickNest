@@ -1,6 +1,6 @@
-import HomeBanner from "../components/HomeBanner"
-import TrendingSection from "../components/TrendingSection"
-import UpcomingSection from "../components/UpcomingSection"
+import HomeBanner from "../components/sections/HomeBanner"
+import TrendingSection from "../components/sections/TrendingSection"
+import UpcomingSection from "../components/sections/UpcomingSection"
 
 const Home = () => {
   return (

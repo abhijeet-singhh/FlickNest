@@ -1,62 +1,33 @@
 import { Route, Routes } from "react-router-dom"
-import Navbar from "./components/Navbar"
-import Home from "./pages/Home"
-import Search from "./pages/Search"
-import Explore from "./pages/Explore"
-import Details from "./pages/Details"
-import MobileNavigation from "./components/MobileNavigation"
-import axios from "axios"
-import { useEffect } from "react"
-import { useDispatch } from "react-redux"
-import { setBannerData, setImageURL, setTrendingData, setUpcomingData } from "./app/features/movieSlice"
+import Navbar from "./components/layout/Navbar"
+import MobileNavigation from "./components/layout/MobileNavigation"
+import { Home, Search, Explore, Details } from "./pages/index"
+import { useMovies } from "./hooks/useMovies"
 
 const App = () => {
+  const { error, isLoading } = useMovies();
 
-  const dispatch = useDispatch()
+  if (isLoading) {
+    return (
+      <div className="bg-black text-white h-screen flex items-center justify-center">
+        <div className="text-center">
+          <h2 className="text-2xl font-bold mb-2">Loading...</h2>
+          <p className="text-gray-400">Please wait while we fetch the movies</p>
+        </div>
+      </div>
+    );
+  }
 
-  useEffect(() => {
-    const fetchTrendingData = async () => {
-      try {
-        const response = await axios.get('/trending/all/week')
-        dispatch(setBannerData(response.data.results))
-      } catch (error) {
-        console.log(error)
-      }
-    }
-
-    const fetchTrendingDataByDay = async () => {
-      try{
-        const response = await axios.get('trending/all/day')
-        dispatch(setTrendingData(response.data.results))
-      } catch(error) {
-        console.log(error)
-      }
-    }
-
-    const fetchConfigurationData = async () => {
-      try{
-        const response = await axios.get('/configuration')
-        dispatch(setImageURL(response.data.images.secure_base_url+"original"))
-      } catch(error) {
-        console.log(error)
-      }
-    }
-
-    const fetchUpcomingData = async () => {
-      try{
-        const response = await axios.get('/movie/upcoming')
-        dispatch(setUpcomingData(response.data.results))
-      } catch(error){
-        console.log(error)
-      }
-    }
-    
-    fetchTrendingData()
-    fetchTrendingDataByDay()
-    fetchConfigurationData()
-    fetchUpcomingData()
-  }, [dispatch])
-
+  if (error) {
+    return (
+      <div className="bg-black text-white h-screen flex items-center justify-center">
+        <div className="text-center">
+          <h2 className="text-2xl font-bold mb-2 text-red-500">Error Loading Movies</h2>
+          <p className="text-gray-400">{error.message}</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="bg-black text-white h-screen">
