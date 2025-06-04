@@ -1,17 +1,18 @@
-import axios from 'axios';
+// import axios from 'axios';
 import { ENDPOINTS } from '../endpoints';
 import type { MovieResponse } from '../../types/movie.types';
+import axiosInstance from '../axios.config';
 
 export const movieService = {
   getTrendingWeek: () => 
-    axios.get<MovieResponse>(ENDPOINTS.trending.week),
+    axiosInstance.get<MovieResponse>(ENDPOINTS.trending.week),
 
   getTrendingDay: () =>
-    axios.get<MovieResponse>(ENDPOINTS.trending.day),
+    axiosInstance.get<MovieResponse>(ENDPOINTS.trending.day),
 
   getUpcoming: () =>
-    axios.get<MovieResponse>(ENDPOINTS.upcoming),
+    axiosInstance.get<MovieResponse>(ENDPOINTS.upcoming),
 
   getConfiguration: () =>
-    axios.get(ENDPOINTS.configuration)
+    axiosInstance.get(ENDPOINTS.configuration)
 };

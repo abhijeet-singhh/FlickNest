@@ -5,10 +5,6 @@ import './index.css'
 import App from './App.tsx'
 import { Provider } from 'react-redux'
 import { store } from './store/index.ts'
-import { configService } from './api/services/configService'
-
-// Initialize API configuration
-configService.initialize()
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
