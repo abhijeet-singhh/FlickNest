@@ -15,7 +15,7 @@ const UpcomingSection = () => {
                 {upcomingDataSliced.map((data, index) => {
                     const displayIndex = String(index + 1).padStart(2, '0');
                     return (
-                        <div key={index} className="w-[220px] flex-shrink-0">
+                        <div key={index} className="w-[160px] md:w-[210px] flex-shrink-0">
                             <Card data={data} indexLabel={displayIndex} />
                         </div>
                     )

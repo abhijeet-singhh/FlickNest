@@ -4,7 +4,7 @@ import UpcomingSection from "../components/UpcomingSection"
 
 const Home = () => {
   return (
-    <div className="h-full bg-black">
+    <div className="h-full pb-15 md:pb-0 bg-black">
       <HomeBanner />
       <TrendingSection />
       <UpcomingSection />

@@ -1,11 +1,11 @@
 import { useEffect, useRef, useState, useCallback } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../app/store";
-import { BannerData } from "../app/features/movieSlice";
+import { MovieData } from "../app/features/movieSlice";
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight, MdStarRate, MdVisibility } from "react-icons/md";
 
 const HomeBanner = () => {
-  const bannerData = useSelector((state: RootState) => state.movieData.bannerData ?? []) as BannerData[]
+  const bannerData = useSelector((state: RootState) => state.movieData.bannerData ?? []) as MovieData[]
   const imageURL = useSelector((state: RootState) => state.movieData.imageURL)
   const scrollRef = useRef<HTMLDivElement>(null);
   const autoScrollRef = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -114,7 +114,7 @@ const HomeBanner = () => {
             <div className="absolute bottom-0 inset-0 bg-gradient-to-t from-black/95 via-black/60 to-transparent flex flex-col justify-end">
               <div className="flex justify-between items-end px-4 mb-2 md:mb-8 md:px-16 pb-6 md:pb-10 w-full">
                 <div className="text-white lg:max-w-[60%] space-y-2 md:space-y-4">
-                  <h2 className="text-[#B1D690] text-[12px] md:text-xl md:ml-2">#{index} Spotlight</h2>
+                  <h2 className="text-[#B1D690] text-[12px] md:text-xl md:ml-2">#{index + 1} Spotlight</h2>
                   <h2 className="text-3xl md:text-5xl font-bold tracking-tight drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
                     {data.title || data.name}
                   </h2>
