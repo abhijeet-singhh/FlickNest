@@ -1,12 +1,12 @@
 import { useSelector } from "react-redux"
 import { RootState } from "../app/store"
-import { TrendingData } from "../app/features/movieSlice"
-import Card from "./Card"
+import { MovieData } from "../app/features/movieSlice"
+import Card from "./TrendingCard"
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md"
 import { useRef } from "react"
 const TrendingSection = () => {
     const scrollRef = useRef<HTMLDivElement>(null);
-    const trendingData = useSelector((state: RootState) => state.movieData.trendingData ?? []) as TrendingData[]
+    const trendingData = useSelector((state: RootState) => state.movieData.trendingData ?? []) as MovieData[]
     const top10Trending = trendingData.slice(0, 10)
     const scrollLeft = () => {
         scrollRef.current?.scrollBy({ left: -304, behavior: "smooth" });
@@ -18,14 +18,13 @@ const TrendingSection = () => {
         <div className="mt-3 md:mt-10 mx-2 md:mx-5">
             <h3 className="text-[#B1D690] text-xl md:text-2xl font-bold">Trending</h3>
             <div className="flex">
-                <div ref={scrollRef} className="pb-10 overflow-x-hidden scrollbar-hide scroll-smooth snap-x snap-mandatory">
+                <div ref={scrollRef} style={{willChange: 'transform'}} className="pb-10 overflow-x-hidden scrollbar-hide scroll-smooth transition-all snap-x snap-mandatory">
                     <div className="flex md:gap-5 w-max mt-5 mx-10 flex-shrink-0">
                         {top10Trending.map((data, index) => {
                             const displayIndex = String(index + 1).padStart(2, '0');
                             return (
-                                <div className="snap-start">
+                                <div key={`trendingcard-${data.id || index}`} className="snap-start">
                                     <Card
-                                        key={`trendingcard-${data.id || index}`}
                                         data={data}
                                         indexLabel={displayIndex}
                                     />

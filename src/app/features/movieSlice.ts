@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-export interface BannerData {
+export interface MovieData {
     backdrop_path: string;
     id: number;
     title?: string;
@@ -9,47 +9,42 @@ export interface BannerData {
     poster_path?: string;
     vote_average?: number;
     popularity?: number;
-}
-
-export interface TrendingData {
-    backdrop_path: string;
-    id: number;
-    title?: string;
-    name?: string;
-    overview?: string;
-    poster_path?: string;
-    vote_average?: number;
-    popularity?: number;
+    release_date?: string;
 }
 
 interface MovieState {
-    bannerData: BannerData[]
+    bannerData: MovieData[]
     imageURL: string
-    trendingData: TrendingData[]
+    trendingData: MovieData[]
+    upcomingData: MovieData[]
 }
 
 const initialState: MovieState = {
     bannerData : [],
     imageURL : '',
-    trendingData: []
+    trendingData: [],
+    upcomingData: []
 }
 
 export const movieSlice = createSlice({
     name: 'movie',
     initialState,
     reducers : {
-        setBannerData: (state, action: PayloadAction<BannerData[]>) => {
+        setBannerData: (state, action: PayloadAction<MovieData[]>) => {
             state.bannerData = action.payload
         },
         setImageURL: (state, action: PayloadAction<string>) => {
             state.imageURL = action.payload
         },
-        setTrendingData: (state, action: PayloadAction<BannerData[]>) => {
+        setTrendingData: (state, action: PayloadAction<MovieData[]>) => {
             state.trendingData = action.payload
         },
+        setUpcomingData: (state, action: PayloadAction<MovieData[]>) => {
+            state.upcomingData = action.payload
+        }
     }
 })
 
-export const { setBannerData, setImageURL, setTrendingData } = movieSlice.actions
+export const { setBannerData, setImageURL, setTrendingData, setUpcomingData } = movieSlice.actions
 
 export default movieSlice.reducer

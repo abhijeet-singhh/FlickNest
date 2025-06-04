@@ -8,7 +8,7 @@ import MobileNavigation from "./components/MobileNavigation"
 import axios from "axios"
 import { useEffect } from "react"
 import { useDispatch } from "react-redux"
-import { setBannerData, setImageURL, setTrendingData } from "./app/features/movieSlice"
+import { setBannerData, setImageURL, setTrendingData, setUpcomingData } from "./app/features/movieSlice"
 
 const App = () => {
 
@@ -41,10 +41,20 @@ const App = () => {
         console.log(error)
       }
     }
+
+    const fetchUpcomingData = async () => {
+      try{
+        const response = await axios.get('/movie/upcoming')
+        dispatch(setUpcomingData(response.data.results))
+      } catch(error){
+        console.log(error)
+      }
+    }
     
     fetchTrendingData()
     fetchTrendingDataByDay()
     fetchConfigurationData()
+    fetchUpcomingData()
   }, [dispatch])
 
 
