@@ -15,7 +15,7 @@ const Card = ({ data }: CardProps) => {
 
     return (
         <div className="mb-5">
-            <div className="w-full max-w-[160px] md:max-w-[210px] h-52 md:h-65 md:rounded mb-1 overflow-hidden">
+            <div className="w-full max-w-[160px] md:max-w-[210px] h-52 md:h-65 mb-1 overflow-hidden cursor-pointer">
                 <img 
                     src={`${imageURL}/${data.poster_path}`} 
                     alt={title}

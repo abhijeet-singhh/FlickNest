@@ -5,4 +5,4 @@ export const ENDPOINTS = {
   },
   configuration: '/configuration',
   upcoming: '/movie/upcoming'
-} as const;
+} as const; // 'as const' ensures these values are readonly and literal types in TypeScript
