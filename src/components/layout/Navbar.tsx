@@ -1,10 +1,8 @@
 import { useState } from "react"
 import { CiSearch } from "react-icons/ci"
 import { FaUserAlt } from "react-icons/fa"
-import { Link, useNavigate } from "react-router-dom"
+import { Link, NavLink, useNavigate } from "react-router-dom"
 import { APP_TITLE, MENU_ITEMS } from "../../utils/constants"
-
-const menuClass: string = "text-white hover:text-[#abf471] cursor-pointer transition-colors duration-300"
 
 const Navbar = () => {
   const [searchQuery, setSearchQuery] = useState('')
@@ -24,13 +22,14 @@ const Navbar = () => {
 
         <div className="hidden lg:flex items-center gap-8 ">
           {MENU_ITEMS.map((item) => (
-            <Link
+            <NavLink
               key={item.path}
               to={item.path}
-              className={menuClass}
+              className={({ isActive }) =>
+                `hover:text-[#abf471] cursor-pointer transition-colors duration-300 ${isActive ? 'text-[#abf471]' : 'text-white'}`}
             >
               {item.label}
-            </Link>
+            </NavLink>
           ))}
         </div>
       </div>

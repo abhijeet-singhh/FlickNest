@@ -28,3 +28,8 @@ export interface MovieConfiguration {
         still_sizes: string[];
     };
 }
+
+export interface CardProps {
+    data: MovieData
+    indexLabel?: string
+}

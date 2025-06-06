@@ -1,13 +1,9 @@
 import { useSelector } from "react-redux"
 import { RootState } from "../../store"
-import { MovieData } from "../../types/movie.types"
+import { CardProps } from "../../types/movie.types"
 import { MdStarRate } from "react-icons/md"
 import { formatDate, truncateText } from "../../utils/formatters"
 
-export interface CardProps {
-    data: MovieData
-    indexLabel?: string
-}
 
 const Card = ({ data }: CardProps) => {
     const imageURL = useSelector((state: RootState) => state.movieData.imageURL)

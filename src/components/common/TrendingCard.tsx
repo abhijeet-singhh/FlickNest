@@ -1,14 +1,9 @@
 import { useSelector } from "react-redux"
 import { RootState } from "../../store"
-import { MovieData } from "../../types/movie.types"
+import { CardProps } from "../../types/movie.types"
 import { truncateText } from "../../utils/formatters"
 
-export interface TrendingCardProps {
-    data: MovieData
-    indexLabel: string
-}
-
-const TrendingCard = ({ data, indexLabel }: TrendingCardProps) => {
+const TrendingCard = ({ data, indexLabel }: CardProps) => {
     const imageURL = useSelector((state: RootState) => state.movieData.imageURL)
     const title = data.title || data.name || 'Untitled'
 

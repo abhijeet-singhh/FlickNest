@@ -14,5 +14,18 @@ export const movieService = {
     axiosInstance.get<MovieResponse>(ENDPOINTS.upcoming),
 
   getConfiguration: () =>
-    axiosInstance.get(ENDPOINTS.configuration)
+    axiosInstance.get(ENDPOINTS.configuration),
+
+  // Discover endpoints
+  getNowPlaying: () => 
+    axiosInstance.get<MovieResponse>(ENDPOINTS.discover.nowPlaying),
+
+  getTopRated: () =>
+    axiosInstance.get<MovieResponse>(ENDPOINTS.discover.topRated),
+
+  getOnTheAir: () =>
+    axiosInstance.get<MovieResponse>(ENDPOINTS.discover.onTheAir),
+
+  getAiringToday: () =>
+    axiosInstance.get<MovieResponse>(ENDPOINTS.discover.airingToday)
 };

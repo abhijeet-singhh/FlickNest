@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { movieService } from '../api/services/movieService';
-import { setBannerData, setImageURL, setTrendingData, setUpcomingData } from '../store/slices/movieSlice';
+import { setAiringToday, setBannerData, setImageURL, setNowPlaying, setOnTheAir, setTopRated, setTrendingData, setUpcomingData } from '../store/slices/movieSlice';
 import { API_CONFIG } from '../utils/constants';
 
 export const useMovies = () => {
@@ -15,17 +15,26 @@ export const useMovies = () => {
         setIsLoading(true);
         setError(null);
 
-        const [trendingWeek, trendingDay, config, upcoming] = await Promise.all([
+        const [trendingWeek, trendingDay, config, upcoming, nowPlaying, topRated, onTheAir, airingToday] = await Promise.all([
           movieService.getTrendingWeek(),
           movieService.getTrendingDay(),
           movieService.getConfiguration(),
-          movieService.getUpcoming()
+          movieService.getUpcoming(),
+          movieService.getNowPlaying(),
+          movieService.getTopRated(),
+          movieService.getOnTheAir(),
+          movieService.getAiringToday(),
         ]);
 
         dispatch(setBannerData(trendingWeek.data.results));
         dispatch(setTrendingData(trendingDay.data.results));
         dispatch(setImageURL(config.data.images.secure_base_url + API_CONFIG.DEFAULT_IMAGE_SIZE));
         dispatch(setUpcomingData(upcoming.data.results));
+        // dispatch discover data
+        dispatch(setNowPlaying(nowPlaying.data.results))
+        dispatch(setTopRated(topRated.data.results))
+        dispatch(setOnTheAir(onTheAir.data.results))
+        dispatch(setAiringToday(airingToday.data.results))
       } catch (error) {
         console.error('Error fetching movie data:', error);
         setError(error instanceof Error ? error : new Error('Failed to fetch movie data'));

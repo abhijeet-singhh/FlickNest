@@ -101,7 +101,7 @@ const HomeBanner = () => {
               />
             </div>
 
-            <div className="absolute bottom-0 inset-0 bg-gradient-to-t from-black/95 via-black/60 to-transparent flex flex-col justify-end">
+            <div className="absolute bottom-0 inset-0 bg-gradient-to-t from-[#13111b] via-black/70 to-transparent flex flex-col justify-end">
               <div className="flex justify-between items-end px-4 mb-2 md:mb-8 md:px-16 pb-6 md:pb-10 w-full">
                 <div className="text-white lg:max-w-[60%] space-y-2 md:space-y-4">
                   <h2 className="text-[#B1D690] text-[12px] md:text-xl md:ml-2">
