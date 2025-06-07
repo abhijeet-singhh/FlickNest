@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { FaArrowUpLong } from 'react-icons/fa6';
+import { IoIosArrowUp } from 'react-icons/io';
 
 export default function ScrollToTopButton() {
     const [visible, setVisible] = useState(false);
@@ -24,10 +24,10 @@ export default function ScrollToTopButton() {
     return (
         <button
             onClick={scrollToTop}
-            className="fixed bottom-18 lg:bottom-6 right-5 bg-zinc-200 opacity-80 text-black p-3 rounded-full shadow-lg transition z-50 cursor-pointer"
+            className="fixed bottom-18 lg:bottom-6 right-5 bg-white/8 text-black p-3 rounded-full shadow-lg transition z-50 cursor-pointer"
             aria-label="Scroll to top"
         >
-            <FaArrowUpLong />
+            <IoIosArrowUp className='font-bold' />
         </button>
     );
 }

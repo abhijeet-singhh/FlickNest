@@ -45,11 +45,10 @@ const DiscoverPage = () => {
         <div className="pt-18 px-5 h-full bg-[#151320]">
             <PromoBadge />
             <h3 className="text-[#B1D690] text-xl md:text-[23px] font-bold mt-6 mb-5">{title}</h3>
-            <div className="flex flex-wrap items-center gap-4 justify-around">
+            <div className="flex flex-wrap items-center gap-4 justify-center">
                 {slicedData.map((item, i) => (
-                    <div className="overflow-hidden w-full max-w-[210px]">
-                        <Card
-                            key={item.id || i}
+                    <div key={item.id || i} className="overflow-hidden w-full max-w-[160px] md:max-w-[210px]">
+                        <Card   
                             data={item}
                             indexLabel={String(i + 1).padStart(2, "0")}
                             mediaType={mediaType}

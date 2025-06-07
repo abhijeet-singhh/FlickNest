@@ -8,9 +8,9 @@ const shareText = encodeURIComponent("Check out this awesome site!");
 
 const PromoBadge = () => {
   return (
-    <div className="flex items-center gap-4 bg-[#191826] animate-fade-in justify-start flex-wrap py-7">
+    <div className="flex items-center gap-4 bg-[#191826] animate-fade-in justify-start flex-wrap py-3 md:py-7 px-2 md:px-0">
       {/* Animated Avatar */}
-      <div className="w-14 h-14 rounded-full border-2 border-violet-500 shadow-lg overflow-hidden flex-shrink-0">
+      <div className="hidden md:block w-14 h-14 rounded-full border-2 border-violet-500 shadow-lg overflow-hidden flex-shrink-0">
         <img
           src="/assets/anya.webp"
           alt="Animated Avatar"
@@ -35,7 +35,7 @@ const PromoBadge = () => {
             aria-label="Share on Twitter"
           >
             <FaXTwitter size={16} />
-            <span className="font-semibold text-[14px]">Tweet</span>
+            <span className="hidden md:block font-semibold text-[14px]">Tweet</span>
           </a>
 
           <a
@@ -46,7 +46,7 @@ const PromoBadge = () => {
             aria-label="Share on Reddit"
           >
             <FaReddit size={18} />
-            <span className="font-semibold text-[14px]">Share</span>
+            <span className="hidden md:block font-semibold text-[14px]">Share</span>
           </a>
 
           <a
@@ -57,7 +57,7 @@ const PromoBadge = () => {
             aria-label="Share on Facebook"
           >
             <FaFacebook size={18} />
-            <span className="font-semibold text-[14px]">Share</span>
+            <span className="hidden md:block font-semibold text-[14px]">Share</span>
           </a>
 
           <button
@@ -69,7 +69,7 @@ const PromoBadge = () => {
             aria-label="Copy link"
           >
             <FaLink size={18} />
-            <span className="font-semibold text-[14px]">Copy Link</span>
+            <span className="hidden md:block font-semibold text-[14px]">Copy Link</span>
           </button>
         </div>
       </div>

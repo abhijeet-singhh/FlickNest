@@ -3,6 +3,7 @@ import { RootState } from "../../store"
 import { CardProps } from "../../types/movie.types"
 import { MdStarRate } from "react-icons/md"
 import { formatDate, truncateText } from "../../utils/formatters"
+import ScrollToTopButton from "./ScrollToTopButton"
 
 
 const Card = ({ data }: CardProps) => {
@@ -14,7 +15,7 @@ const Card = ({ data }: CardProps) => {
 
     return (
         <div className="mb-5 flex-shrink-0">
-            <div className="relative w-full max-w-[160px] md:max-w-[210px] h-52 md:h-65 mb-1 overflow-hidden cursor-pointer">
+            <div className="relative w-full max-w-[160px] md:max-w-[210px] h-52 md:h-65 mb-2 overflow-hidden cursor-pointer">
                 <img
                     src={posterPath}
                     alt={title}
@@ -43,6 +44,7 @@ const Card = ({ data }: CardProps) => {
                     </span>
                 </div>
             </div>
+            <ScrollToTopButton />
         </div>
     )
 }
