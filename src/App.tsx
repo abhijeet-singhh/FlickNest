@@ -3,6 +3,7 @@ import Navbar from "./components/layout/Navbar"
 import MobileNavigation from "./components/layout/MobileNavigation"
 import { Home, Search, Explore, Details } from "./pages/index"
 import { useMovies } from "./hooks/useMovies"
+import DiscoverPage from "./pages/DiscoverPage"
 
 const App = () => {
   const { error, isLoading } = useMovies();
@@ -38,6 +39,10 @@ const App = () => {
           <Route path="/search" element={<Search />} />
           <Route path="/explore/:path" element={<Explore />} />
           <Route path="/explore/details/:id" element={<Details />} />
+          <Route path="/now_playing" element={<DiscoverPage />} />
+          <Route path="/top_rated" element={<DiscoverPage />} />
+          <Route path="/on_the_air" element={<DiscoverPage />} />
+          <Route path="/airing_today" element={<DiscoverPage />} />
         </Routes>
       </main>
       <MobileNavigation />

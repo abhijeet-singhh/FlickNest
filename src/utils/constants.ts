@@ -16,6 +16,13 @@ export const MOBILE_NAV_ITEMS = [
     { path: '/search', label: 'Search', icon: 'CiSearch' },
 ] as const;
 
+export const DISCOVER_ITEMS = [
+  { path: '/now_playing', label: 'In Theaters', mediaType: 'Movie' },
+  { path: '/top_rated', label: 'Top Rated', mediaType: 'Movie' },
+  { path: '/on_the_air', label: 'On The Air', mediaType: 'TV' },
+  { path: '/airing_today', label: 'Airing Today', mediaType: 'TV' },
+] as const;
+
 export const API_CONFIG = {
     BASE_URL: 'https://api.themoviedb.org/3',
     IMAGE_BASE_URL: 'https://image.tmdb.org/t/p/',

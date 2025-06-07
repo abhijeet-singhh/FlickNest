@@ -8,6 +8,7 @@ export interface MovieData {
     vote_average?: number;
     popularity?: number;
     release_date?: string;
+    first_air_date?: string;
 }
 
 export interface MovieResponse {
@@ -32,4 +33,5 @@ export interface MovieConfiguration {
 export interface CardProps {
     data: MovieData
     indexLabel?: string
+    mediaType?: 'Movie' | 'TV'
 }

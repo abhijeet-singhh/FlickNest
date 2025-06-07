@@ -11,12 +11,12 @@ const DiscoverSection = () => {
     console.log(nowPlaying)
 
   return (
-    <div className="w-full h-[80vh] px-4 py-2">
+    <div className="w-full h-full px-4 py-2">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            <DiscoverColumn title="In Theaters" data={nowPlaying} />
-            <DiscoverColumn title="Top Rated" data={toprated} />
-            <DiscoverColumn title="On The Air" data={onTheAir} />
-            <DiscoverColumn title="Airing Today" data={airingToday} />
+            <DiscoverColumn title="In Theaters" mediaType="Movie" data={nowPlaying} path="/now_playing"/>
+            <DiscoverColumn title="Top Rated" mediaType="Movie" data={toprated} path="/top_rated" />
+            <DiscoverColumn title="On The Air" mediaType="TV" data={onTheAir} path="/on_the_air" />
+            <DiscoverColumn title="Airing Today" mediaType="TV" data={airingToday} path="airing_today" />
         </div>
     </div>
   )
