@@ -8,7 +8,6 @@ const DiscoverSection = () => {
     const toprated = useSelector((state: RootState) => state.movieData.topRated);
     const onTheAir = useSelector((state: RootState) => state.movieData.onTheAir);
     const airingToday = useSelector((state: RootState) => state.movieData.airingToday);
-    console.log(nowPlaying)
 
   return (
     <div className="w-full h-full px-4 py-2">

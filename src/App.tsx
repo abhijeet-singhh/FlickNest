@@ -4,6 +4,7 @@ import MobileNavigation from "./components/layout/MobileNavigation"
 import { Home, Search, Explore, Details } from "./pages/index"
 import { useMovies } from "./hooks/useMovies"
 import DiscoverPage from "./pages/DiscoverPage"
+import ScrollToTop from "./components/common/ScrollToTop"
 
 const App = () => {
   const { error, isLoading } = useMovies();
@@ -34,6 +35,7 @@ const App = () => {
     <div className="bg-black text-white h-screen">
       <Navbar />
       <main>
+        <ScrollToTop />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/search" element={<Search />} />

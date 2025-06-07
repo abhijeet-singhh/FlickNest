@@ -12,7 +12,6 @@ const DiscoverPage = () => {
     const topRated = useSelector((state: RootState) => state.movieData.topRated);
     const onTheAir = useSelector((state: RootState) => state.movieData.onTheAir);
     const airingToday = useSelector((state: RootState) => state.movieData.airingToday);
-    console.log(airingToday)
 
     const dataMap: Record<string, MovieData[]> = {
         "/now_playing": nowPlaying,
