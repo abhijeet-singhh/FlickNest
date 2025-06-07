@@ -3,6 +3,7 @@ import { useLocation } from "react-router-dom"
 import { RootState } from "../store";
 import Card from "../components/common/Card";
 import { MovieData } from "../types/movie.types";
+import PromoBadge from "../components/common/PromoBadge";
 
 const DiscoverPage = () => {
 
@@ -42,7 +43,8 @@ const DiscoverPage = () => {
 
     return (
         <div className="pt-18 px-5 h-full bg-[#151320]">
-            <h3 className="text-[#B1D690] text-xl md:text-[23px] font-bold mb-5">{title}</h3>
+            <PromoBadge />
+            <h3 className="text-[#B1D690] text-xl md:text-[23px] font-bold mt-6 mb-5">{title}</h3>
             <div className="flex flex-wrap items-center gap-4 justify-around">
                 {slicedData.map((item, i) => (
                     <div className="overflow-hidden w-full max-w-[210px]">
