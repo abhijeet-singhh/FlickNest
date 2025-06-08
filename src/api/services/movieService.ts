@@ -46,5 +46,6 @@ export const movieService = {
   getTopRated300: () => fetchMultiplePagesOfMovies(ENDPOINTS.discover.topRated, 9),
   getOnTheAir300: () => fetchMultiplePagesOfMovies(ENDPOINTS.discover.onTheAir, 9),
   getAiringToday300: () => fetchMultiplePagesOfMovies(ENDPOINTS.discover.airingToday, 9),
+  getUpcoming300: () => fetchMultiplePagesOfMovies(ENDPOINTS.upcoming, 9),
 
 };

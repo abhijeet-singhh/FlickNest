@@ -45,6 +45,7 @@ const App = () => {
           <Route path="/top_rated" element={<DiscoverPage />} />
           <Route path="/on_the_air" element={<DiscoverPage />} />
           <Route path="/airing_today" element={<DiscoverPage />} />
+          <Route path="/top_upcoming" element={<DiscoverPage />} />
         </Routes>
       </main>
       <MobileNavigation />

@@ -13,7 +13,8 @@ interface MovieState {
     topRated300: MovieData[],
     onTheAir300: MovieData[],
     airingToday300: MovieData[],
-    upcomingData: MovieData[]
+    upcomingData: MovieData[],
+    upcomingData300: MovieData[],
 }
 
 const initialState: MovieState = {
@@ -28,7 +29,8 @@ const initialState: MovieState = {
     topRated300: [],
     onTheAir300: [],
     airingToday300: [],
-    upcomingData: []
+    upcomingData: [],
+    upcomingData300: [],
 }
 
 export const movieSlice = createSlice({
@@ -75,9 +77,12 @@ export const movieSlice = createSlice({
         setAiringToday300: (state, action: PayloadAction<MovieData[]>) => {
             state.airingToday300 = action.payload
         },
+        setUpcomingData300: (state, action: PayloadAction<MovieData[]>) => {
+            state.upcomingData300 = action.payload
+        },
     }
 })
 
-export const { setBannerData, setImageURL, setTrendingData, setUpcomingData, setNowPlaying, setTopRated, setOnTheAir, setAiringToday, setNowPlaying300, setTopRated300, setOnTheAir300, setAiringToday300 } = movieSlice.actions
+export const { setBannerData, setImageURL, setTrendingData, setUpcomingData, setNowPlaying, setTopRated, setOnTheAir, setAiringToday, setNowPlaying300, setTopRated300, setOnTheAir300, setAiringToday300, setUpcomingData300 } = movieSlice.actions
 
 export default movieSlice.reducer

@@ -15,7 +15,7 @@ const DiscoverSection = () => {
             <DiscoverColumn title="In Theaters" mediaType="Movie" data={nowPlaying} path="/now_playing"/>
             <DiscoverColumn title="Top Rated" mediaType="Movie" data={toprated} path="/top_rated" />
             <DiscoverColumn title="On The Air" mediaType="TV" data={onTheAir} path="/on_the_air" />
-            <DiscoverColumn title="Airing Today" mediaType="TV" data={airingToday} path="airing_today" />
+            <DiscoverColumn title="Airing Today" mediaType="TV" data={airingToday} path="/airing_today" />
         </div>
     </div>
   )

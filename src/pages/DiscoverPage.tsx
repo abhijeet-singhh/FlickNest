@@ -15,12 +15,14 @@ const DiscoverPage = () => {
     const topRated300 = useSelector((state: RootState) => state.movieData.topRated300);
     const onTheAir300 = useSelector((state: RootState) => state.movieData.onTheAir300);
     const airingToday300 = useSelector((state: RootState) => state.movieData.airingToday300);
+    const upcoming300 = useSelector((state: RootState) => state.movieData.upcomingData300);
 
     const dataMap: Record<string, MovieData[]> = {
         "/now_playing": nowPlaying300,
         "/top_rated": topRated300,
         "/on_the_air": onTheAir300,
         "/airing_today": airingToday300,
+        "/top_upcoming": upcoming300,
     };
 
     const titleMap: Record<string, string> = {
@@ -28,6 +30,7 @@ const DiscoverPage = () => {
         "/top_rated": "Top Rated",
         "/on_the_air": "On The Air",
         "/airing_today": "Airing Today",
+        "/top_upcoming": "Top Upcoming",
     };
 
     const mediaTypeMap: Record<string, "Movie" | "TV"> = {
@@ -59,7 +62,7 @@ const DiscoverPage = () => {
         <div className="pt-18 pb-28 px-5 h-full bg-[#151320]">
             <PromoBadge />
             <h3 className="text-[#B1D690] text-xl md:text-[23px] font-bold mt-6 mb-5">{title}</h3>
-            <div className="flex flex-wrap items-center gap-4 justify-center mb-3 md:mb-10">
+            <div className="flex flex-wrap items-center gap-6 justify-center mb-3 md:mb-10">
                 {slicedData.map((item, i) => (
                     <div key={item.id || i} className="overflow-hidden w-full max-w-[160px] md:max-w-[210px]">
                         <Card
