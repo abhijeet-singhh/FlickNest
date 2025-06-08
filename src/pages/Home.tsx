@@ -1,4 +1,5 @@
 import ScrollToTopButton from "../components/common/ScrollToTopButton"
+import Footer from "../components/layout/Footer"
 import DiscoverSection from "../components/sections/DiscoverSection"
 import HomeBanner from "../components/sections/HomeBanner"
 import TrendingSection from "../components/sections/TrendingSection"
@@ -12,6 +13,7 @@ const Home = () => {
       <DiscoverSection />
       <UpcomingSection />
       <ScrollToTopButton />
+      <Footer />
     </div>
   )
 }
