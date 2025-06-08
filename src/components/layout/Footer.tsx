@@ -5,20 +5,20 @@ import { APP_TITLE } from "../../utils/constants";
 
 const Footer: React.FC = () => {
   return (
-    <footer className="bg-gray-900 text-gray-300 pt-12 pb-8">
+    <footer className="bg-gray-900 text-gray-300 pt-3 sm:pt-12 mb-5 sm:pb-8">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Grid Section */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 text-center sm:text-left mb-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-8 text-center sm:text-left mb-4 sm:mb-12">
           {/* Brand */}
           <div>
-            <h2 className="text-2xl font-bold text-white mb-4">🎬 {APP_TITLE}</h2>
+            <h2 className="text-2xl font-bold text-white mb-2 sm:mb-4">🎬 {APP_TITLE}</h2>
             <p className="text-sm text-violet-400 max-w-xs mx-auto sm:mx-0">
-              Stream movies and shows you love — anytime, anywhere.
+              Your backstage pass to movies —<br /> all the movie magic before the show.
             </p>
           </div>
 
           {/* Browse */}
-          <div className="pl-20">
+          <div className="hidden sm:block pl-20">
             <h3 className="text-white font-semibold mb-4">Browse</h3>
             <ul className="space-y-2 text-sm">
               <li><a href="/movies" className="hover:text-violet-400">Movies</a></li>
@@ -29,7 +29,7 @@ const Footer: React.FC = () => {
           </div>
 
           {/* Resources */}
-          <div className="pl-12">
+          <div className="hidden sm:block pl-12">
             <h3 className="text-white font-semibold mb-4">Resources</h3>
             <ul className="space-y-2 text-sm">
               <li><a href="/watchlist" className="hover:text-violet-400">Watchlist</a></li>
@@ -41,7 +41,7 @@ const Footer: React.FC = () => {
 
           {/* Social Links */}
           <div>
-            <h3 className="text-white font-semibold mb-4">Follow Us</h3>
+            <h3 className="text-white font-semibold mb-2 sm:mb-4">Follow Us</h3>
             <div className="flex justify-center sm:justify-start space-x-4 text-xl">
               <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" aria-label="Twitter" className="hover:text-violet-400"><FaXTwitter /></a>
               <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="hover:text-violet-400"><FaFacebook /></a>
@@ -52,9 +52,12 @@ const Footer: React.FC = () => {
         </div>
 
         {/* Divider */}
-        <div className="border-t border-gray-700 pt-6">
+        <div className="border-t border-gray-700 pt-3 sm:pt-6">
           <p className="text-xs text-gray-500 text-center">
-            &copy; {new Date().getFullYear()} MovieMania. All rights reserved.
+            &copy; {new Date().getFullYear()} {APP_TITLE}. All rights reserved. <br />
+            <span className="text-gray-500 text-[10px] opacity-60 hidden sm:inline-block">
+              Developed by Abhijeet Singh
+            </span>
           </p>
         </div>
       </div>
