@@ -9,6 +9,10 @@ interface MovieState {
     topRated: MovieData[],
     onTheAir: MovieData[],
     airingToday: MovieData[],
+    nowPlaying300: MovieData[],
+    topRated300: MovieData[],
+    onTheAir300: MovieData[],
+    airingToday300: MovieData[],
     upcomingData: MovieData[]
 }
 
@@ -20,6 +24,10 @@ const initialState: MovieState = {
     topRated: [],
     onTheAir: [],
     airingToday: [],
+    nowPlaying300: [],
+    topRated300: [],
+    onTheAir300: [],
+    airingToday300: [],
     upcomingData: []
 }
 
@@ -53,9 +61,23 @@ export const movieSlice = createSlice({
         setAiringToday: (state, action: PayloadAction<MovieData[]>) => {
             state.airingToday = action.payload
         },
+
+        // Discover with multiple pages related reducers
+        setNowPlaying300: (state, action: PayloadAction<MovieData[]>) => {
+            state.nowPlaying300 = action.payload
+        },
+        setTopRated300: (state, action: PayloadAction<MovieData[]>) => {
+            state.topRated300 = action.payload
+        },
+        setOnTheAir300: (state, action: PayloadAction<MovieData[]>) => {
+            state.onTheAir300 = action.payload
+        },
+        setAiringToday300: (state, action: PayloadAction<MovieData[]>) => {
+            state.airingToday300 = action.payload
+        },
     }
 })
 
-export const { setBannerData, setImageURL, setTrendingData, setUpcomingData, setNowPlaying, setTopRated, setOnTheAir, setAiringToday } = movieSlice.actions
+export const { setBannerData, setImageURL, setTrendingData, setUpcomingData, setNowPlaying, setTopRated, setOnTheAir, setAiringToday, setNowPlaying300, setTopRated300, setOnTheAir300, setAiringToday300 } = movieSlice.actions
 
 export default movieSlice.reducer
