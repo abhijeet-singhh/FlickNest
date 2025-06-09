@@ -3,6 +3,8 @@ import { FaFacebook, FaInstagram, FaYoutube } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import { APP_TITLE } from "../../utils/constants";
 
+const linkClass = "hover:text-violet-400 hover:-translate-y-1 transition-all duration-300"
+
 const Footer: React.FC = () => {
   return (
     <footer className="bg-gray-900 text-gray-300 pt-3 sm:pt-12 mb-5 sm:pb-8">
@@ -43,10 +45,10 @@ const Footer: React.FC = () => {
           <div>
             <h3 className="text-white font-semibold mb-2 sm:mb-4">Follow Us</h3>
             <div className="flex justify-center sm:justify-start space-x-4 text-xl">
-              <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" aria-label="Twitter" className="hover:text-violet-400"><FaXTwitter /></a>
-              <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="hover:text-violet-400"><FaFacebook /></a>
-              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="hover:text-violet-400"><FaInstagram /></a>
-              <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" aria-label="YouTube" className="hover:text-violet-400"><FaYoutube /></a>
+              <a href="https://x.com/abhijeet_tw" target="_blank" rel="noopener noreferrer" aria-label="X" className={linkClass}><FaXTwitter /></a>
+              <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className={linkClass}><FaFacebook /></a>
+              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className={linkClass}><FaInstagram /></a>
+              <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" aria-label="YouTube" className={linkClass}><FaYoutube /></a>
             </div>
           </div>
         </div>

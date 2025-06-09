@@ -13,7 +13,7 @@ const DiscoverCard = ({ data, mediaType }: CardProps) => {
         <div className="w-full h-[90px] border-zinc-800 px-1 flex items-center gap-4 overflow-hidden">
             <div className="w-[65px] h-[80px] rounded-md overflow-hidden flex-shrink-0">
                 <img
-                    src={`${imageURL}/${data.poster_path}`}
+                    src={`${imageURL}/${data.poster_path || data.backdrop_path}`}
                     alt={title}
                     loading="lazy"
                     decoding="async"
@@ -24,11 +24,11 @@ const DiscoverCard = ({ data, mediaType }: CardProps) => {
             <div className="flex flex-col gap-1">
                 <h3 className="text-[15px] text-zinc-100 font-bold">{title}</h3>
                 <div className="flex items-center gap-1">
-                    <span className="flex items-center justify-around gap-1 bg-[#B0E3AF] opacity-95 px-2 py-[.8px] rounded-l">
+                    <span className="flex items-center justify-around gap-1 bg-amber-200 opacity-95 px-2 py-[.8px] rounded-l">
                         <FaFire size={10} className="text-black opacity-90" />
                         <p className="text-[12px] text-black font-bold mt-[.5px]">{formatRating(data.vote_average)}</p>
                     </span>
-                    <span className="flex items-center justify-around gap-1 bg-[#B9E7FF] opacity-95 px-2 py-[.8px] rounded-r">
+                    <span className="flex items-center justify-around gap-1 bg-zinc-200 opacity-95 px-2 py-[.8px] rounded-r">
                         <FaFilm size={12} className="text-black opacity-80 mb-[.5px]" />
                         <p className="text-[12px] text-black font-bold">{formatPopularity(data.popularity)}</p>
                     </span>

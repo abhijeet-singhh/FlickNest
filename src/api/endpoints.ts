@@ -4,7 +4,7 @@ export const ENDPOINTS = {
     day: '/trending/all/day'
   },
   configuration: '/configuration',
-  upcoming: '/movie/upcoming',
+  upcoming: '/movie/upcoming?region=US',
   discover: {
     nowPlaying: '/movie/now_playing',
     topRated: '/movie/top_rated',

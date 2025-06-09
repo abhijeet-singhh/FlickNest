@@ -7,8 +7,15 @@ async function fetchMultiplePagesOfMovies(endpoint: string, totalPages: number =
   const allResults: MovieData[] = [];
 
   for (let page = 1; page <= totalPages; page++) {
-    const { data } = await axiosInstance.get<MovieResponse>(`${endpoint}?&page=${page}`);
-    allResults.push(...data.results);
+    const seperator = endpoint.includes('?') ? '&' : '?';
+    const fullUrl = `${endpoint}${seperator}page=${page}`;
+    try {
+      const { data } = await axiosInstance.get<MovieResponse>(fullUrl);
+      allResults.push(...data.results);
+    } catch (error) {
+      console.error(`Failed to fetch page ${page}:`, error);
+      break;
+    }
   }
 
   return allResults;
@@ -42,10 +49,10 @@ export const movieService = {
     axiosInstance.get<MovieResponse>(ENDPOINTS.discover.airingToday),
 
   //Discover endpoints with multiple pages
-  getNowPlaying300: () => fetchMultiplePagesOfMovies(ENDPOINTS.discover.nowPlaying, 9),
-  getTopRated300: () => fetchMultiplePagesOfMovies(ENDPOINTS.discover.topRated, 9),
-  getOnTheAir300: () => fetchMultiplePagesOfMovies(ENDPOINTS.discover.onTheAir, 9),
-  getAiringToday300: () => fetchMultiplePagesOfMovies(ENDPOINTS.discover.airingToday, 9),
-  getUpcoming300: () => fetchMultiplePagesOfMovies(ENDPOINTS.upcoming, 9),
+  getNowPlaying300: () => fetchMultiplePagesOfMovies(ENDPOINTS.discover.nowPlaying, 15),
+  getTopRated300: () => fetchMultiplePagesOfMovies(ENDPOINTS.discover.topRated, 15),
+  getOnTheAir300: () => fetchMultiplePagesOfMovies(ENDPOINTS.discover.onTheAir, 15),
+  getAiringToday300: () => fetchMultiplePagesOfMovies(ENDPOINTS.discover.airingToday, 15),
+  getUpcoming300: () => fetchMultiplePagesOfMovies(ENDPOINTS.upcoming, 15),
 
 };

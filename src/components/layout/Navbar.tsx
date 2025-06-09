@@ -1,8 +1,9 @@
 import { useState } from "react"
 import { CiSearch } from "react-icons/ci"
-import { FaUserAlt } from "react-icons/fa"
+import { FaFacebook, FaInstagram, FaYoutube } from "react-icons/fa"
 import { Link, NavLink, useNavigate } from "react-router-dom"
 import { APP_TITLE, MENU_ITEMS } from "../../utils/constants"
+import { FaXTwitter } from "react-icons/fa6"
 
 const Navbar = () => {
   const [searchQuery, setSearchQuery] = useState('')
@@ -16,21 +17,28 @@ const Navbar = () => {
   }
 
   return (
-    <nav className="bg-[#0F0F0F] fixed top-0 z-50 opacity-75 w-full h-14 lg:h-16 flex items-center justify-between px-8 md:px-10">
+    <nav className="bg-black/70 backdrop-blur-md fixed top-0 z-50 w-full h-14 lg:h-16 flex items-center justify-between px-8 md:px-10">
       <div className="flex items-center gap-20">
-        <Link to="/" className="text-[#abf471] text-2xl font-bold cursor-pointer">{APP_TITLE}</Link>
+        <Link to="/" className="text-[#B1D690] text-2xl font-semibold cursor-pointer poppins">{APP_TITLE}</Link>
 
-        <div className="hidden lg:flex items-center gap-8 ">
+        <div className="hidden lg:flex items-center gap-8">
           {MENU_ITEMS.map((item) => (
             <NavLink
               key={item.path}
               to={item.path}
               className={({ isActive }) =>
-                `hover:text-[#abf471] cursor-pointer transition-colors duration-300 ${isActive ? 'text-[#abf471]' : 'text-white'}`}
+                `hover:text-[#B1D690] cursor-pointer transition-colors duration-300 ${isActive ? 'text-[#B1D690]' : 'text-white'}`}
             >
               {item.label}
             </NavLink>
           ))}
+
+          <div className="flex justify-center sm:justify-start space-x-4 text-xl ml-110">
+            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" aria-label="Twitter" className="hover:text-[#B1D690]"><FaXTwitter /></a>
+            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="hover:text-[#B1D690]"><FaFacebook /></a>
+            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="hover:text-[#B1D690]"><FaInstagram /></a>
+            <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" aria-label="YouTube" className="hover:text-[#B1D690]"><FaYoutube /></a>
+          </div>
         </div>
       </div>
       <div className="flex items-center gap-4 md:gap-8">
@@ -46,9 +54,13 @@ const Navbar = () => {
           </form>
           <CiSearch size={24} className="cursor-pointer" onClick={handleSearch} />
         </div>
-        <FaUserAlt className="text-white cursor-pointer" />
+        {/* <FaUserAlt className="text-white cursor-pointer" /> */}
+        <button onClick={() => alert('This functionality is currently not available!')} className="inline-flex items-center justify-center rounded-md border border-zinc-700 bg-zinc-900 px-4 py-2 text-sm font-medium text-zinc-200 transition-colors hover:bg-zinc-800 hover:border-zinc-600 disabled:opacity-50 disabled:pointer-events-none cursor-pointer">
+          Login
+        </button>
+
       </div>
-    </nav>
+    </nav >
   )
 }
 

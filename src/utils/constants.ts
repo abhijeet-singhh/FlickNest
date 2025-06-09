@@ -1,4 +1,4 @@
-export const APP_TITLE = 'CINEMAX';
+export const APP_TITLE = 'FLICKNEST';
 
 export const BANNER_AUTO_SCROLL_DELAY = 4000;
 export const BANNER_SLIDES_TO_SHOW = 20;
