@@ -17,7 +17,7 @@ const Navbar = () => {
   }
 
   return (
-    <nav className="bg-black/70 backdrop-blur-md fixed top-0 z-50 w-full h-14 lg:h-16 flex items-center justify-between px-8 md:px-10">
+    <nav className="bg-black/70 backdrop-blur-md fixed top-0 z-50 w-full h-14 lg:h-16 flex items-center justify-between px-4 md:px-10">
       <div className="flex items-center gap-20">
         <Link to="/" className="text-[#B1D690] text-2xl font-semibold cursor-pointer poppins">{APP_TITLE}</Link>
 
@@ -55,7 +55,7 @@ const Navbar = () => {
           <CiSearch size={24} className="cursor-pointer" onClick={handleSearch} />
         </div>
         {/* <FaUserAlt className="text-white cursor-pointer" /> */}
-        <button onClick={() => alert('This functionality is currently not available!')} className="inline-flex items-center justify-center rounded-md border border-zinc-700 bg-zinc-900 px-4 py-2 text-sm font-medium text-zinc-200 transition-colors hover:bg-zinc-800 hover:border-zinc-600 disabled:opacity-50 disabled:pointer-events-none cursor-pointer">
+        <button onClick={() => alert('This functionality is currently not available!')} className="inline-flex items-center justify-center rounded-md border border-zinc-700 bg-zinc-900 px-3 py-[5px] md:px-4 md:py-2 text-[12px] md:text-sm font-medium text-zinc-200 transition-colors hover:bg-zinc-800 hover:border-zinc-600 disabled:opacity-50 disabled:pointer-events-none cursor-pointer">
           Login
         </button>
 

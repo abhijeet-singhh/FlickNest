@@ -54,5 +54,7 @@ export const movieService = {
   getOnTheAir300: () => fetchMultiplePagesOfMovies(ENDPOINTS.discover.onTheAir, 15),
   getAiringToday300: () => fetchMultiplePagesOfMovies(ENDPOINTS.discover.airingToday, 15),
   getUpcoming300: () => fetchMultiplePagesOfMovies(ENDPOINTS.upcoming, 15),
-
+  getTvShows300: () => fetchMultiplePagesOfMovies(ENDPOINTS.tvShows, 15),
+  getMovies300: () => fetchMultiplePagesOfMovies(ENDPOINTS.movies, 15),
+  getPopular300: () => fetchMultiplePagesOfMovies(ENDPOINTS.popular, 15),
 };

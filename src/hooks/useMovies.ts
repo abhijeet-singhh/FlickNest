@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { movieService } from '../api/services/movieService';
-import { setAiringToday, setAiringToday300, setBannerData, setImageURL, setNowPlaying, setNowPlaying300, setOnTheAir, setOnTheAir300, setTopRated, setTopRated300, setTrendingData, setUpcomingData, setUpcomingData300 } from '../store/slices/movieSlice';
+import { setAiringToday, setAiringToday300, setBannerData, setImageURL, setMovies300, setNowPlaying, setNowPlaying300, setOnTheAir, setOnTheAir300, setPopular300, setTopRated, setTopRated300, setTrendingData, setTvShows300, setUpcomingData, setUpcomingData300 } from '../store/slices/movieSlice';
 import { API_CONFIG } from '../utils/constants';
 
 export const useMovies = () => {
@@ -15,7 +15,7 @@ export const useMovies = () => {
         setIsLoading(true);
         setError(null);
 
-        const [trendingWeek, trendingDay, config, upcoming, nowPlaying, topRated, onTheAir, airingToday, nowPlaying300, topRated300, onTheAir300, airingToday300, upcoming300] = await Promise.all([
+        const [trendingWeek, trendingDay, config, upcoming, nowPlaying, topRated, onTheAir, airingToday, nowPlaying300, topRated300, onTheAir300, airingToday300, upcoming300, tvShows300, movies300, popular300] = await Promise.all([
           movieService.getTrendingWeek(),
           movieService.getTrendingDay(),
           movieService.getConfiguration(),
@@ -29,6 +29,9 @@ export const useMovies = () => {
           movieService.getOnTheAir300(),
           movieService.getAiringToday300(),
           movieService.getUpcoming300(),
+          movieService.getTvShows300(),
+          movieService.getMovies300(),
+          movieService.getPopular300()
         ]);
 
         dispatch(setBannerData(trendingWeek.data.results));
@@ -48,6 +51,9 @@ export const useMovies = () => {
         dispatch(setOnTheAir300(onTheAir300))
         dispatch(setAiringToday300(airingToday300))
         dispatch(setUpcomingData300(upcoming300))
+        dispatch(setTvShows300(tvShows300))
+        dispatch(setMovies300(movies300))
+        dispatch(setPopular300(popular300))
       } catch (error) {
         console.error('Error fetching movie data:', error);
         setError(error instanceof Error ? error : new Error('Failed to fetch movie data'));

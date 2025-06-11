@@ -19,13 +19,13 @@ const PromoBadge = () => {
       </div>
 
       {/* Text and Share Buttons Container */}
-      <div className="flex items-center gap-6 text-sm text-gray-300 flex-wrap max-w-[calc(100%-80px)]">
+      <div className="w-full flex items-center gap-4 md:gap-6 text-sm text-gray-300 flex-wrap max-w-[calc(100%-80px)]">
         <p className="flex flex-col whitespace-nowrap">
           🚀 Love this site?{" "}
           <span className="text-violet-400 font-semibold">Share it with your friends!</span>
         </p>
 
-        <div className="flex gap-4 flex-wrap">
+        <div className="flex gap-2 md:gap-4 flex-wrap">
           {/* Twitter */}
           <a
             href={`https://twitter.com/intent/tweet?url=${shareUrl}&text=${shareText}`}

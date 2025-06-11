@@ -7,7 +7,7 @@ const linkClass = "hover:text-violet-400 hover:-translate-y-1 transition-all dur
 
 const Footer: React.FC = () => {
   return (
-    <footer className="bg-gray-900 text-gray-300 pt-3 sm:pt-12 mb-5 sm:pb-8">
+    <footer className="bg-[#191826] text-gray-300 pt-3 sm:pt-12 mb-5 sm:pb-8">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Grid Section */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-8 text-center sm:text-left mb-4 sm:mb-12">

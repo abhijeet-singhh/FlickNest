@@ -1,6 +1,6 @@
 const Explore = () => {
   return (
-    <div>Explore</div>
+    <div className="flex justify-center items-center text-white h-screen">Explore</div>
   )
 }
 

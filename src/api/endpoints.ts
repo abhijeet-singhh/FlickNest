@@ -5,6 +5,9 @@ export const ENDPOINTS = {
   },
   configuration: '/configuration',
   upcoming: '/movie/upcoming?region=US',
+  tvShows: '/discover/tv',
+  movies: 'discover/movie',
+  popular: '/movie/popular',
   discover: {
     nowPlaying: '/movie/now_playing',
     topRated: '/movie/top_rated',
