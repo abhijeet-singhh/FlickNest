@@ -19,7 +19,7 @@ const Navbar = () => {
   return (
     <nav className="bg-black/70 backdrop-blur-md fixed top-0 z-50 w-full h-14 lg:h-16 flex items-center justify-between px-4 md:px-10">
       <div className="flex items-center gap-20">
-        <Link to="/" className="text-[#B1D690] text-2xl font-semibold cursor-pointer poppins">{APP_TITLE}</Link>
+        <Link to="/" className="text-[#B1D690] text-3xl font-bold cursor-pointer logofont">{APP_TITLE}</Link>
 
         <div className="hidden lg:flex items-center gap-8">
           {MENU_ITEMS.map((item) => (

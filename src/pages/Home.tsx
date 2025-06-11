@@ -1,3 +1,4 @@
+import PromoBadge from "../components/common/PromoBadge"
 import ScrollToTopButton from "../components/common/ScrollToTopButton"
 import Footer from "../components/layout/Footer"
 import DiscoverSection from "../components/sections/DiscoverSection"
@@ -11,6 +12,7 @@ const Home = () => {
     <div className="h-full pb-15 md:pb-0 bg-[#151320]">
       <HomeBanner />
       <TrendingSection />
+      <PromoBadge />
       <DiscoverSection />
       <UpcomingSection />
       <NewSection />
