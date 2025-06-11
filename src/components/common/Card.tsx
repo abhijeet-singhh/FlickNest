@@ -3,7 +3,6 @@ import { RootState } from "../../store"
 import { CardProps } from "../../types/movie.types"
 import { MdStarRate } from "react-icons/md"
 import { formatDate, truncateText } from "../../utils/formatters"
-import ScrollToTopButton from "./ScrollToTopButton"
 
 
 const Card = ({ data }: CardProps) => {
@@ -44,7 +43,6 @@ const Card = ({ data }: CardProps) => {
                     </span>
                 </div>
             </div>
-            <ScrollToTopButton />
         </div>
     )
 }

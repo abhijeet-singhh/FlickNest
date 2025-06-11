@@ -11,7 +11,11 @@ async function fetchMultiplePagesOfMovies(endpoint: string, totalPages: number =
     const fullUrl = `${endpoint}${seperator}page=${page}`;
     try {
       const { data } = await axiosInstance.get<MovieResponse>(fullUrl);
-      allResults.push(...data.results);
+      // Filter out movies without poster or backdrop paths
+      const filteredResults = data.results.filter(movie => 
+        movie.poster_path || movie.backdrop_path
+      );
+      allResults.push(...filteredResults);
     } catch (error) {
       console.error(`Failed to fetch page ${page}:`, error);
       break;
@@ -57,4 +61,5 @@ export const movieService = {
   getTvShows300: () => fetchMultiplePagesOfMovies(ENDPOINTS.tvShows, 15),
   getMovies300: () => fetchMultiplePagesOfMovies(ENDPOINTS.movies, 15),
   getPopular300: () => fetchMultiplePagesOfMovies(ENDPOINTS.popular, 15),
+  getNew300: () => fetchMultiplePagesOfMovies(ENDPOINTS.new, 15)
 };

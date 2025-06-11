@@ -3,6 +3,8 @@ export const APP_TITLE = 'FLICKNEST';
 export const BANNER_AUTO_SCROLL_DELAY = 4000;
 export const BANNER_SLIDES_TO_SHOW = 20;
 
+export const  TODAY = new Date().toISOString().split('T')[0];
+
 export const MENU_ITEMS = [
     { path: '/explore/tvshows', label: 'TV Shows' },
     { path: '/explore/movies', label: 'Movies' },

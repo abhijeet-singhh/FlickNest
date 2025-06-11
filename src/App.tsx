@@ -13,7 +13,10 @@ const App = () => {
     return (
       <div className="bg-black text-white h-screen flex items-center justify-center">
         <div className="text-center">
-          <h2 className="text-2xl font-bold mb-2">Loading...</h2>
+          <div className="flex items-center justify-center gap-1">
+            <img src="/public/assets/load.gif" className="w-16 -mt-4" />
+            <h2 className="text-2xl font-bold mb-2">Loading...</h2>
+          </div>
           <p className="text-gray-400">Please wait while we fetch the movies</p>
         </div>
       </div>

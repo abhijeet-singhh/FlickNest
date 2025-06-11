@@ -1,3 +1,5 @@
+import { TODAY } from "../utils/constants";
+
 export const ENDPOINTS = {
   trending: {
     week: '/trending/all/week',
@@ -6,7 +8,8 @@ export const ENDPOINTS = {
   configuration: '/configuration',
   upcoming: '/movie/upcoming?region=US',
   tvShows: '/discover/tv',
-  movies: 'discover/movie',
+  movies: '/discover/movie',
+  new: `/discover/movie?sort_by=release_date.desc&release_date.lte=${TODAY}&region=US`,
   popular: '/movie/popular',
   discover: {
     nowPlaying: '/movie/now_playing',

@@ -7,6 +7,7 @@ import PromoBadge from "../components/common/PromoBadge";
 import { useEffect, useState } from "react";
 import Pagination from "../components/common/Pagination";
 import Footer from "../components/layout/Footer";
+import ScrollToTopButton from "../components/common/ScrollToTopButton";
 
 const DiscoverPage = () => {
 
@@ -85,6 +86,7 @@ const DiscoverPage = () => {
             </div>
 
             <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={setCurrentPage} />
+            <ScrollToTopButton />
             <div className="mt-7">
                 <Footer />
             </div>
