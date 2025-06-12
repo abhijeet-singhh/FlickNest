@@ -20,7 +20,7 @@ const DiscoverPage = () => {
     const upcoming300 = useSelector((state: RootState) => state.movieData.upcomingData300);
     const tvShows300 = useSelector((state: RootState) => state.movieData.tvShows300);
     const Movies300 = useSelector((state: RootState) => state.movieData.movies300);
-    const popular300 = useSelector((state: RootState) => state.movieData.popular300);
+    const trending300 = useSelector((state: RootState) => state.movieData.trending300);
     const new300 = useSelector((state: RootState) => state.movieData.new300);
 
     const dataMap: Record<string, MovieData[]> = {
@@ -31,7 +31,7 @@ const DiscoverPage = () => {
         "/top_upcoming": upcoming300,
         "/explore/tvshows": tvShows300,
         "/explore/movies": Movies300,
-        "/explore/popular": popular300,
+        "/explore/trending": trending300,
         "/new": new300
     };
 
@@ -42,8 +42,8 @@ const DiscoverPage = () => {
         "/airing_today": "Airing Today",
         "/top_upcoming": "Top Upcoming",
         "/explore/tvshows": "Tv Shows",
-        "/explore/movies": "Movies",
-        "/explore/popular": "Popular",
+        "/explore/movies": "Popular",
+        "/explore/trending": "Trending",
         "/new": "New On FlickNest"
     };
 

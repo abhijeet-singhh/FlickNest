@@ -8,7 +8,7 @@ export const  TODAY = new Date().toISOString().split('T')[0];
 export const MENU_ITEMS = [
     { path: '/explore/tvshows', label: 'TV Shows' },
     { path: '/explore/movies', label: 'Movies' },
-    { path: '/explore/popular', label: 'Popular' },
+    { path: '/explore/trending', label: 'Trending' },
 ] as const;
 
 export const MOBILE_NAV_ITEMS = [

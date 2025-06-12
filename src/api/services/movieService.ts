@@ -60,6 +60,6 @@ export const movieService = {
   getUpcoming300: () => fetchMultiplePagesOfMovies(ENDPOINTS.upcoming, 15),
   getTvShows300: () => fetchMultiplePagesOfMovies(ENDPOINTS.tvShows, 15),
   getMovies300: () => fetchMultiplePagesOfMovies(ENDPOINTS.movies, 15),
-  getPopular300: () => fetchMultiplePagesOfMovies(ENDPOINTS.popular, 15),
+  getTrending300: () => fetchMultiplePagesOfMovies(ENDPOINTS.trending.week, 15),
   getNew300: () => fetchMultiplePagesOfMovies(ENDPOINTS.new, 15)
 };
