@@ -16,4 +16,13 @@ export const ENDPOINTS = {
     onTheAir: '/tv/on_the_air',
     airingToday: '/tv/airing_today',
   },
+
+  // Generalized media details
+  media: (type: 'movie' | 'tv', id: number | string) => ({
+    details: `/${type}/${id}`,
+    credits: `/${type}/${id}/credits`,
+    videos: `/${type}/${id}/videos`,
+    similar: `/${type}/${id}/similar`,
+    recommendations: `/${type}/${id}/recommendations`,
+  }),
 } as const; // 'as const' ensures these values are readonly and literal types in TypeScript

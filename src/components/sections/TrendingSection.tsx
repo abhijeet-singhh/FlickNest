@@ -7,7 +7,7 @@ import { useRef } from "react"
 
 const TrendingSection = () => {
     const scrollRef = useRef<HTMLDivElement>(null);
-    const trendingData = useSelector((state: RootState) => state.movieData.trendingData ?? []) as MovieData[]
+    const trendingData = useSelector((state: RootState) => state.movieData.dataMap.trendingData ?? []) as MovieData[]
     const top10Trending = trendingData.slice(0, 10)
 
     const scrollLeft = () => {

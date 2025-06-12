@@ -13,15 +13,15 @@ const DiscoverPage = () => {
 
     const { pathname } = useLocation()
 
-    const nowPlaying300 = useSelector((state: RootState) => state.movieData.nowPlaying300);
-    const topRated300 = useSelector((state: RootState) => state.movieData.topRated300);
-    const onTheAir300 = useSelector((state: RootState) => state.movieData.onTheAir300);
-    const airingToday300 = useSelector((state: RootState) => state.movieData.airingToday300);
-    const upcoming300 = useSelector((state: RootState) => state.movieData.upcomingData300);
-    const tvShows300 = useSelector((state: RootState) => state.movieData.tvShows300);
-    const Movies300 = useSelector((state: RootState) => state.movieData.movies300);
-    const trending300 = useSelector((state: RootState) => state.movieData.trending300);
-    const new300 = useSelector((state: RootState) => state.movieData.new300);
+    const nowPlaying300 = useSelector((state: RootState) => state.movieData.dataMap.nowPlaying300);
+    const topRated300 = useSelector((state: RootState) => state.movieData.dataMap.topRated300);
+    const onTheAir300 = useSelector((state: RootState) => state.movieData.dataMap.onTheAir300);
+    const airingToday300 = useSelector((state: RootState) => state.movieData.dataMap.airingToday300);
+    const upcoming300 = useSelector((state: RootState) => state.movieData.dataMap.upcomingData300);
+    const tvShows300 = useSelector((state: RootState) => state.movieData.dataMap.tvShows300);
+    const Movies300 = useSelector((state: RootState) => state.movieData.dataMap.movies300);
+    const trending300 = useSelector((state: RootState) => state.movieData.dataMap.trending300);
+    const new300 = useSelector((state: RootState) => state.movieData.dataMap.new300);
 
     const dataMap: Record<string, MovieData[]> = {
         "/now_playing": nowPlaying300,

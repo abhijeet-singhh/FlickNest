@@ -61,5 +61,14 @@ export const movieService = {
   getTvShows300: () => fetchMultiplePagesOfMovies(ENDPOINTS.tvShows, 15),
   getMovies300: () => fetchMultiplePagesOfMovies(ENDPOINTS.movies, 15),
   getTrending300: () => fetchMultiplePagesOfMovies(ENDPOINTS.trending.week, 15),
-  getNew300: () => fetchMultiplePagesOfMovies(ENDPOINTS.new, 15)
+  getNew300: () => fetchMultiplePagesOfMovies(ENDPOINTS.new, 15),
+
+  // Media details endpoints
+  getMediaInfo: (type: 'movie' | 'tv', id: number | string) => ({
+    details: () => axiosInstance.get(ENDPOINTS.media(type, id).details),
+    credits: () => axiosInstance.get(ENDPOINTS.media(type, id).credits),
+    videos: () => axiosInstance.get(ENDPOINTS.media(type, id).videos),
+    similar: () => axiosInstance.get(ENDPOINTS.media(type, id).similar),
+    recommendations: () => axiosInstance.get(ENDPOINTS.media(type, id).recommendations),
+  }),
 };

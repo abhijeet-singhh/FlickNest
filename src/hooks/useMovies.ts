@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { movieService } from '../api/services/movieService';
-import { setAiringToday, setAiringToday300, setBannerData, setImageURL, setMovies300, setNew300, setNowPlaying, setNowPlaying300, setOnTheAir, setOnTheAir300, setTopRated, setTopRated300, setTrending300, setTrendingData, setTvShows300, setUpcomingData, setUpcomingData300 } from '../store/slices/movieSlice';
+import {setImageURL, setMovieDataByKey } from '../store/slices/movieSlice';
 import { API_CONFIG } from '../utils/constants';
 
 export const useMovies = () => {
@@ -35,27 +35,31 @@ export const useMovies = () => {
           movieService.getNew300(),
         ]);
 
-        dispatch(setBannerData(trendingWeek.data.results));
-        dispatch(setTrendingData(trendingDay.data.results));
+        // Set image URL
         dispatch(setImageURL(config.data.images.secure_base_url + API_CONFIG.DEFAULT_IMAGE_SIZE));
-        dispatch(setUpcomingData(upcoming.data.results));
 
-        // dispatch discover data
-        dispatch(setNowPlaying(nowPlaying.data.results))
-        dispatch(setTopRated(topRated.data.results))
-        dispatch(setOnTheAir(onTheAir.data.results))
-        dispatch(setAiringToday(airingToday.data.results))
+        // Set all movie data using the new setMovieDataByKey action
+        dispatch(setMovieDataByKey({ key: 'bannerData', data: trendingWeek.data.results }));
+        dispatch(setMovieDataByKey({ key: 'trendingData', data: trendingDay.data.results }));
+        dispatch(setMovieDataByKey({ key: 'upcomingData', data: upcoming.data.results }));
 
-        // dispatch discover data with multiple pages
-        dispatch(setNowPlaying300(nowPlaying300))
-        dispatch(setTopRated300(topRated300))
-        dispatch(setOnTheAir300(onTheAir300))
-        dispatch(setAiringToday300(airingToday300))
-        dispatch(setUpcomingData300(upcoming300))
-        dispatch(setTvShows300(tvShows300))
-        dispatch(setMovies300(movies300))
-        dispatch(setTrending300(trending300))
-        dispatch(setNew300(new300))
+        // Dispatch discover data
+        dispatch(setMovieDataByKey({ key: 'nowPlaying', data: nowPlaying.data.results }));
+        dispatch(setMovieDataByKey({ key: 'topRated', data: topRated.data.results }));
+        dispatch(setMovieDataByKey({ key: 'onTheAir', data: onTheAir.data.results }));
+        dispatch(setMovieDataByKey({ key: 'airingToday', data: airingToday.data.results }));
+
+        // Dispatch discover data with multiple pages
+        dispatch(setMovieDataByKey({ key: 'nowPlaying300', data: nowPlaying300 }));
+        dispatch(setMovieDataByKey({ key: 'topRated300', data: topRated300 }));
+        dispatch(setMovieDataByKey({ key: 'onTheAir300', data: onTheAir300 }));
+        dispatch(setMovieDataByKey({ key: 'airingToday300', data: airingToday300 }));
+        dispatch(setMovieDataByKey({ key: 'upcomingData300', data: upcoming300 }));
+        dispatch(setMovieDataByKey({ key: 'tvShows300', data: tvShows300 }));
+        dispatch(setMovieDataByKey({ key: 'movies300', data: movies300 }));
+        dispatch(setMovieDataByKey({ key: 'trending300', data: trending300 }));
+        dispatch(setMovieDataByKey({ key: 'new300', data: new300 }));
+
       } catch (error) {
         console.error('Error fetching movie data:', error);
         setError(error instanceof Error ? error : new Error('Failed to fetch movie data'));

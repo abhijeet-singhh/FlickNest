@@ -4,10 +4,10 @@ import { RootState } from "../../store";
 
 const DiscoverSection = () => {
 
-    const nowPlaying = useSelector((state: RootState) => state.movieData.nowPlaying);
-    const toprated = useSelector((state: RootState) => state.movieData.topRated);
-    const onTheAir = useSelector((state: RootState) => state.movieData.onTheAir);
-    const airingToday = useSelector((state: RootState) => state.movieData.airingToday);
+    const nowPlaying = useSelector((state: RootState) => state.movieData.dataMap.nowPlaying);
+    const toprated = useSelector((state: RootState) => state.movieData.dataMap.topRated);
+    const onTheAir = useSelector((state: RootState) => state.movieData.dataMap.onTheAir);
+    const airingToday = useSelector((state: RootState) => state.movieData.dataMap.airingToday);
 
   return (
     <div className="w-full h-full px-4 py-2 md:mt-16">

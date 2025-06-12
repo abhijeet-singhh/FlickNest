@@ -6,7 +6,7 @@ import { MdKeyboardArrowRight } from "react-icons/md"
 import { useNavigate } from "react-router-dom"
 
 const UpcomingSection = () => {
-    const upcomingData = useSelector((state: RootState) => state.movieData.upcomingData ?? []) as MovieData[]
+    const upcomingData = useSelector((state: RootState) => state.movieData.dataMap.upcomingData ?? []) as MovieData[]
     const upcomingDataSliced = upcomingData.slice(0, 12)
     const navigate = useNavigate()
 

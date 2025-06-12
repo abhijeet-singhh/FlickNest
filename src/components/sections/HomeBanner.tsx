@@ -7,7 +7,7 @@ import { BANNER_AUTO_SCROLL_DELAY, BANNER_SLIDES_TO_SHOW } from "../../utils/con
 import { formatPopularity, formatRating } from "../../utils/formatters";
 
 const HomeBanner = () => {
-  const bannerData = useSelector((state: RootState) => state.movieData.bannerData ?? []) as MovieData[]
+  const bannerData = useSelector((state: RootState) => state.movieData.dataMap.bannerData ?? []) as MovieData[]
   const imageURL = useSelector((state: RootState) => state.movieData.imageURL)
   const scrollRef = useRef<HTMLDivElement>(null);
   const autoScrollRef = useRef<ReturnType<typeof setTimeout> | null>(null);
