@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux'
 import { RootState } from '../store'
 import MediaHero from '../components/sections/MediaHero'
 import Footer from '../components/layout/Footer'
-import { useMediaDetails } from '../hooks/useMovieDetails'
+import { useMediaDetails } from '../hooks/useMediaDetails'
 
 const Details = () => {
   const { id } = useParams()
