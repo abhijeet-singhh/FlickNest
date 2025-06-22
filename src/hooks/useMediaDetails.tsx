@@ -10,6 +10,7 @@ import {
   setCredits,
   setVideos,
   setSimilar,
+  setRecommended,
   resetState
 } from '../store/slices/mediaDetailsSlice'
 import { RootState } from '../store'
@@ -26,15 +27,17 @@ export const useMediaDetails = (id: string | undefined) => {
       dispatch(setError(null))
 
       const fetchAdditionalDetails = async (type: 'movie' | 'tv', mediaId: string) => {
-        const [creditsRes, videosRes, similarRes] = await Promise.all([
+        const [creditsRes, videosRes, similarRes, recommendedRes] = await Promise.all([
           movieService.getMediaInfo(type, mediaId).credits(),
           movieService.getMediaInfo(type, mediaId).videos(),
-          movieService.getMediaInfo(type, mediaId).similar()
+          movieService.getMediaInfo(type, mediaId).similar(),
+          movieService.getMediaInfo(type, mediaId).recommendations()
         ])
 
         dispatch(setCredits(creditsRes.data))
         dispatch(setVideos(videosRes.data.results.filter((v: Video) => v.type === 'Trailer')))
         dispatch(setSimilar(similarRes.data.results))
+        dispatch(setRecommended(recommendedRes.data.results))
       }
 
       try {

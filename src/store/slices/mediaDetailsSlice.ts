@@ -7,6 +7,7 @@ interface MediaDetailsState {
   credits: Credits | null
   videos: Video[]
   similar: SimilarMediaItem[]
+  recommended: SimilarMediaItem[]
   loading: boolean
   error: string | null
 }
@@ -17,6 +18,7 @@ const initialState: MediaDetailsState = {
   credits: null,
   videos: [],
   similar: [],
+  recommended: [],
   loading: false,
   error: null
 }
@@ -46,6 +48,9 @@ export const mediaDetailsSlice = createSlice({
     setSimilar: (state, action: PayloadAction<SimilarMediaItem[]>) => {
       state.similar = action.payload
     },
+    setRecommended: (state, action: PayloadAction<SimilarMediaItem[]>) => {
+      state.recommended = action.payload
+    },
     resetState: (state) => {
       Object.assign(state, initialState)
     }
@@ -60,6 +65,7 @@ export const {
   setCredits,
   setVideos,
   setSimilar,
+  setRecommended,
   resetState
 } = mediaDetailsSlice.actions
 

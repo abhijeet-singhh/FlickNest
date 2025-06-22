@@ -1,5 +1,3 @@
-
-import { useNavigate, useParams } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { RootState } from '../store'
 import MediaHero from '../components/sections/MediaHero'
@@ -7,6 +5,9 @@ import Footer from '../components/layout/Footer'
 import { useMediaDetails } from '../hooks/useMediaDetails'
 import { useRef } from 'react'
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from 'react-icons/md'
+import DiscoverColumn from '../components/sections/DiscoverColumn'
+import Card from '../components/common/Card'
+import { useParams } from 'react-router-dom'
 const Details = () => {
 
   const castScrollRef = useRef<HTMLDivElement>(null);
@@ -19,10 +20,9 @@ const Details = () => {
     ref.current?.scrollBy({ left: 400, behavior: "smooth" });
   };
 
-  const navigate = useNavigate()
   const { id } = useParams()
   const imageURL = useSelector((state: RootState) => state.movieData.imageURL)
-  const { mediaType, details, credits, videos, similar, loading, error } = useMediaDetails(id)
+  const { mediaType, details, credits, videos, similar, recommended, loading, error } = useMediaDetails(id)
   if (loading) {
     return <div className="h-screen flex items-center justify-center">
       <img src="/assets/load.gif" className='w-16' />
@@ -95,25 +95,41 @@ const Details = () => {
         </section>
       )}
       {/* Similar Content */}
-      {similar.length > 0 && (
-        <section className="px-4 md:px-8 py-8">
-          <div className="max-w-6xl mx-auto">
-            <h2 className="text-2xl font-bold mb-4 text-[#B1D690]">
+      {(similar.length > 0 || recommended.length > 0) && (
+        <section className="px-4 md:px-8 py-8 flex justify-end items-start gap-15">
+          <div className="max-w-235">
+            <h2 className="text-2xl font-bold mb-10 text-[#B1D690]">
               Similar {mediaType === 'movie' ? 'Movies' : 'Shows'}
             </h2>
-            <div className="flex gap-4 overflow-x-hidden flex-wrap pb-4 scrollbar-hide">
-              {similar.filter(item => item.poster_path || item.backdrop_url).slice(0, 12).map(item => (
-                <div onClick={() => navigate(`/explore/details/${item.id}`)} key={item.id} className="flex-shrink-0 w-40 cursor-pointer">
-                  <img
-                    src={`${imageURL}${item.poster_path}`}
-                    alt={item.title || item.name}
-                    loading='lazy'
-                    className="w-full h-60 object-cover rounded-lg mb-2"
-                  />
-                  <p className="font-semibold text-sm">{item.title || item.name}</p>
-                </div>
-              ))}
+            <div className="flex gap-7 overflow-x-hidden flex-wrap pb-4 scrollbar-hide">
+              {similar.filter(item => item.poster_path || item.backdrop_url).slice(0, 15).map(item => {
+                const cardData = {
+                  ...item,
+                  poster_path: item.poster_path || '',
+                  backdrop_path: item.backdrop_path || item.backdrop_url || '',
+                };
+                return (
+                  <div key={item.id} className="flex-shrink-0 w-40 cursor-pointer">
+                    <Card data={cardData} />
+                  </div>
+                )
+              })}
             </div>
+          </div>
+          <div className='w-85 pb-10'>
+            <DiscoverColumn
+              title="Recommended"
+              data={recommended.filter(item => item.poster_path || item.backdrop_url).slice(0, 8).map(item => ({
+                id: item.id,
+                title: item.title || item.name || '',
+                poster_path: item.poster_path || '',
+                backdrop_path: item.backdrop_path || item.backdrop_url || '',
+              }))}
+              mediaType={mediaType === 'movie' ? 'Movie' : 'TV'}
+              path={`/explore/${mediaType === 'movie' ? 'movies' : 'tvshows'}`}
+              hiddenViewMore={true}
+              maxItems={8}
+            />
           </div>
         </section>
       )}

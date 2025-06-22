@@ -10,9 +10,10 @@ interface DiscoverColumnProps {
   mediaType: 'Movie' | 'TV';
   maxItems?: number; // optional prop to limit number of cards shown
   path: string;
+  hiddenViewMore?: boolean;
 }
 
-const DiscoverColumn: React.FC<DiscoverColumnProps> = ({ title, mediaType, data, path, maxItems = 5 }) => {
+const DiscoverColumn: React.FC<DiscoverColumnProps> = ({ title, mediaType, data, path, hiddenViewMore, maxItems = 5 }) => {
   const slicedData = data.slice(0, maxItems);
   const navigate = useNavigate()
 
@@ -29,7 +30,9 @@ const DiscoverColumn: React.FC<DiscoverColumnProps> = ({ title, mediaType, data,
           );
         })}
       </div>
-      <h3 onClick={() => navigate(path)} className="flex items-center mt-2 ml-1 cursor-pointer hover:text-[#B1D960] h-12">View more <MdKeyboardArrowRight size={20} className="font-bold" /> </h3>
+      {!hiddenViewMore && (
+        <h3 onClick={() => navigate(path)} className="flex items-center mt-2 ml-1 cursor-pointer hover:text-[#B1D960] h-12">View more <MdKeyboardArrowRight size={20} className="font-bold" /> </h3>
+      )}
     </div>
   );
 };
