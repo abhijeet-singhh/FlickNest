@@ -33,20 +33,20 @@ const Details = () => {
     return <div className="h-screen flex items-center justify-center text-red-500">{error}</div>
   }
   return (
-    <div className="pt-16 min-h-screen bg-[#151320]">
+    <div className="pt-10 md:pt-16 pb-14 md:pb-0 min-h-screen bg-[#151320]">
       <MediaHero details={details} imageURL={imageURL} />
       {/* Cast Section */}
       {credits?.cast && credits.cast.length > 0 && (
-        <section className="px-4 md:px-8 py-8 mt-10">
+        <section className="px-4 md:px-8 py-5 md:py-8 md:mt-10">
           <div className="max-w-6xl mx-auto border border-zinc-800 rounded-2xl px-4 mb-5">
             <div className='flex items-center justify-between'>
-              <h2 className="text-2xl font-bold mb-4 text-[#B1D690]">Cast</h2>
-              <div>
-                <button onClick={() => scrollLeft(castScrollRef)} className='border px-2 py-[2px] rounded-xl bg-[#B1D960] text-black opacity-80 cursor-pointer'><MdKeyboardArrowLeft /></button>
-                <button onClick={() => scrollRight(castScrollRef)} className='border px-2 py-[2px] rounded-xl bg-[#B1D960] text-black ml-1 opacity-80 cursor-pointer'><MdKeyboardArrowRight /></button>
+              <h2 className="text-xl md:text-2xl font-bold mb-4 text-[#B1D690]">Cast</h2>
+              <div className='hidden md:block'>
+                <button onClick={() => scrollLeft(castScrollRef)} className='px-2 py-[2px] rounded-xl bg-[#B1D960] text-black opacity-80 cursor-pointer'><MdKeyboardArrowLeft /></button>
+                <button onClick={() => scrollRight(castScrollRef)} className='px-2 py-[2px] rounded-xl bg-[#B1D960] text-black ml-1 opacity-80 cursor-pointer'><MdKeyboardArrowRight /></button>
               </div>
             </div>
-            <div ref={castScrollRef} className="flex gap-6 overflow-x-hidden pb-4 scrollbar-hide">
+            <div ref={castScrollRef} className="flex gap-6 overflow-x-auto md:overflow-x-hidden pb-4 scrollbar-hide">
               {credits?.cast.slice(0, 10).map(actor => (
                 <div key={actor.id} className="flex-shrink-0 w-32 cursor-pointer">
                   <img
@@ -65,16 +65,16 @@ const Details = () => {
       )}
       {/* Videos Section */}
       {videos.length > 0 && (
-        <section className="px-4 md:px-8 py-8 bg-black/30">
+        <section className="px-4 md:px-8 py-5 md:py-8 bg-black/30">
           <div className="max-w-6xl mx-auto">
-            <div className='flex items-center justify-between mb-3'>
-              <h2 className="text-2xl font-bold mb-6 text-[#B1D690]">Trailers & Videos</h2>
-              <div>
-                <button onClick={() => scrollLeft(videoScrollRef)} className='border px-2 py-[2px] rounded-xl bg-[#B1D960] text-black opacity-80 cursor-pointer'><MdKeyboardArrowLeft /></button>
-                <button onClick={() => scrollRight(videoScrollRef)} className='border px-2 py-[2px] rounded-xl bg-[#B1D960] text-black ml-1 opacity-80 cursor-pointer'><MdKeyboardArrowRight /></button>
+            <div className='flex items-center justify-between mb-6'>
+              <h2 className="text-xl md:text-2xl font-bold text-[#B1D690] my-auto">Trailers & Videos</h2>
+              <div className='hidden md:block'>
+                <button onClick={() => scrollLeft(videoScrollRef)} className='px-2 py-[2px] rounded-xl bg-[#B1D960] text-black opacity-80 cursor-pointer'><MdKeyboardArrowLeft /></button>
+                <button onClick={() => scrollRight(videoScrollRef)} className='px-2 py-[2px] rounded-xl bg-[#B1D960] text-black ml-1 opacity-80 cursor-pointer'><MdKeyboardArrowRight /></button>
               </div>
             </div>
-            <div ref={videoScrollRef} className="flex gap-6 overflow-x-hidden pb-4 scrollbar-hide">
+            <div ref={videoScrollRef} className="flex gap-6 overflow-x-auto md:overflow-x-hidden pb-4 scrollbar-hide">
               {videos.map(video => (
                 <div key={video.key} className="flex-shrink-0 w-80">
                   <iframe
@@ -96,20 +96,20 @@ const Details = () => {
       )}
       {/* Similar Content */}
       {(similar.length > 0 || recommended.length > 0) && (
-        <section className="px-4 md:px-8 py-8 flex justify-end items-start gap-15">
+        <section className="px-4 md:px-8 py-4 md:py-8 flex flex-col md:flex-row justify-end items-start gap-5 md:gap-15">
           <div className="max-w-235">
-            <h2 className="text-2xl font-bold mb-10 text-[#B1D690]">
+            <h2 className="text-xl md:text-2xl font-bold mb-4 md:mb-10 text-[#B1D690]">
               Similar {mediaType === 'movie' ? 'Movies' : 'Shows'}
             </h2>
-            <div className="flex gap-7 overflow-x-hidden flex-wrap pb-4 scrollbar-hide">
-              {similar.filter(item => item.poster_path || item.backdrop_url).slice(0, 15).map(item => {
+            <div className="flex gap-5 md:gap-7 overflow-x-hidden justify-center flex-wrap pb-4 scrollbar-hide">
+              {similar.filter(item => item.poster_path || item.backdrop_url).slice(0, 12).map(item => {
                 const cardData = {
                   ...item,
                   poster_path: item.poster_path || '',
                   backdrop_path: item.backdrop_path || item.backdrop_url || '',
                 };
                 return (
-                  <div key={item.id} className="flex-shrink-0 w-40 cursor-pointer">
+                  <div key={item.id} className="flex-shrink-0 w-40 md:w-50 cursor-pointer">
                     <Card data={cardData} />
                   </div>
                 )
@@ -119,7 +119,7 @@ const Details = () => {
           <div className='w-85 pb-10'>
             <DiscoverColumn
               title="Recommended"
-              data={recommended.filter(item => item.poster_path || item.backdrop_url).slice(0, 8).map(item => ({
+              data={recommended.filter(item => item.poster_path || item.backdrop_url).slice(0, 9).map(item => ({
                 id: item.id,
                 title: item.title || item.name || '',
                 poster_path: item.poster_path || '',
@@ -128,8 +128,11 @@ const Details = () => {
               mediaType={mediaType === 'movie' ? 'Movie' : 'TV'}
               path={`/explore/${mediaType === 'movie' ? 'movies' : 'tvshows'}`}
               hiddenViewMore={true}
-              maxItems={8}
+              maxItems={9}
             />
+            {recommended.filter(item => item.poster_path || item.backdrop_url).length === 0 && (
+              <p className="text-zinc-400 mt-4">No recommended content found.</p>
+            )}
           </div>
         </section>
       )}

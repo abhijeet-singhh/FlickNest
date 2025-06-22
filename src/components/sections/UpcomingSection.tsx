@@ -16,11 +16,11 @@ const UpcomingSection = () => {
                 <h3 className="text-[#B1D690] text-xl md:text-2xl font-bold">Top Upcoming</h3>
                 <p onClick={() => navigate('/top_upcoming')} className="flex items-center gap-1 text-[14px] text-zinc-400 mr-3 cursor-pointer">View more <MdKeyboardArrowRight size={16} /></p>
             </div>
-            <div className="flex flex-wrap justify-around gap-2 mt-5">
+            <div className="flex flex-wrap justify-around gap-2 mt-5 md:px-6">
                 {upcomingDataSliced.map((data, index) => {
                     const displayIndex = String(index + 1).padStart(2, '0');
                     return (
-                        <div key={`upcoming-${data.id || index}`} className="w-[160px] md:w-[210px] flex-shrink-0">
+                        <div key={`upcoming-${data.id || index}`} className="w-[160px] md:w-[200px] flex-shrink-0">
                             <Card data={data} indexLabel={displayIndex} />
                         </div>
                     )

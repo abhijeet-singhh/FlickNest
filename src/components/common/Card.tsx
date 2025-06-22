@@ -20,7 +20,7 @@ const Card = ({ data }: CardProps) => {
 
     return (
         <div onClick={handleClick} className="mb-5 flex-shrink-0">
-            <div className="relative w-full max-w-[160px] md:max-w-[210px] h-52 md:h- bg-[#2c2b32] mb-2 overflow-hidden cursor-pointer">
+            <div className="relative w-full max-w-[160px] md:max-w-[200px] h-52 md:h-65 bg-[#2c2b32] mb-2 overflow-hidden cursor-pointer">
                 <img
                     src={posterPath}
                     alt={title}

@@ -5,8 +5,10 @@ import { MovieData } from "../../types/movie.types";
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight, MdStarRate, MdVisibility } from "react-icons/md";
 import { BANNER_AUTO_SCROLL_DELAY, BANNER_SLIDES_TO_SHOW } from "../../utils/constants";
 import { formatPopularity, formatRating } from "../../utils/formatters";
+import { useNavigate } from "react-router-dom";
 
 const HomeBanner = () => {
+  const navigate = useNavigate()
   const bannerData = useSelector((state: RootState) => state.movieData.dataMap.bannerData ?? []) as MovieData[]
   const imageURL = useSelector((state: RootState) => state.movieData.imageURL)
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -15,6 +17,10 @@ const HomeBanner = () => {
   const [isPaused, setIsPaused] = useState(false);
   const slideCount = bannerData.length;
   const isMobile = window.innerWidth <= 768;
+  
+  const handleClick = (id: number | string) => {
+        navigate(`/explore/details/${id}`)
+    }
 
   const scrollToIndex = useCallback((index: number) => {
     if (!scrollRef.current) return;
@@ -115,9 +121,10 @@ const HomeBanner = () => {
                   </p>
                   <div className="flex flex-wrap items-center gap-3 text-sm">
                     <button
+                      onClick={() => handleClick(data.id)}
                       onMouseEnter={pauseAutoScroll}
                       onMouseLeave={resumeAutoScroll}
-                      className="bg-[#B1D690] hover:bg-[#9fc57d] transition-all duration-300 rounded-full px-3 py-1.5 md:px-6 md:py-2 text-neutral-900 font-semibold md:font-bold shadow-lg hover:shadow-xl active:scale-95 focus:ring-2 focus:ring-white"
+                      className="bg-[#B1D690] hover:bg-[#9fc57d] transition-all duration-300 rounded-full px-3 py-1.5 md:px-6 md:py-2 text-neutral-900 font-semibold md:font-bold shadow-lg hover:shadow-xl active:scale-95 focus:ring-2 focus:ring-white cursor-pointer"
                       aria-label={`Watch ${data.title || data.name}`}
                     >
                       Watch Now
@@ -125,7 +132,7 @@ const HomeBanner = () => {
                     <button
                       onMouseEnter={pauseAutoScroll}
                       onMouseLeave={resumeAutoScroll}
-                      className="border border-white/30 hover:border-white/60 hover:bg-white/10 transition-all duration-300 text-white rounded-full px-3 py-1.5 md:px-6 md:py-2 font-semibold md:font-bold shadow-lg hover:shadow-xl active:scale-95 focus:ring-2 focus:ring-white"
+                      className="border border-white/30 hover:border-white/60 hover:bg-white/10 transition-all duration-300 text-white rounded-full px-3 py-1.5 md:px-6 md:py-2 font-semibold md:font-bold shadow-lg hover:shadow-xl active:scale-95 focus:ring-2 focus:ring-white cursor-pointer"
                       aria-label={`Add ${data.title || data.name} to watchlist`}
                     >
                       + Watchlist

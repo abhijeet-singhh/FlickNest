@@ -14,7 +14,7 @@ const MediaHero = ({ details, imageURL }: MediaHeroProps) => {
   const runtime = details.runtime || details.episode_run_time?.[0]
 
   return (
-    <div className="relative h-[70vh]">
+    <div className="relative h-screen md:h-[70vh]">
       <div className="absolute inset-0">
         <img
           src={`${imageURL}${details.backdrop_path}`}
@@ -25,7 +25,7 @@ const MediaHero = ({ details, imageURL }: MediaHeroProps) => {
         <div className="absolute inset-0 bg-gradient-to-t from-[#151320] to-transparent" />
       </div>
 
-      <div className="absolute bottom-0 w-full px-4 md:px-8 py-6">
+      <div className="absolute inset-0 flex items-center md:items-end w-full px-4 md:px-8 py-6">
         <div className="max-w-6xl mx-auto">
           <div className="flex flex-col md:flex-row gap-6">
             <img
@@ -37,7 +37,7 @@ const MediaHero = ({ details, imageURL }: MediaHeroProps) => {
 
             <div className="flex flex-col justify-end">
               <div className='border border-zinc-700 p-4 rounded-2xl backdrop-blur-[3px]'>
-                <h1 className="text-4xl font-bold mb-3">{title}</h1>
+                <h1 className="text-2xl md:text-4xl font-bold mb-3">{title}</h1>
                 <div className="flex items-center gap-4 mb-4">
                   <span className="flex items-center gap-1 text-gray-300 text-sm">
                     <MdStarRate className="text-yellow-400 mb-[1.1px]" />
@@ -49,7 +49,7 @@ const MediaHero = ({ details, imageURL }: MediaHeroProps) => {
                     <span>{runtime} min</span>
                   </div>}
                 </div>
-                <div className="flex gap-2 mb-4">
+                <div className="flex flex-wrap gap-2 mb-4">
                   {details.genres.map(genre => (
                     <span
                       key={genre.id}
