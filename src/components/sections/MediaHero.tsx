@@ -43,7 +43,7 @@ const MediaHero = ({ details, imageURL }: MediaHeroProps) => {
                     <MdStarRate className="text-yellow-400 mb-[1.1px]" />
                     {formatRating(details.vote_average)}
                   </span>
-                  <span className='text-gray-400 text-sm'>{formatDate(releaseDate || 'Unknown')}</span>
+                  <span className='text-gray-300 text-sm'>{formatDate(releaseDate || 'Unknown')}</span>
                   {runtime && <div className='flex items-center gap-2 text-[#B1d960] text-sm'>
                     <FaRegClock size={12} className='mb-[.7px]' />
                     <span>{runtime} min</span>
