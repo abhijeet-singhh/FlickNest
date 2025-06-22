@@ -2,13 +2,20 @@ import { useSelector } from "react-redux"
 import { RootState } from "../../store"
 import { CardProps } from "../../types/movie.types"
 import { truncateText } from "../../utils/formatters"
+import { useNavigate } from "react-router-dom"
 
 const TrendingCard = ({ data, indexLabel }: CardProps) => {
+
+    const navigate = useNavigate()
+    const handleClick = () => {
+        navigate(`/explore/details/${data.id}`)
+    }
+
     const imageURL = useSelector((state: RootState) => state.movieData.imageURL)
     const title = data.title || data.name || 'Untitled'
 
     return (
-        <div className="md:flex relative items-end gap-2 md:w-[220px] cursor-pointer">
+        <div onClick={handleClick} className="md:flex relative items-end gap-2 md:w-[220px] cursor-pointer">
             <div className="absolute top-0 left-0 md:hidden bg-black px-1">{indexLabel}</div>
             <div className="hidden md:block md:relative">
                 <div className="absolute bottom-28 -left-[75px] w-44 transform -rotate-90 font-bold text-[16px]">

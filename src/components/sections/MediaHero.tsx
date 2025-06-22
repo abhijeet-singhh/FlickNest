@@ -1,6 +1,7 @@
 import { MdStarRate } from 'react-icons/md'
 import { MediaDetails } from '../../types/details.types'
 import { formatDate, formatRating } from '../../utils/formatters'
+import { FaRegClock } from 'react-icons/fa'
 
 interface MediaHeroProps {
   details: MediaDetails
@@ -18,6 +19,7 @@ const MediaHero = ({ details, imageURL }: MediaHeroProps) => {
         <img
           src={`${imageURL}${details.backdrop_path}`}
           alt={title}
+          loading='lazy'
           className="w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-[#151320] to-transparent" />
@@ -29,30 +31,36 @@ const MediaHero = ({ details, imageURL }: MediaHeroProps) => {
             <img
               src={`${imageURL}${details.poster_path}`}
               alt={title}
-              className="w-48 md:w-64 rounded-lg shadow-xl"
+              loading='lazy'
+              className="w-48 md:w-64 rounded-lg shadow-2xl bg-black/10 backdrop-blur-md"
             />
 
             <div className="flex flex-col justify-end">
-              <h1 className="text-4xl font-bold mb-3">{title}</h1>
-              <div className="flex items-center gap-4 mb-4">
-                <span className="flex items-center gap-1">
-                  <MdStarRate className="text-yellow-400" />
-                  {formatRating(details.vote_average)}
-                </span>
-                <span>{formatDate(releaseDate || 'Unknown')}</span>
-                {runtime && <span>{runtime} min</span>}
-              </div>
-              <div className="flex gap-2 mb-4">
-                {details.genres.map(genre => (
-                  <span
-                    key={genre.id}
-                    className="px-3 py-1 bg-[#B1D690]/20 text-[#B1D690] rounded-full text-sm"
-                  >
-                    {genre.name}
+              <div className='border border-zinc-700 p-4 rounded-2xl backdrop-blur-[3px]'>
+                <h1 className="text-4xl font-bold mb-3">{title}</h1>
+                <div className="flex items-center gap-4 mb-4">
+                  <span className="flex items-center gap-1 text-gray-300 text-sm">
+                    <MdStarRate className="text-yellow-400 mb-[1.1px]" />
+                    {formatRating(details.vote_average)}
                   </span>
-                ))}
+                  <span className='text-gray-400 text-sm'>{formatDate(releaseDate || 'Unknown')}</span>
+                  {runtime && <div className='flex items-center gap-2 text-[#B1d960] text-sm'>
+                    <FaRegClock size={12} className='mb-[.7px]' />
+                    <span>{runtime} min</span>
+                  </div>}
+                </div>
+                <div className="flex gap-2 mb-4">
+                  {details.genres.map(genre => (
+                    <span
+                      key={genre.id}
+                      className="px-3 py-1 bg-[#B1D690]/20 text-[#B1D690] rounded-full text-sm"
+                    >
+                      {genre.name}
+                    </span>
+                  ))}
+                </div>
+                <p className="text-gray-400 max-w-2xl">{details.overview}</p>
               </div>
-              <p className="text-gray-300 max-w-2xl">{details.overview}</p>
             </div>
           </div>
         </div>

@@ -3,14 +3,20 @@ import { CardProps } from "../../types/movie.types"
 import { RootState } from "../../store"
 import { formatPopularity, formatRating, truncateText } from "../../utils/formatters"
 import { FaFilm, FaFire } from "react-icons/fa"
+import { useNavigate } from "react-router-dom"
 
 const DiscoverCard = ({ data, mediaType }: CardProps) => {
+
+    const navigate = useNavigate()
+    const handleClick = () => {
+        navigate(`/explore/details/${data.id}`)
+    }
 
     const imageURL = useSelector((state: RootState) => state.movieData.imageURL)
     const title = truncateText(data.title || data.name || 'Untitled')
 
     return (
-        <div className="w-full h-[90px] border-zinc-800 px-1 flex items-center gap-4 overflow-hidden">
+        <div onClick={handleClick} className="w-full h-[90px] border-zinc-800 px-1 flex items-center gap-4 overflow-hidden cursor-pointer">
             <div className="w-[65px] h-[80px] rounded-md overflow-hidden flex-shrink-0">
                 <img
                     src={`${imageURL}/${data.poster_path || data.backdrop_path}`}

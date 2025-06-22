@@ -3,9 +3,15 @@ import { RootState } from "../../store"
 import { CardProps } from "../../types/movie.types"
 import { MdStarRate } from "react-icons/md"
 import { formatDate, truncateText } from "../../utils/formatters"
+import { useNavigate } from "react-router-dom"
 
 
 const Card = ({ data }: CardProps) => {
+    const navigate = useNavigate()
+    const handleClick = () => {
+        navigate(`/explore/details/${data.id}`)
+    }
+
     const imageURL = useSelector((state: RootState) => state.movieData.imageURL)
     const title = truncateText(data.title || data.name || 'Untitled')
     const releaseDate = data.release_date || data.first_air_date || "";
@@ -13,7 +19,7 @@ const Card = ({ data }: CardProps) => {
     const posterPath = data.poster_path ? `${imageURL}/${data.poster_path}` : `${imageURL}/${data.backdrop_path}`;
 
     return (
-        <div className="mb-5 flex-shrink-0">
+        <div onClick={handleClick} className="mb-5 flex-shrink-0">
             <div className="relative w-full max-w-[160px] md:max-w-[210px] h-52 md:h- bg-[#2c2b32] mb-2 overflow-hidden cursor-pointer">
                 <img
                     src={posterPath}

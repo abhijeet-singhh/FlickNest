@@ -39,4 +39,5 @@ export interface SimilarMediaItem {
   title?: string
   name?: string
   poster_path?: string
+  backdrop_url?: string
 }
