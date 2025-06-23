@@ -41,4 +41,6 @@ export interface SimilarMediaItem {
   poster_path?: string
   backdrop_url?: string
   backdrop_path?: string
+  vote_average?: number
+  popularity?: number
 }

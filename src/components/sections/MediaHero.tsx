@@ -14,7 +14,7 @@ const MediaHero = ({ details, imageURL }: MediaHeroProps) => {
   const runtime = details.runtime || details.episode_run_time?.[0]
 
   return (
-    <div className="relative h-screen md:h-[70vh]">
+    <div className="relative min-h-screen md:min-h-0 md:h-[90vh]">
       <div className="absolute inset-0">
         <img
           src={`${imageURL}${details.backdrop_path}`}
@@ -25,7 +25,7 @@ const MediaHero = ({ details, imageURL }: MediaHeroProps) => {
         <div className="absolute inset-0 bg-gradient-to-t from-[#151320] to-transparent" />
       </div>
 
-      <div className="absolute inset-0 flex items-center md:items-end w-full px-4 md:px-8 py-6">
+      <div className="relative md:absolute inset-0 flex items-center md:items-end w-full px-4 md:px-8 py-6">
         <div className="max-w-6xl mx-auto">
           <div className="flex flex-col md:flex-row gap-6">
             <img

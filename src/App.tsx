@@ -5,6 +5,7 @@ import { Home, Search, Details } from "./pages/index"
 import { useMovies } from "./hooks/useMovies"
 import DiscoverPage from "./pages/DiscoverPage"
 import ScrollToTop from "./components/common/ScrollToTop"
+import loadGif from "../public/assets/load.gif"
 
 const App = () => {
   const { error, isLoading } = useMovies();
@@ -14,7 +15,7 @@ const App = () => {
       <div className="bg-black text-white h-screen flex items-center justify-center">
         <div className="text-center">
           <div className="flex items-center justify-center gap-1">
-            <img src="/assets/load.gif" className="w-16 -mt-4" />
+            <img src={loadGif} className="w-16 -mt-4" />
             <h2 className="text-2xl font-bold mb-2">Loading...</h2>
           </div>
           <p className="text-gray-400">Please wait while we fetch the movies</p>
