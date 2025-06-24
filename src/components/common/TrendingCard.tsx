@@ -18,7 +18,7 @@ const TrendingCard = ({ data, indexLabel }: CardProps) => {
         <div onClick={handleClick} className="md:flex relative items-end gap-2 md:w-[220px] cursor-pointer">
             <div className="absolute top-0 left-0 md:hidden bg-black px-1">{indexLabel}</div>
             <div className="hidden md:block md:relative">
-                <div className="absolute bottom-28 -left-[75px] w-44 transform -rotate-90 font-bold text-[16px]">
+                <div className="absolute bottom-28 -left-[75px] w-44 transform -rotate-90 font-bold text-[16px] line-clamp-1">
                     {truncateText(title, 20)}
                 </div>
                 <div className="text-xl text-[#B1D690] font-bold">{indexLabel}</div>

@@ -18,6 +18,7 @@ export type MovieDataKey =
   | 'tvShows300'
   | 'movies300'
   | 'trending300'
+  | 'newData'
   | 'new300';
 
 interface MovieState {
@@ -42,6 +43,7 @@ const initialState: MovieState = {
     tvShows300: [],
     movies300: [],
     trending300: [],
+    newData: [],
     new300: [],
   },
   imageURL: '',

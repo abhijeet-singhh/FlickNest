@@ -8,9 +8,11 @@ import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from 'react-icons/md'
 import DiscoverColumn from '../components/sections/DiscoverColumn'
 import Card from '../components/common/Card'
 import { useParams } from 'react-router-dom'
-import loadGif from "../../public/assets/load.gif"
+import ScrollToTopButton from '../components/common/ScrollToTopButton'
 
 const Details = () => {
+
+  const loadGif = "/assets/load.gif";
 
   const castScrollRef = useRef<HTMLDivElement>(null);
   const videoScrollRef = useRef<HTMLDivElement>(null);
@@ -41,12 +43,13 @@ const Details = () => {
       {credits?.cast && credits.cast.length > 0 && (
         <section className="px-4 md:px-8 py-5 md:py-8 md:mt-10">
           <div className="max-w-6xl mx-auto border border-zinc-800 rounded-2xl px-4 mb-5">
-            <div className='flex items-center justify-between'>
-              <h2 className="text-xl md:text-2xl font-bold mb-4 text-[#B1D690]">Cast</h2>
+            <div className='flex items-center justify-between my-2 md:my-4'>
+              <h2 className="text-xl md:text-2xl font-bold text-[#B1D690]">Cast</h2>
               <div className='hidden md:block'>
-                <button onClick={() => scrollLeft(castScrollRef)} className='px-2 py-[2px] rounded-xl bg-[#B1D960] text-black opacity-80 cursor-pointer'><MdKeyboardArrowLeft /></button>
-                <button onClick={() => scrollRight(castScrollRef)} className='px-2 py-[2px] rounded-xl bg-[#B1D960] text-black ml-1 opacity-80 cursor-pointer'><MdKeyboardArrowRight /></button>
+                <button onClick={() => scrollLeft(castScrollRef)} className='px-2 py-[2px] rounded-xl border border-[#B1D960]/70 bg-[#B1D960]/30 text-[#B1D960] cursor-pointer'><MdKeyboardArrowLeft /></button>
+                <button onClick={() => scrollRight(castScrollRef)} className='px-2 py-[2px] rounded-xl border border-[#B1D960]/70 bg-[#B1D960]/30 text-[#B1D960] ml-1 cursor-pointer'><MdKeyboardArrowRight /></button>
               </div>
+              <p className='md:hidden text-[12px] text-[#B1D960]/70 flex items-center'>Scroll <MdKeyboardArrowRight /> </p>
             </div>
             <div ref={castScrollRef} className="flex gap-6 overflow-x-auto md:overflow-x-hidden pb-4 scrollbar-hide">
               {credits?.cast.slice(0, 10).map(actor => (
@@ -72,9 +75,10 @@ const Details = () => {
             <div className='flex items-center justify-between mb-6'>
               <h2 className="text-xl md:text-2xl font-bold text-[#B1D690] my-auto">Trailers & Videos</h2>
               <div className='hidden md:block'>
-                <button onClick={() => scrollLeft(videoScrollRef)} className='px-2 py-[2px] rounded-xl bg-[#B1D960] text-black opacity-80 cursor-pointer'><MdKeyboardArrowLeft /></button>
-                <button onClick={() => scrollRight(videoScrollRef)} className='px-2 py-[2px] rounded-xl bg-[#B1D960] text-black ml-1 opacity-80 cursor-pointer'><MdKeyboardArrowRight /></button>
+                <button onClick={() => scrollLeft(videoScrollRef)} className='px-2 py-[2px] rounded-xl border border-[#B1D960]/70 bg-[#B1D960]/30 text-[#B1D960] cursor-pointer'><MdKeyboardArrowLeft /></button>
+                <button onClick={() => scrollRight(videoScrollRef)} className='px-2 py-[2px] rounded-xl border border-[#B1D960]/70 bg-[#B1D960]/30 text-[#B1D960] ml-1 cursor-pointer'><MdKeyboardArrowRight /></button>
               </div>
+              <p className='md:hidden text-[12px] text-[#B1D960]/70 flex items-center'>Scroll <MdKeyboardArrowRight /> </p>
             </div>
             <div ref={videoScrollRef} className="flex gap-6 overflow-x-auto md:overflow-x-hidden pb-4 scrollbar-hide">
               {videos.map(video => (
@@ -140,6 +144,7 @@ const Details = () => {
           </div>
         </section>
       )}
+      <ScrollToTopButton />
       <Footer />
     </div>
   )

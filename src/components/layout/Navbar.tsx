@@ -1,9 +1,12 @@
 import { useState } from "react"
 import { CiSearch } from "react-icons/ci"
-import { FaFacebook, FaInstagram, FaYoutube } from "react-icons/fa"
+import { FaGithub, FaLinkedin } from "react-icons/fa"
+import { SiBento } from "react-icons/si";
+import { FaXTwitter } from "react-icons/fa6"
 import { Link, NavLink, useNavigate } from "react-router-dom"
 import { APP_TITLE, MENU_ITEMS } from "../../utils/constants"
-import { FaXTwitter } from "react-icons/fa6"
+
+const linkClass = "hover:text-[#B1D690] hover:-translate-y-1 transition-all duration-300"
 
 const Navbar = () => {
   const [searchQuery, setSearchQuery] = useState('')
@@ -34,10 +37,10 @@ const Navbar = () => {
           ))}
 
           <div className="flex justify-center sm:justify-start space-x-4 text-xl ml-110">
-            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" aria-label="Twitter" className="hover:text-[#B1D690]"><FaXTwitter /></a>
-            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="hover:text-[#B1D690]"><FaFacebook /></a>
-            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="hover:text-[#B1D690]"><FaInstagram /></a>
-            <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" aria-label="YouTube" className="hover:text-[#B1D690]"><FaYoutube /></a>
+            <a href="https://x.com/abhijeet_tw" target="_blank" rel="noopener noreferrer" aria-label="Twitter" className={linkClass}><FaXTwitter /></a>
+            <a href="https://bento.me/abhi-dev" target="_blank" rel="noopener noreferrer" aria-label="YouTube" className={linkClass}><SiBento /></a>
+            <a href="https://github.com/abhijeet-singhh" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className={linkClass}><FaGithub /></a>
+            <a href="https://www.linkedin.com/in/abhijeet-singhh/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className={linkClass}><FaLinkedin /></a>
           </div>
         </div>
       </div>

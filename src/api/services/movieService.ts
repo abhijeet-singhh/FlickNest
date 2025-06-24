@@ -36,6 +36,9 @@ export const movieService = {
   getUpcoming: () =>
     axiosInstance.get<MovieResponse>(ENDPOINTS.upcoming),
 
+  getNew: () =>
+    axiosInstance.get<MovieResponse>(ENDPOINTS.new),
+
   getConfiguration: () =>
     axiosInstance.get(ENDPOINTS.configuration),
 

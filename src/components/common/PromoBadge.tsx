@@ -8,7 +8,7 @@ const shareText = encodeURIComponent("Check out this awesome site!");
 
 const PromoBadge = () => {
   return (
-    <div className="flex items-center gap-4 bg-[#191826] animate-fade-in justify-start flex-wrap py-3 md:py-7 px-2 md:px-5">
+    <div className="flex items-center gap-4 bg-[#191826] animate-fade-in justify-start flex-wrap py-3 md:py-7 px-3 md:px-5">
       {/* Animated Avatar */}
       <div className="hidden md:block w-14 h-14 rounded-full border-2 border-violet-500 shadow-lg overflow-hidden flex-shrink-0">
         <img

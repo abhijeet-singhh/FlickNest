@@ -5,7 +5,7 @@ import { MovieData } from "../../types/movie.types"
 import { MdKeyboardArrowRight } from "react-icons/md"
 import { useNavigate } from "react-router-dom"
 const NewSection = () => {
-    const NewData = useSelector((state: RootState) => state.movieData.dataMap.new300 ?? []) as MovieData[]
+    const NewData = useSelector((state: RootState) => state.movieData.dataMap.newData ?? []) as MovieData[]
     const newDataSliced = NewData.slice(0, 12)
     const navigate = useNavigate()
     return (

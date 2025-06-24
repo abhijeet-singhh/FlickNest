@@ -1,6 +1,6 @@
 # CINEMAX - Movie Streaming Platform
 
-A modern movie streaming platform built with React, TypeScript, and the TMDB API.
+A modern movie discovery platform built with React, TypeScript, and the TMDB API.
 
 ## Features
 
@@ -9,7 +9,12 @@ A modern movie streaming platform built with React, TypeScript, and the TMDB API
 - Responsive design
 - Modern UI with animations
 - TV Shows and Movies categorization
+- Trending Section
+- Discover Section
 - Upcoming releases section
+- New on FlickNest Section
+- Details page
+- Search Page
 
 ## Tech Stack
 

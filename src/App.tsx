@@ -5,10 +5,10 @@ import { Home, Search, Details } from "./pages/index"
 import { useMovies } from "./hooks/useMovies"
 import DiscoverPage from "./pages/DiscoverPage"
 import ScrollToTop from "./components/common/ScrollToTop"
-import loadGif from "../public/assets/load.gif"
 
 const App = () => {
   const { error, isLoading } = useMovies();
+  const loadGif = "/assets/load.gif";
 
   if (isLoading) {
     return (

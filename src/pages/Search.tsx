@@ -6,6 +6,7 @@ import Pagination from "../components/common/Pagination";
 import { SearchResult } from "../types/movie.types";
 import Footer from "../components/layout/Footer";
 import PromoBadge from "../components/common/PromoBadge";
+import ScrollToTopButton from "../components/common/ScrollToTopButton";
 
 const Search = () => {
   const location = useLocation();
@@ -84,7 +85,7 @@ const Search = () => {
   const visibleResults = results.slice(startIndex, startIndex + 18);
 
   return (
-    <div className="min-h-screen bg-[#151320] pt-15 md:pt-20 pb-15">
+    <div className="flex flex-col min-h-screen bg-[#151320] pt-15 pb-15 md:pb-0 border">
       <PromoBadge />
       <form onSubmit={handleSubmit} className="mb-8 px-4 mt-5 flex justify-center md:hidden">
         <input
@@ -92,7 +93,7 @@ const Search = () => {
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           placeholder="Search movies or TV shows..."
-          className="w-full max-w-md px-4 py-2 rounded-l bg-zinc-900 text-white border border-zinc-700"
+          className="w-full max-w-md px-4 py-2 rounded-l bg-zinc-800 text-white placeholder-zinc-400 border border-zinc-700 focus:outline-none focus:border-[#B1D960] transition duration-200 ease-in-out"
         />
         <button
           type="submit"
@@ -102,12 +103,12 @@ const Search = () => {
         </button>
       </form>
 
-      {loading && <div className="text-center text-white">Loading...</div>}
+      {loading && <div className="text-center text-white mt-2 md:mt-4">Loading...</div>}
       {error && <div className="text-center text-red-500">{error}</div>}
 
       {!loading && !error && query.trim() === "" && (
         <div className="text-center text-zinc-400">
-          Start typing to search for movies or TV shows.
+          Start typing to find your next favorite.
         </div>
       )}
 
@@ -143,7 +144,8 @@ const Search = () => {
         />
       )}
 
-      <div className="mt-6">
+      <ScrollToTopButton />
+      <div className="pt-6 mt-auto">
         <Footer />
       </div>
     </div>

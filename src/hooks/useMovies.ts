@@ -20,6 +20,7 @@ export const useMovies = () => {
           trendingDay,
           config,
           upcoming,
+          newData,
           nowPlaying,
           topRated,
           onTheAir,
@@ -29,11 +30,13 @@ export const useMovies = () => {
           movieService.getTrendingDay(),
           movieService.getConfiguration(),
           movieService.getUpcoming(),
+          movieService.getNew(),
           movieService.getNowPlaying(),
           movieService.getTopRated(),
           movieService.getOnTheAir(),
           movieService.getAiringToday()
         ]);
+        console.log(newData)
 
         // Set image config
         dispatch(setImageURL(config.data.images.secure_base_url + API_CONFIG.DEFAULT_IMAGE_SIZE));
@@ -42,6 +45,7 @@ export const useMovies = () => {
         dispatch(setMovieDataByKey({ key: 'bannerData', data: trendingWeek.data.results }));
         dispatch(setMovieDataByKey({ key: 'trendingData', data: trendingDay.data.results }));
         dispatch(setMovieDataByKey({ key: 'upcomingData', data: upcoming.data.results }));
+        dispatch(setMovieDataByKey({ key: 'newData', data: newData.data.results }));
         dispatch(setMovieDataByKey({ key: 'nowPlaying', data: nowPlaying.data.results }));
         dispatch(setMovieDataByKey({ key: 'topRated', data: topRated.data.results }));
         dispatch(setMovieDataByKey({ key: 'onTheAir', data: onTheAir.data.results }));

@@ -30,13 +30,13 @@ const DiscoverCard = ({ data, mediaType }: CardProps) => {
             <div className="flex flex-col gap-1">
                 <h3 className="text-[15px] text-zinc-100 font-bold">{title}</h3>
                 <div className="flex items-center gap-1">
-                    <span className="flex items-center justify-around gap-1 bg-amber-200 opacity-95 px-2 py-[.8px] rounded-l">
-                        <FaFire size={10} className="text-black opacity-90" />
-                        <p className="text-[12px] text-black font-bold mt-[.5px]">{formatRating(data.vote_average)}</p>
+                    <span className="flex items-center justify-around gap-1 border border-[#fee685]/50 bg-[#fee685]/20 bg-opacity-20 backdrop-blur-sm opacity-95 px-2 py-[.8px] rounded-l">
+                        <FaFire size={10} className="text-[#fee685]/80 opacity-90" />
+                        <p className="text-[12px] text-[#fee685]/80 font-semibold mt-[.5px]">{formatRating(data.vote_average)}</p>
                     </span>
-                    <span className="flex items-center justify-around gap-1 bg-zinc-200 opacity-95 px-2 py-[.8px] rounded-r">
-                        <FaFilm size={12} className="text-black opacity-80 mb-[.5px]" />
-                        <p className="text-[12px] text-black font-bold">{formatPopularity(data.popularity)}</p>
+                    <span className="flex items-center justify-around gap-1 border border-[#e4e4e7]/50 bg-[#e4e4e7]/20 opacity-95 px-2 py-[.8px] rounded-r">
+                        <FaFilm size={12} className="text-[#e4e4e7]/90 opacity-80 mb-[.5px]" />
+                        <p className="text-[12px] text-[#e4e4e7]/90 font-semibold">{formatPopularity(data.popularity)}</p>
                     </span>
                     <span className="text-zinc-500 text-[14px] ml-2 flex items-center gap-2">• <p className="text-zinc-400 poppins">{mediaType}</p></span>
                 </div>
