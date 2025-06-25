@@ -1,13 +1,34 @@
-import { Route, Routes } from "react-router-dom"
+import { Route, Routes, useLocation } from "react-router-dom"
+import ReactGA from "react-ga4";
 import Navbar from "./components/layout/Navbar"
 import MobileNavigation from "./components/layout/MobileNavigation"
 import { Home, Search, Details } from "./pages/index"
 import { useMovies } from "./hooks/useMovies"
 import DiscoverPage from "./pages/DiscoverPage"
 import ScrollToTop from "./components/common/ScrollToTop"
+import { useEffect } from "react"
+
+const GA_MEASUREMENT_ID = "G-9KDRM6DZWF"; // Your GA measurement ID
 
 const App = () => {
   const { error, isLoading } = useMovies();
+
+  const location = useLocation();
+
+  useEffect(() => {
+    // Initialize GA once on app start
+    if (GA_MEASUREMENT_ID) {
+      ReactGA.initialize(GA_MEASUREMENT_ID);
+    }
+  }, []);
+
+  useEffect(() => {
+    // Send pageview on every route change
+    if (GA_MEASUREMENT_ID) {
+      ReactGA.send({ hitType: "pageview", page: location.pathname + location.search });
+    }
+  }, [location]);
+
   const loadGif = "/assets/load.gif";
 
   if (isLoading) {

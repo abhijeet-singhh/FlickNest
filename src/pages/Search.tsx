@@ -85,7 +85,7 @@ const Search = () => {
   const visibleResults = results.slice(startIndex, startIndex + 18);
 
   return (
-    <div className="flex flex-col min-h-screen bg-[#151320] pt-15 pb-15 md:pb-0 border">
+    <div className="flex flex-col min-h-screen bg-[#151320] pt-15 pb-15 md:pb-0">
       <PromoBadge />
       <form onSubmit={handleSubmit} className="mb-8 px-4 mt-5 flex justify-center md:hidden">
         <input

@@ -4,8 +4,10 @@ import { MovieData } from "../../types/movie.types"
 import TrendingCard from "../common/TrendingCard"
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md"
 import { useRef } from "react"
+import { useNavigate } from "react-router-dom"
 
 const TrendingSection = () => {
+    const navigate = useNavigate()
     const scrollRef = useRef<HTMLDivElement>(null);
     const trendingData = useSelector((state: RootState) => state.movieData.dataMap.trendingData ?? []) as MovieData[]
     const top10Trending = trendingData.slice(0, 10)
@@ -20,7 +22,10 @@ const TrendingSection = () => {
 
     return (
         <div className="mt-3 md:mt-10 mx-3 md:mx-5">
-            <h3 className="text-[#B1D690] text-xl md:text-2xl font-bold">Trending</h3>
+            <div className="flex items-center justify-between">
+                <h3 className="text-[#B1D690] text-xl md:text-2xl font-bold">Trending</h3>
+                <p onClick={() => navigate('/explore/trending')} className="flex items-center md:gap-1 text-[12px] md:text-[14px] text-zinc-400 cursor-pointer">View more <MdKeyboardArrowRight size={16} /></p>
+            </div>
             <div className="flex">
                 <div 
                     ref={scrollRef} 
