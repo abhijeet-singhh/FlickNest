@@ -23,10 +23,10 @@ const Footer: React.FC = () => {
           <div className="hidden sm:block pl-20">
             <h3 className="text-white font-semibold mb-4">Browse</h3>
             <ul className="space-y-2 text-sm">
-              <li><a href="/movies" className="hover:text-violet-400">Movies</a></li>
-              <li><a href="/series" className="hover:text-violet-400">TV Shows</a></li>
+              <li><a href="/explore/movies" className="hover:text-violet-400">Movies</a></li>
+              <li><a href="/explore/tvshows" className="hover:text-violet-400">TV Shows</a></li>
               <li><a href="/new" className="hover:text-violet-400">New Releases</a></li>
-              <li><a href="/trending" className="hover:text-violet-400">Trending</a></li>
+              <li><a href="/explore/trending" className="hover:text-violet-400">Trending</a></li>
             </ul>
           </div>
 
@@ -34,10 +34,10 @@ const Footer: React.FC = () => {
           <div className="hidden sm:block pl-12">
             <h3 className="text-white font-semibold mb-4">Resources</h3>
             <ul className="space-y-2 text-sm">
-              <li><a href="/watchlist" className="hover:text-violet-400">Watchlist</a></li>
-              <li><a href="/reviews" className="hover:text-violet-400">Reviews</a></li>
-              <li><a href="/blog" className="hover:text-violet-400">Blog</a></li>
-              <li><a href="/community" className="hover:text-violet-400">Community</a></li>
+              <li><a href="#" className="hover:text-violet-400">Watchlist</a></li>
+              <li><a href="#" className="hover:text-violet-400">Reviews</a></li>
+              <li><a href="#" className="hover:text-violet-400">Blog</a></li>
+              <li><a href="#" className="hover:text-violet-400">Community</a></li>
             </ul>
           </div>
 

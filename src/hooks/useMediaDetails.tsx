@@ -15,12 +15,12 @@ import {
 } from '../store/slices/mediaDetailsSlice'
 import { RootState } from '../store'
 
-export const useMediaDetails = (id: string | undefined) => {
+export const useMediaDetails = (id: string | undefined, mediaType?: 'movie' | 'tv') => {
   const dispatch = useDispatch()
   const mediaDetails = useSelector((state: RootState) => state.mediaDetails)
 
   useEffect(() => {
-    if (!id) return
+    if (!id || !mediaType) return
 
     const fetchDetails = async () => {
       dispatch(setLoading(true))
@@ -41,17 +41,10 @@ export const useMediaDetails = (id: string | undefined) => {
       }
 
       try {
-        try {
-          const movieDetails = await movieService.getMediaInfo('movie', id).details()
-          dispatch(setMediaType('movie'))
-          dispatch(setDetails(movieDetails.data))
-          await fetchAdditionalDetails('movie', id)
-        } catch {
-          const tvDetails = await movieService.getMediaInfo('tv', id).details()
-          dispatch(setMediaType('tv'))
-          dispatch(setDetails(tvDetails.data))
-          await fetchAdditionalDetails('tv', id)
-        }
+        const detailsRes = await movieService.getMediaInfo(mediaType, id).details()
+        dispatch(setMediaType(mediaType))
+        dispatch(setDetails(detailsRes.data))
+        await fetchAdditionalDetails(mediaType, id)
       } catch (err) {
         dispatch(setError('Failed to load media details'))
         console.error(err)
@@ -65,7 +58,7 @@ export const useMediaDetails = (id: string | undefined) => {
     return () => {
       dispatch(resetState())
     }
-  }, [id, dispatch])
+  }, [id, mediaType, dispatch])
 
   return mediaDetails
 }

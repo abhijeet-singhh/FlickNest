@@ -8,7 +8,8 @@ const TrendingCard = ({ data, indexLabel }: CardProps) => {
 
     const navigate = useNavigate()
     const handleClick = () => {
-        navigate(`/explore/details/${data.id}`)
+        const type = data.media_type || (typeof data.title === 'string' ? 'movie' : 'tv');
+        navigate(`/explore/details/${type}/${data.id}`)
     }
 
     const imageURL = useSelector((state: RootState) => state.movieData.imageURL)

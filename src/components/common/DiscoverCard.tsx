@@ -9,7 +9,8 @@ const DiscoverCard = ({ data, mediaType }: CardProps) => {
 
     const navigate = useNavigate()
     const handleClick = () => {
-        navigate(`/explore/details/${data.id}`)
+        const type = data.media_type || (mediaType ? mediaType.toLowerCase() : 'movie');
+        navigate(`/explore/details/${type}/${data.id}`)
     }
 
     const imageURL = useSelector((state: RootState) => state.movieData.imageURL)

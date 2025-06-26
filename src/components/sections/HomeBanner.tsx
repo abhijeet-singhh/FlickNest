@@ -18,9 +18,9 @@ const HomeBanner = () => {
   const slideCount = bannerData.length;
   const isMobile = window.innerWidth <= 768;
   
-  const handleClick = (id: number | string) => {
-        navigate(`/explore/details/${id}`)
-    }
+  const handleClick = (id: number | string, mediaType?: string) => {
+    navigate(`/explore/details/${mediaType || 'movie'}/${id}`)
+}
 
   const scrollToIndex = useCallback((index: number) => {
     if (!scrollRef.current) return;
@@ -121,7 +121,7 @@ const HomeBanner = () => {
                   </p>
                   <div className="flex flex-wrap items-center gap-3 text-sm">
                     <button
-                      onClick={() => handleClick(data.id)}
+                      onClick={() => handleClick(data.id, data.media_type)}
                       onMouseEnter={pauseAutoScroll}
                       onMouseLeave={resumeAutoScroll}
                       className="bg-[#B1D690] hover:bg-[#9fc57d] transition-all duration-300 rounded-full px-3 py-1.5 md:px-6 md:py-2 text-neutral-900 font-semibold md:font-bold shadow-lg hover:shadow-xl active:scale-95 focus:ring-2 focus:ring-white cursor-pointer"

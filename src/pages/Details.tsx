@@ -24,9 +24,9 @@ const Details = () => {
     ref.current?.scrollBy({ left: 400, behavior: "smooth" });
   };
 
-  const { id } = useParams()
+  const { id, mediaType } = useParams();
   const imageURL = useSelector((state: RootState) => state.movieData.imageURL)
-  const { mediaType, details, credits, videos, similar, recommended, loading, error } = useMediaDetails(id)
+  const { details, credits, videos, similar, recommended, loading, error } = useMediaDetails(id, mediaType as 'movie' | 'tv')
   if (loading) {
     return <div className="h-screen flex items-center justify-center">
       <img src={loadGif} className='w-16' />
@@ -116,7 +116,7 @@ const Details = () => {
                 };
                 return (
                   <div key={item.id} className="flex-shrink-0 w-[160px] md:w-[200px] cursor-pointer">
-                    <Card data={cardData} />
+                    <Card data={cardData} mediaType={item.media_type === 'movie' ? 'Movie' : item.media_type === 'tv' ? 'TV' : mediaType === 'movie' ? 'Movie' : 'TV'} />
                   </div>
                 )
               })}

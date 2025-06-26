@@ -43,4 +43,5 @@ export interface SimilarMediaItem {
   backdrop_path?: string
   vote_average?: number
   popularity?: number
+  media_type?: string // Added for correct navigation
 }

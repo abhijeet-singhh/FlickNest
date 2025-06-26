@@ -9,6 +9,7 @@ export interface MovieData {
     popularity?: number;
     release_date?: string;
     first_air_date?: string;
+    media_type?: string;
 }
 
 export interface MovieResponse {
