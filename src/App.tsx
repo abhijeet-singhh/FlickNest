@@ -7,6 +7,7 @@ import { useMovies } from "./hooks/useMovies"
 import DiscoverPage from "./pages/DiscoverPage"
 import ScrollToTop from "./components/common/ScrollToTop"
 import { useEffect } from "react"
+import AuthForm from "./components/sections/AuthForm";
 
 const GA_MEASUREMENT_ID = "G-9KDRM6DZWF"; // Your GA measurement ID
 
@@ -14,6 +15,7 @@ const App = () => {
   const { error, isLoading } = useMovies();
 
   const location = useLocation();
+  const isAuthPage = location.pathname === "/auth"
 
   useEffect(() => {
     // Initialize GA once on app start
@@ -58,7 +60,7 @@ const App = () => {
 
   return (
     <div className="bg-black text-white h-screen">
-      <Navbar />
+      {!isAuthPage && <Navbar />}
       <main>
         <ScrollToTop />
         <Routes>
@@ -72,9 +74,10 @@ const App = () => {
           <Route path="/airing_today" element={<DiscoverPage />} />
           <Route path="/top_upcoming" element={<DiscoverPage />} />
           <Route path="/new" element={<DiscoverPage />} />
+          <Route path="/auth" element={<AuthForm />} />
         </Routes>
       </main>
-      <MobileNavigation />
+      {!isAuthPage && <MobileNavigation />}
     </div>
   )
 }

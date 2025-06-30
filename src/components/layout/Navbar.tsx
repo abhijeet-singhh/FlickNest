@@ -58,7 +58,7 @@ const Navbar = () => {
           <CiSearch size={24} className="cursor-pointer" onClick={handleSearch} />
         </div>
         {/* <FaUserAlt className="text-white cursor-pointer" /> */}
-        <button onClick={() => alert('This functionality is currently not available!')} className="inline-flex items-center justify-center rounded-md border border-zinc-700 bg-zinc-900 px-3 py-[5px] md:px-4 md:py-2 text-[12px] md:text-sm font-medium text-zinc-200 transition-colors hover:bg-zinc-800 hover:border-zinc-600 disabled:opacity-50 disabled:pointer-events-none cursor-pointer">
+        <button onClick={() => navigate("/auth")} className="inline-flex items-center justify-center rounded-md border border-zinc-700 bg-zinc-900 px-3 py-[5px] md:px-4 md:py-2 text-[12px] md:text-sm font-medium text-zinc-200 transition-colors hover:bg-zinc-800 hover:border-zinc-600 disabled:opacity-50 disabled:pointer-events-none cursor-pointer">
           Login
         </button>
 

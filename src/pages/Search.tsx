@@ -117,23 +117,25 @@ const Search = () => {
       )}
 
       <div className="flex flex-wrap gap-3 md:gap-7 justify-center md:mt-10">
-        {visibleResults.map((item) => (
-          <div key={item.id} className="w-[160px] md:w-[200px] flex-shrink-0">
-            <Card
-              data={{
-                ...item,
-                title: item.title || item.name,
-                poster_path: item.poster_path || '',
-                backdrop_path: item.backdrop_path || '',
-                vote_average: item.vote_average,
-                popularity: item.popularity,
-                release_date: item.release_date,
-                first_air_date: item.first_air_date,
-              }}
-              mediaType={item.media_type === "movie" ? "Movie" : "TV"}
-            />
-          </div>
-        ))}
+        {visibleResults
+          .filter(item => item.media_type === "movie" || item.media_type === "tv")
+          .map((item) => (
+            <div key={item.id} className="w-[160px] md:w-[200px] flex-shrink-0">
+              <Card
+                data={{
+                  ...item,
+                  title: item.title || item.name,
+                  poster_path: item.poster_path || '',
+                  backdrop_path: item.backdrop_path || '',
+                  vote_average: item.vote_average,
+                  popularity: item.popularity,
+                  release_date: item.release_date,
+                  first_air_date: item.first_air_date,
+                }}
+                mediaType={item.media_type === "movie" ? "Movie" : item.media_type === "tv" ? "TV" : undefined}
+              />
+            </div>
+          ))}
       </div>
 
       {totalPages > 1 && (
