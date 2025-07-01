@@ -7,6 +7,8 @@ import { Eye, EyeOff, Film, Lock, Mail, Play, User } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { login } from "../../store/slices/authSlice";
+import { loginWithGoogle } from "../../api/services/authService.ts"
+
 
 // Styles
 const inputDivClass =
@@ -36,6 +38,8 @@ const AuthForm = () => {
   const [isLogin, setIsLogin] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [authMethod, setAuthMethod] = useState<"none" | "email">("none");
+  const [googleLoading, setGoogleLoading] = useState(false);
+  const [googleError, setGoogleError] = useState<string | null>(null);
 
 
   // Dynamic Schema based on isLogin state
@@ -49,11 +53,34 @@ const AuthForm = () => {
     resolver: zodResolver(schema),
   });
 
+  // Handle Email/Password form submit
   const onSubmit = (data: RegisterFormData | LoginFormData) => {
     console.log("Form Submitted:", data);
-    dispatch(login())
-    navigate("/")
-    // Add your auth logic here (e.g., API call)
+    // TODO: Replace this with your real API call for email/password login/register
+    // For now, just simulate login success:
+    dispatch(login({
+      uid: "fake-uid",
+      displayName: !isLogin && "name" in data ? data.name : "User",
+      email: data.email,
+      photoURL: null,
+    }));
+    navigate("/");
+  };
+
+  // Handle Google login click
+  const handleGoogleLogin = async () => {
+    setGoogleError(null);
+    setGoogleLoading(true);
+    try {
+      const user = await loginWithGoogle();
+      dispatch(login(user));
+      navigate("/");
+    } catch (error) {
+      setGoogleError("Google Sign-In failed. Please try again.");
+      console.error(error);
+    } finally {
+      setGoogleLoading(false);
+    }
   };
 
   return (
@@ -111,7 +138,8 @@ const AuthForm = () => {
                   </h3>
 
                   <button
-                    onClick={() => console.log("Google login logic here")}
+                    onClick={handleGoogleLogin}
+                    disabled={googleLoading}
                     className="w-full bg-white text-black py-3 sm:py-4 rounded-xl hover:bg-white/85 flex items-center justify-center gap-3 font-medium text-base sm:text-lg transition duration-200 shadow-md hover:shadow-lg mb-5"
                   >
                     <img
@@ -119,8 +147,11 @@ const AuthForm = () => {
                       alt="Google Icon"
                       className="w-5 h-5"
                     />
-                    Continue with Google
+                    {googleLoading ? "Signing in..." : "Continue with Google"}
                   </button>
+                  {googleError && (
+                    <p className="text-red-500 mb-3 text-center">{googleError}</p>
+                  )}
 
                   <button
                     onClick={() => setAuthMethod("email")}

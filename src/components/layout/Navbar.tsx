@@ -6,7 +6,7 @@ import { FaXTwitter } from "react-icons/fa6"
 import { Link, NavLink, useNavigate } from "react-router-dom"
 import { APP_TITLE, MENU_ITEMS } from "../../utils/constants"
 import { useDispatch, useSelector } from "react-redux";
-// import { RootState } from "../../store";
+import { RootState } from "../../store";
 import { logout } from "../../store/slices/authSlice";
 import { MdLogout } from "react-icons/md";
 import { LuBookmark } from "react-icons/lu";
@@ -21,8 +21,7 @@ const Navbar = () => {
   const dropdownRef = useRef<HTMLDivElement>(null)
   const navigate = useNavigate()
   const dispatch = useDispatch()
-  // const isAuthenticated = useSelector((state: RootState) => state.auth.isAuthenticated)
-  const isAuthenticated = true
+  const isAuthenticated = useSelector((state: RootState) => state.auth.isAuthenticated)
 
   const handleSearch = (e: React.FormEvent | React.MouseEvent) => {
     e.preventDefault()
