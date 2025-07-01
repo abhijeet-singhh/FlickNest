@@ -5,6 +5,8 @@ import { z } from "zod";
 import { MdMovieFilter } from "react-icons/md";
 import { Eye, EyeOff, Film, Lock, Mail, Play, User } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { login } from "../../store/slices/authSlice";
 
 // ✅ Styles
 const inputDivClass =
@@ -29,6 +31,7 @@ type RegisterFormData = z.infer<typeof registerSchema>;
 type LoginFormData = z.infer<typeof loginSchema>;
 
 const AuthForm = () => {
+  const dispatch = useDispatch()
   const navigate = useNavigate();
   const [isLogin, setIsLogin] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
@@ -46,6 +49,8 @@ const AuthForm = () => {
 
   const onSubmit = (data: RegisterFormData | LoginFormData) => {
     console.log("Form Submitted:", data);
+    dispatch(login())
+    navigate("/")
     // Add your auth logic here (e.g., API call)
   };
 
@@ -116,7 +121,7 @@ const AuthForm = () => {
                     />
                   </div>
                   {"name" in errors && (  //returns true only if name exists in the error object.
-                    <p className="text-red-500 text-sm px-1">{errors.name?.message}</p>
+                    <p className="text-red-400 text-sm px-1">{errors.name?.message}</p>
                   )}
                 </>
               )}
@@ -130,7 +135,7 @@ const AuthForm = () => {
                   className="w-full py-4 outline-none bg-transparent placeholder-gray-400"
                 />
               </div>
-              {errors.email && <p className="text-red-500 text-sm px-1">{errors.email.message}</p>}
+              {errors.email && <p className="text-red-400 text-sm px-1">{errors.email.message}</p>}
 
               <div className={inputDivClass}>
                 <Lock size={24} className={inputIconClass} />
@@ -148,7 +153,7 @@ const AuthForm = () => {
                   {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
                 </button>
               </div>
-              {errors.password && <p className="text-red-500 text-sm px-1">{errors.password.message}</p>}
+              {errors.password && <p className="text-red-400 text-sm px-1">{errors.password.message}</p>}
 
               <button
                 type="submit"
