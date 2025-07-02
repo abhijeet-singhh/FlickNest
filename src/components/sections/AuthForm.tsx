@@ -84,42 +84,42 @@ const AuthForm = () => {
   };
 
   return (
-    <div className="relative h-dvh w-full flex items-center justify-center overflow-hidden bg-gradient-to-bl from-gray-900 to-black">
+    <div className="relative min-h-screen px-8 md:px-0 w-full flex flex-col md:flex-row items-center justify-center gap-15 md:gap-0 overflow-hidden bg-gradient-to-bl from-gray-900 to-black">
       {/* Spinning Icons */}
       <Film
         size={140}
-        className="absolute top-14 left-20 text-white opacity-10 animate-spin"
+        className="absolute top-60 md:top-14 -left-7 md:left-20 text-white opacity-10 animate-spin pointer-events-none"
         style={{ animationDuration: "20s" }}
       />
       <Film
         size={100}
-        className="absolute bottom-14 right-20 text-white opacity-10 animate-spin"
+        className="absolute bottom-14 right-20 text-white opacity-10 animate-spin pointer-events-none"
         style={{ animationDuration: "15s", animationDirection: "reverse" }}
       />
       <Film
         size={120}
-        className="absolute -top-8 right-40 text-white opacity-10 animate-spin"
+        className="absolute -top-8 right-0 md:right-40 text-white opacity-10 animate-spin pointer-events-none"
         style={{ animationDuration: "30s", animationDirection: "reverse" }}
       />
 
       {/* Left Panel */}
-      <div className="w-1/2 h-full pl-32 flex flex-col justify-center">
-        <div className="flex items-center gap-3 mb-7">
+      <div className="w-full md:w-1/2 h-full md:pl-32 flex flex-col justify-center">
+        <div className="flex items-center gap-3 mb-4 md:mb-7">
           <MdMovieFilter size={40} color="#B1D960" />
-          <h3 onClick={() => navigate("/")} className="logofont font-bold text-4xl text-white cursor-pointer mt-2">
+          <h3 onClick={() => navigate("/")} className="logofont font-bold text-3xl md:text-4xl text-white cursor-pointer mt-2">
             FlickNest
           </h3>
         </div>
 
-        <h2 className="text-5xl font-bold text-white leading-tight">
+        <h2 className="text-4xl md:text-5xl font-bold text-white leading-tight">
           Your <span className="text-[#B1D960] block">Backstage Pass</span> to Movies
         </h2>
 
-        <p className="text-gray-300 text-lg mt-7 mr-24">
+        <p className="text-gray-300 text-lg mt-7 mr-24 hidden md:block">
           Discover, watch, and collect your favourite movies in one place. Join millions of movie lovers worldwide.
         </p>
 
-        <div className="space-y-4 mt-6 text-gray-300 text-sm">
+        <div className="hidden md:block space-y-4 mt-6 text-gray-300 text-sm">
           <p><span className="text-[#B1D960] mr-2">•</span>Ad-Free Experience</p>
           <p><span className="text-[#B1D960] mr-2">•</span>Watch trailers before you decide</p>
           <p><span className="text-[#B1D960] mr-2">•</span>Upcoming movie alerts</p>
@@ -127,20 +127,20 @@ const AuthForm = () => {
       </div>
 
       {/* Right Panel - Form */}
-      <div className="w-1/2 h-full flex justify-center items-center bg-black/20">
-        <div className="w-[500px] bg-transparent">
+      <div className="w-full md:w-1/2 h-full flex justify-center items-center bg-black/20">
+        <div className="w-full md:w-[500px] bg-transparent">
           {!authMethod || authMethod === "none" ? (
             <>
-              <div className="min-h-screen flex items-center justify-center  px-4">
+              <div className="md:min-h-screen flex items-center justify-center px-4">
                 <div className="bg-zinc-900 rounded-2xl shadow-xl max-w-md w-full p-8 sm:p-10">
-                  <h3 className="text-center text-3xl sm:text-4xl font-extrabold text-white mb-10">
-                    Sign in to <span className="text-purple-500">FlickNest</span>
+                  <h3 className="text-center text-2xl md:text-3xl font-extrabold text-white mb-5 md:mb-10">
+                    Sign in to <span className="text-[#b1d960]">FlickNest</span>
                   </h3>
 
                   <button
                     onClick={handleGoogleLogin}
                     disabled={googleLoading}
-                    className="w-full bg-white text-black py-3 sm:py-4 rounded-xl hover:bg-white/85 flex items-center justify-center gap-3 font-medium text-base sm:text-lg transition duration-200 shadow-md hover:shadow-lg mb-5"
+                    className="w-full bg-white text-black py-3 sm:py-4 rounded-xl hover:bg-white/85 flex items-center justify-center gap-3 font-medium text-base sm:text-lg transition duration-200 shadow-md hover:shadow-lg mb-5 cursor-pointer"
                   >
                     <img
                       src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg"
@@ -155,7 +155,7 @@ const AuthForm = () => {
 
                   <button
                     onClick={() => setAuthMethod("email")}
-                    className="w-full border border-white text-white py-3 sm:py-4 rounded-xl hover:bg-white hover:text-black transition duration-200 font-medium text-base sm:text-lg shadow-md hover:shadow-lg"
+                    className="w-full border border-white text-white py-3 sm:py-4 rounded-xl hover:bg-white hover:text-black transition duration-200 font-medium text-base sm:text-lg shadow-md hover:shadow-lg cursor-pointer"
                   >
                     Continue with Email
                   </button>
@@ -168,11 +168,11 @@ const AuthForm = () => {
               <h3 className="text-center text-3xl font-bold text-white mb-2">
                 {isLogin ? "Welcome Back" : "Join FlickNest"}
               </h3>
-              <p className="text-center text-gray-400 mb-8">
+              <p className="text-center text-gray-400 mb-6 md:mb-8">
                 {isLogin ? "Continue your movie journey" : "Start your cinematic adventure"}
               </p>
 
-              <form onSubmit={handleSubmit(onSubmit)} className="space-y-6 px-5">
+              <form onSubmit={handleSubmit(onSubmit)} className="space-y-6 md:px-5">
                 <div className="space-y-4">
                   {!isLogin && (
                     <>
