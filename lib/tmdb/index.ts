@@ -1,0 +1,16 @@
+export {
+  getTrending,
+  getPopularMovies,
+  getPopularTv,
+  getMovieDetails,
+  getTvDetails,
+  discoverMovies,
+  discoverTv,
+  getMovieRecommendations,
+  getTvRecommendations,
+  getMovieCredits,
+  getTvCredits,
+  searchMulti,
+  searchMovies,
+  searchTv,
+} from "./endpoints";
