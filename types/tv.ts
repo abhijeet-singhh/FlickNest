@@ -1,3 +1,5 @@
+import type { Genre } from "./movie";
+
 export interface TV {
   id: number;
   name: string;
@@ -15,4 +17,12 @@ export interface TV {
 
   genreIds: number[];
   originCountry: string[];
+}
+
+export interface TVDetails extends TV {
+  genres: Genre[];
+  numberOfEpisodes: number;
+  numberOfSeasons: number;
+  status: string;
+  tagline: string | null;
 }

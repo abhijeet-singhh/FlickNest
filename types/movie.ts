@@ -15,3 +15,14 @@ export interface Movie {
 
   genreIds: number[];
 }
+
+export interface Genre {
+  id: number;
+  name: string;
+}
+
+export interface MovieDetails extends Movie {
+  genres: Genre[];
+  runtime: number | null;
+  tagline: string | null;
+}

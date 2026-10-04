@@ -1,3 +1,6 @@
+import { Movie } from "./movie";
+import { TV } from "./tv";
+
 export type SearchMediaType = "movie" | "tv";
 
 export interface SearchParams {
@@ -12,3 +15,5 @@ export interface SearchResult<T> {
   totalPages: number;
   totalResults: number;
 }
+
+export type SearchItem = Movie | TV;
