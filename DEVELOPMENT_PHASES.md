@@ -16,7 +16,7 @@ Grow into the architecture phase by phase. Complete phases **in order**.
 - [x] Phase 0 — Baseline hygiene (env, git, scripts)
 - [x] Phase 1 — App shell + global states (layout, loading, error, not-found)
 - [x] Phase 2 — Shared foundations (config, utils, types, validations, hooks, stores)
-- [ ] Phase 3 — TMDB integration layer (`lib/tmdb/`)
+- [x] Phase 3 — TMDB integration layer (`lib/tmdb/`)
 - [ ] Phase 4 — Reusable UI: `ui/` + `layout/` + `movie/` + home
 - [ ] Phase 5 — Details routes: `/movies/[id]` + `/tv/[id]`
 - [ ] Phase 6 — Search + Discover with URL state
@@ -187,25 +187,25 @@ Application → TMDB Client → TMDB API
 
 **Build:**
 
-- [ ] `lib/tmdb/constants.ts` — base URL, image sizes, language defaults
-- [ ] `lib/tmdb/client.ts` — `request()` with base URL + auth header + centralized error handling + no key leakage to client
-- [ ] `lib/tmdb/types.ts` — `TMDBMovie`, `TMDBTV`, `TMDBMovieDetails`, `TMDBCredits`, `TMDBSearchResponse`, `TMDBGenre`
-- [ ] `lib/tmdb/endpoints.ts` — `getTrending()`, `getPopularMovies()`, `getPopularTv()`, `getMovieDetails()`, `getTvDetails()`, `searchMulti()`, `discoverMovies()`, `discoverTv()`, `getRecommendations()`, `getCredits()`
-- [ ] `lib/tmdb/mappers.ts` — `poster_path → posterUrl`, `backdrop_path → backdropUrl`, `vote_average → rating`, `release_date → releaseDate`
-- [ ] `lib/tmdb/index.ts` — public barrel exports only
-- [ ] `server/services/movie.service.ts` + `search.service.ts` — thin TMDB-only services (no DB imports)
+- [x] `lib/tmdb/constants.ts` — base URL, image sizes, language defaults
+- [x] `lib/tmdb/client.ts` — `request()` with base URL + auth header + centralized error handling + no key leakage to client
+- [x] `lib/tmdb/types.ts` — `TMDBMovie`, `TMDBTV`, `TMDBMovieDetails`, `TMDBCredits`, `TMDBSearchResponse`, `TMDBGenre`
+- [x] `lib/tmdb/endpoints.ts` — `getTrending()`, `getPopularMovies()`, `getPopularTv()`, `getMovieDetails()`, `getTvDetails()`, `searchMulti()`, `discoverMovies()`, `discoverTv()`, `getRecommendations()`, `getCredits()`
+- [x] `lib/tmdb/mappers.ts` — `poster_path → posterUrl`, `backdrop_path → backdropUrl`, `vote_average → rating`, `release_date → releaseDate`
+- [x] `lib/tmdb/index.ts` — public barrel exports only
+- [x] `server/services/movie.service.ts` + `search.service.ts` — thin TMDB-only services (no DB imports)
 
 **Do NOT:**
 
-- [ ] Do not call `fetch("https://api.themoviedb.org/...")` outside `lib/tmdb/`
-- [ ] Do not import TMDB client from a Client Component with a secret key
-- [ ] Do not store TMDB payloads verbatim in UI state — always map first
+- [x] Do not call `fetch("https://api.themoviedb.org/...")` outside `lib/tmdb/`
+- [x] Do not import TMDB client from a Client Component with a secret key
+- [x] Do not store TMDB payloads verbatim in UI state — always map first
 
 **Done when:**
 
-- [ ] Server Component can call `getTrending()` → mapped domain objects → render, with no TMDB field names leaking into `components/`
-- [ ] 401/429/5xx from TMDB surface as typed errors, not crashes
-- [ ] TMDB calls are cacheable/revalidatable; no per-request secrets in client bundle
+- [x] Server Component can call `getTrending()` → mapped domain objects → render, with no TMDB field names leaking into `components/`
+- [x] 401/429/5xx from TMDB surface as typed errors, not crashes
+- [x] TMDB calls are cacheable/revalidatable; no per-request secrets in client bundle
 
 ---
 
