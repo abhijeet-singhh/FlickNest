@@ -1,5 +1,5 @@
 import { HomeLoading } from "@/components/home/home-loading";
 
-export default function Loading() {
+export default function PublicLoading() {
   return <HomeLoading />;
 }
