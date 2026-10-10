@@ -3,7 +3,6 @@ import "./globals.css";
 import { Providers } from "@/components/providers/providers";
 import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
-import { PageContainer } from "@/components/layout/page-container";
 import { siteConfig } from "@/config/site";
 
 export const metadata: Metadata = {
@@ -17,7 +16,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       <body className="flex min-h-screen flex-col">
         <Providers>
           <Navbar />
-          <PageContainer>{children}</PageContainer>
+          {children}
           <Footer />
         </Providers>
       </body>
