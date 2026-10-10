@@ -9,12 +9,34 @@ import {
   getUpcomingMovies,
 } from "@/server/services/movie.service";
 
+import type { Movie } from "@/types/movie";
+import type { SearchResult } from "@/types/search";
+
 export const revalidate = 300;
 
+const emptyResult: SearchResult<Movie> = {
+  results: [],
+  page: 1,
+  totalPages: 0,
+  totalResults: 0,
+};
+
+async function safeFetch(
+  fn: () => Promise<SearchResult<Movie>>,
+): Promise<SearchResult<Movie>> {
+  try {
+    return await fn();
+  } catch {
+    return emptyResult;
+  }
+}
+
 export default async function HomePage() {
-  const trending = await getTrendingMovies();
-  const popular = await getPopularMovies();
-  const upcoming = await getUpcomingMovies();
+  const [trending, popular, upcoming] = await Promise.all([
+    safeFetch(getTrendingMovies),
+    safeFetch(getPopularMovies),
+    safeFetch(getUpcomingMovies),
+  ]);
 
   const heroMovie = trending.results[0];
 
