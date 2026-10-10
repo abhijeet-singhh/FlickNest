@@ -1,6 +1,7 @@
 export {
   getTrending,
   getPopularMovies,
+  getUpcomingMovies,
   getPopularTv,
   getMovieDetails,
   getTvDetails,

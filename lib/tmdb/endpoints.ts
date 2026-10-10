@@ -19,6 +19,10 @@ export function getPopularMovies() {
   return request<TMDBPaginatedResponse<TMDBMovie>>("/movie/popular");
 }
 
+export function getUpcomingMovies() {
+  return request<TMDBPaginatedResponse<TMDBMovie>>("/movie/upcoming");
+}
+
 export function getPopularTv() {
   return request<TMDBPaginatedResponse<TMDBTV>>("/tv/popular");
 }

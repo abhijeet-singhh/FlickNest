@@ -4,6 +4,7 @@ import type { SearchResult } from "@/types/search";
 import {
   getTrending,
   getPopularMovies as getTMDBPopularMovies,
+  getUpcomingMovies as getTMDBUpcomingMovies,
   getMovieDetails,
   getMovieRecommendations,
   getMovieCredits,
@@ -27,6 +28,17 @@ export async function getTrendingMovies(): Promise<SearchResult<Movie>> {
 
 export async function getPopularMovies(): Promise<SearchResult<Movie>> {
   const response = await getTMDBPopularMovies();
+
+  return {
+    results: response.results.map(mapTMDBMovieToMovie),
+    page: response.page,
+    totalPages: response.total_pages,
+    totalResults: response.total_results,
+  };
+}
+
+export async function getUpcomingMovies(): Promise<SearchResult<Movie>> {
+  const response = await getTMDBUpcomingMovies();
 
   return {
     results: response.results.map(mapTMDBMovieToMovie),

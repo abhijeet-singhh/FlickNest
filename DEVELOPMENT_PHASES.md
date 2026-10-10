@@ -17,7 +17,7 @@ Grow into the architecture phase by phase. Complete phases **in order**.
 - [x] Phase 1 — App shell + global states (layout, loading, error, not-found)
 - [x] Phase 2 — Shared foundations (config, utils, types, validations, hooks, stores)
 - [x] Phase 3 — TMDB integration layer (`lib/tmdb/`)
-- [ ] Phase 4 — Reusable UI: `ui/` + `layout/` + `movie/` + home
+- [x] Phase 4 — Reusable UI: `ui/` + `layout/` + `movie/` + home
 - [ ] Phase 5 — Details routes: `/movies/[id]` + `/tv/[id]`
 - [ ] Phase 6 — Search + Discover with URL state
 - [ ] Phase 7 — Database with Drizzle (no movies table)
@@ -217,22 +217,22 @@ Application → TMDB Client → TMDB API
 
 **Build:**
 
-- [ ] `components/movie/` — `movie-card.tsx`, `movie-grid.tsx`, `movie-row.tsx`, `movie-poster.tsx`, `movie-meta.tsx`, `movie-rating.tsx`, `movie-actions.tsx` (actions UI only for now, no mutations)
-- [ ] `components/home/` — `hero-section.tsx`, `trending-section.tsx`, `popular-section.tsx`, `upcoming-section.tsx`
-- [ ] `app/(public)/page.tsx` — compose home sections, fetch on server with caching/revalidation
-- [ ] `components/providers/` — client providers (Zustand/context) mounted once in layout, never in Server Components
+- [x] `components/movie/` — `movie-card.tsx`, `movie-grid.tsx`, `movie-row.tsx`, `movie-poster.tsx`, `movie-meta.tsx`, `movie-rating.tsx`, `movie-actions.tsx` (actions UI only for now, no mutations)
+- [x] `components/home/` — `hero-section.tsx`, `trending-section.tsx`, `popular-section.tsx`, `upcoming-section.tsx`
+- [x] `app/(public)/page.tsx` — compose home sections, fetch on server with caching/revalidation
+- [x] `components/providers/` — client providers (Zustand/context) mounted once in layout, never in Server Components
 
 **Do NOT:**
 
-- [ ] Do not create `movieStore` with `trendingMovies`/`popularMovies` (§28)
-- [ ] Do not make `MovieButton`; use generic `Button` (§8)
-- [ ] Do not query DB from these components (§23)
+- [x] Do not create `movieStore` with `trendingMovies`/`popularMovies` (§28)
+- [x] Do not make `MovieButton`; use generic `Button` (§8)
+- [x] Do not query DB from these components (§23)
 
 **Done when:**
 
-- [ ] `/` shows hero + trending + popular from live TMDB data
-- [ ] Sections use `loading.tsx` skeletons, not blank screens
-- [ ] No client store holds server data; refresh produces same UI
+- [x] `/` shows hero + trending + popular from live TMDB data
+- [x] Sections use `loading.tsx` skeletons, not blank screens
+- [x] No client store holds server data; refresh produces same UI
 
 ---
 
