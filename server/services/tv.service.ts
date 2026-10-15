@@ -6,6 +6,8 @@ import {
   getTvDetails,
   getTvRecommendations,
   getTvCredits,
+  getTvVideos,
+  getSimilarTv,
 } from "@/lib/tmdb";
 import {
   mapTMDBTVToTV,
@@ -46,4 +48,34 @@ export async function getTVCreditsById(id: number): Promise<Credits> {
   const response = await getTvCredits(id);
 
   return mapTMDBCreditsToCredits(response);
+}
+
+export async function getTVTrailerById(id: number): Promise<string | null> {
+  const videos = await getTvVideos(id);
+
+  const trailer = videos.results.find(
+    (video) =>
+      video.site === "YouTube" && video.type === "Trailer" && video.official,
+  );
+
+  const fallbackTrailer =
+    trailer ??
+    videos.results.find(
+      (video) => video.site === "YouTube" && video.type === "Trailer",
+    );
+
+  return fallbackTrailer
+    ? `https://www.youtube.com/watch?v=${fallbackTrailer.key}`
+    : null;
+}
+
+export async function getSimilarTVById(id: number): Promise<SearchResult<TV>> {
+  const response = await getSimilarTv(id);
+
+  return {
+    results: response.results.map(mapTMDBTVToTV),
+    page: response.page,
+    totalPages: response.total_pages,
+    totalResults: response.total_results,
+  };
 }

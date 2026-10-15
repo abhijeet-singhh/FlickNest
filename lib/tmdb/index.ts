@@ -14,4 +14,8 @@ export {
   searchMulti,
   searchMovies,
   searchTv,
+  getMovieVideos,
+  getSimilarMovies,
+  getTvVideos,
+  getSimilarTv,
 } from "./endpoints";

@@ -9,6 +9,7 @@ import type {
   DiscoverMovieOptions,
   DiscoverTvOptions,
   TMDBCredits,
+  TMDBVideosResponse,
 } from "./types";
 
 export function getTrending() {
@@ -82,4 +83,20 @@ export function searchTv(query: string, page = 1) {
     query,
     page,
   });
+}
+
+export function getMovieVideos(id: number) {
+  return request<TMDBVideosResponse>(`/movie/${id}/videos`);
+}
+
+export function getSimilarMovies(id: number) {
+  return request<TMDBPaginatedResponse<TMDBMovie>>(`/movie/${id}/similar`);
+}
+
+export function getTvVideos(id: number) {
+  return request<TMDBVideosResponse>(`/tv/${id}/videos`);
+}
+
+export function getSimilarTv(id: number) {
+  return request<TMDBPaginatedResponse<TMDBTV>>(`/tv/${id}/similar`);
 }

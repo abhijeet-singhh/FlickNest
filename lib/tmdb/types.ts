@@ -98,3 +98,18 @@ export interface DiscoverTvOptions {
   first_air_date_year?: number;
   sort_by?: string;
 }
+
+export interface TMDBVideo {
+  id: string;
+  key: string;
+  name: string;
+  site: string;
+  type: string;
+  official: boolean;
+  published_at: string;
+}
+
+export interface TMDBVideosResponse {
+  id: number;
+  results: TMDBVideo[];
+}

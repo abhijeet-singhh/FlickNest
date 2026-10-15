@@ -8,6 +8,8 @@ import {
   getMovieDetails,
   getMovieRecommendations,
   getMovieCredits,
+  getMovieVideos,
+  getSimilarMovies,
 } from "@/lib/tmdb";
 import {
   mapTMDBMovieToMovie,
@@ -71,4 +73,32 @@ export async function getMovieCreditsById(id: number): Promise<Credits> {
   const response = await getMovieCredits(id);
 
   return mapTMDBCreditsToCredits(response);
+}
+
+export async function getMovieTrailerById(id: number): Promise<string | null> {
+  const videos = await getMovieVideos(id);
+
+  const trailer = videos.results.find(
+    (video) =>
+      video.site === "YouTube" && video.type === "Trailer" && video.official,
+  );
+
+  const fallbackTrailer =
+    trailer ??
+    videos.results.find(
+      (video) => video.site === "YouTube" && video.type === "Trailer",
+    );
+
+  return fallbackTrailer
+    ? `https://www.youtube.com/watch?v=${fallbackTrailer.key}`
+    : null;
+}
+
+export async function getSimilarMoviesById(id: number) {
+  const response = await getSimilarMovies(id);
+
+  return {
+    ...response,
+    results: response.results.map(mapTMDBMovieToMovie),
+  };
 }
