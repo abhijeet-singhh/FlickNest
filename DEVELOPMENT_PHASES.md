@@ -18,7 +18,7 @@ Grow into the architecture phase by phase. Complete phases **in order**.
 - [x] Phase 2 — Shared foundations (config, utils, types, validations, hooks, stores)
 - [x] Phase 3 — TMDB integration layer (`lib/tmdb/`)
 - [x] Phase 4 — Reusable UI: `ui/` + `layout/` + `movie/` + home
-- [ ] Phase 5 — Details routes: `/movies/[id]` + `/tv/[id]`
+- [x] Phase 5 — Details routes: `/movies/[id]` + `/tv/[id]`
 - [ ] Phase 6 — Search + Discover with URL state
 - [ ] Phase 7 — Database with Drizzle (no movies table)
 - [ ] Phase 8 — Server layer pattern: repository → service → action (watchlist slice)
@@ -244,22 +244,22 @@ Application → TMDB Client → TMDB API
 
 **Build:**
 
-- [ ] `app/(public)/movies/page.tsx` (browse placeholder or redirect to discover)
-- [ ] `app/(public)/movies/[id]/page.tsx` — fetch movie + credits + recommendations in parallel, then render
-- [ ] `app/(public)/movies/[id]/loading.tsx`, `not-found.tsx`
-- [ ] `app/(public)/tv/page.tsx`, `app/(public)/tv/[id]/page.tsx`, `loading.tsx`, `not-found.tsx`
-- [ ] `components/details/` — `details-hero.tsx`, `details-header.tsx`, `details-meta.tsx`, `details-overview.tsx`, `cast-list.tsx`, `trailer-section.tsx` (wired to `player.store.ts`), `similar-section.tsx`, `recommendation-section.tsx`
+- [x] `app/(public)/movies/page.tsx` (browse placeholder or redirect to discover)
+- [x] `app/(public)/movies/[id]/page.tsx` — fetch movie + credits + recommendations in parallel, then render
+- [x] `app/(public)/movies/[id]/loading.tsx`, `not-found.tsx`
+- [x] `app/(public)/tv/page.tsx`, `app/(public)/tv/[id]/page.tsx`, `loading.tsx`, `not-found.tsx`
+- [x] `components/details/` — `details-hero.tsx`, `details-header.tsx`, `details-meta.tsx`, `details-overview.tsx`, `cast-list.tsx`, `trailer-section.tsx` (wired to `player.store.ts`), `similar-section.tsx`, `recommendation-section.tsx`
 
 **Do NOT:**
 
-- [ ] Do not put hundreds of lines of markup in `page.tsx` — page fetches + composes (§7)
-- [ ] Do not reuse one generic `[id]` route for both movies and TV if types diverge
+- [x] Do not put hundreds of lines of markup in `page.tsx` — page fetches + composes (§7)
+- [x] Do not reuse one generic `[id]` route for both movies and TV if types diverge
 
 **Done when:**
 
-- [ ] `/movies/550` renders hero + meta + overview + cast + trailer + recommendations
-- [ ] Invalid ID renders route-level `not-found.tsx`, failed fetch renders `error.tsx`
-- [ ] Trailer open/close/volume lives in `player.store.ts`, movie data does not
+- [x] `/movies/550` renders hero + meta + overview + cast + trailer + recommendations
+- [x] Invalid ID renders route-level `not-found.tsx`, failed fetch renders `error.tsx`
+- [x] Trailer open/close/volume lives in `player.store.ts`, movie data does not
 
 ---
 

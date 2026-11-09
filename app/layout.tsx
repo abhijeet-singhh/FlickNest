@@ -4,6 +4,7 @@ import { Providers } from "@/components/providers/providers";
 import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
 import { siteConfig } from "@/config/site";
+import { TrailerPlayer } from "@/components/player/trailer-player";
 
 export const metadata: Metadata = {
   title: siteConfig.name,
@@ -18,6 +19,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           <Navbar />
           {children}
           <Footer />
+          <TrailerPlayer />
         </Providers>
       </body>
     </html>
