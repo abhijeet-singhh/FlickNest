@@ -1,7 +1,13 @@
 import { z } from "zod";
 
 export const searchSchema = z.object({
-  query: z.string().trim().min(1),
+  q: z
+    .string()
+    .trim()
+    .optional()
+    .transform((query) => query ?? ""),
   page: z.coerce.number().int().positive().optional(),
   mediaType: z.enum(["movie", "tv"]).optional(),
 });
+
+export type SearchQueryParams = z.infer<typeof searchSchema>;
