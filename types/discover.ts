@@ -1,13 +1,17 @@
+export type DiscoverMediaType = "movie" | "tv";
+
+export type DiscoverSort = "popularity" | "rating" | "release-date";
+
 export interface MovieDiscoverParams {
   page?: number;
-  genreIds?: string;
+  genreIds?: number[];
   releaseYear?: number;
-  sortBy?: string;
+  sortBy?: DiscoverSort;
 }
 
 export interface TVDiscoverParams {
   page?: number;
-  genreIds?: string;
+  genreIds?: number[];
   firstAirDateYear?: number;
-  sortBy?: string;
+  sortBy?: DiscoverSort;
 }
