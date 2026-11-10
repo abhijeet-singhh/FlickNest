@@ -1,6 +1,7 @@
 export const routes = {
   home: "/",
   search: "/search",
+  discover: "/discover",
   movies: "/movies",
   movie: (id: number | string) => `/movies/${id}`,
   tv: "/tv",
