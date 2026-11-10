@@ -38,6 +38,13 @@ export function Footer() {
           </Link>
 
           <Link
+            href={routes.discover}
+            className="transition-colors hover:text-foreground"
+          >
+            Discover
+          </Link>
+
+          <Link
             href={routes.search}
             className="transition-colors hover:text-foreground"
           >

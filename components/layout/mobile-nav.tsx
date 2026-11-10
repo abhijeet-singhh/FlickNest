@@ -28,6 +28,13 @@ export function MobileNav() {
         </Link>
 
         <Link
+          href={routes.discover}
+          className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+        >
+          Discover
+        </Link>
+
+        <Link
           href={routes.search}
           className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
         >

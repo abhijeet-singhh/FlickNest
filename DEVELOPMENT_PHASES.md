@@ -19,7 +19,7 @@ Grow into the architecture phase by phase. Complete phases **in order**.
 - [x] Phase 3 — TMDB integration layer (`lib/tmdb/`)
 - [x] Phase 4 — Reusable UI: `ui/` + `layout/` + `movie/` + home
 - [x] Phase 5 — Details routes: `/movies/[id]` + `/tv/[id]`
-- [ ] Phase 6 — Search + Discover with URL state
+- [x] Phase 6 — Search + Discover with URL state
 - [ ] Phase 7 — Database with Drizzle (no movies table)
 - [ ] Phase 8 — Server layer pattern: repository → service → action (watchlist slice)
 - [ ] Phase 9 — Auth (`lib/auth/` + `(auth)` + protected `(app)` shell)
@@ -271,22 +271,22 @@ Application → TMDB Client → TMDB API
 
 **Build:**
 
-- [ ] `app/(public)/search/page.tsx` — reads `?q=`, validates with `lib/validations/search.ts`, server-fetches via `searchMulti()`
-- [ ] `components/search/` — `search-input.tsx` (debounced via `use-debounce.ts`), `search-results.tsx`, `search-filters.tsx`, `search-empty.tsx`
-- [ ] `app/(public)/discover/page.tsx` — reads `?genre=&year=&sort=`, validates, calls `discoverMovies()/discoverTv()`
-- [ ] `components/discover/` — `discover-filters.tsx`, `genre-filter.tsx`, `year-filter.tsx`, `sort-filter.tsx`
-- [ ] Back/forward, refresh, and pasted URL all reproduce the same results
+- [x] `app/(public)/search/page.tsx` — reads `?q=`, validates with `lib/validations/search.ts`, server-fetches via `searchMulti()`
+- [x] `components/search/` — `search-input.tsx` (debounced via `use-debounce.ts`), `search-results.tsx`, `search-filters.tsx`, `search-empty.tsx`
+- [x] `app/(public)/discover/page.tsx` — reads `?genre=&year=&sort=`, validates, calls `discoverMovies()/discoverTv()`
+- [x] `components/discover/` — `discover-filters.tsx`, `genre-filter.tsx`, `year-filter.tsx`, `sort-filter.tsx`
+- [x] Back/forward, refresh, and pasted URL all reproduce the same results
 
 **Do NOT:**
 
-- [ ] Do not store `searchResults` or canonical filters in Zustand as source of truth (§28)
-- [ ] Do not trust raw query params — always parse with Zod first (§30)
+- [x] Do not store `searchResults` or canonical filters in Zustand as source of truth (§28)
+- [x] Do not trust raw query params — always parse with Zod first (§30)
 
 **Done when:**
 
-- [ ] Typing in search updates URL (debounced) and results without full-page jank
-- [ ] Empty query shows `search-empty.tsx`, not an error
-- [ ] Copy-pasting `/discover?genre=28&year=2026&sort=rating` reproduces the view
+- [x] Typing in search updates URL (debounced) and results without full-page jank
+- [x] Empty query shows `search-empty.tsx`, not an error
+- [x] Copy-pasting `/discover?genre=28&year=2026&sort=rating` reproduces the view
 
 ---
 
