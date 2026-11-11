@@ -20,7 +20,7 @@ Grow into the architecture phase by phase. Complete phases **in order**.
 - [x] Phase 4 — Reusable UI: `ui/` + `layout/` + `movie/` + home
 - [x] Phase 5 — Details routes: `/movies/[id]` + `/tv/[id]`
 - [x] Phase 6 — Search + Discover with URL state
-- [ ] Phase 7 — Database with Drizzle (no movies table)
+- [x] Phase 7 — Database with Drizzle (no movies table)
 - [ ] Phase 8 — Server layer pattern: repository → service → action (watchlist slice)
 - [ ] Phase 9 — Auth (`lib/auth/` + `(auth)` + protected `(app)` shell)
 - [ ] Phase 10 — User library: watchlist, favorites, ratings, history, profile, settings
@@ -298,31 +298,31 @@ Application → TMDB Client → TMDB API
 
 **Build:**
 
-- [ ] Install `drizzle-orm` + driver (`postgres` or `pg`) + `drizzle-kit`; add `drizzle.config.ts`
-- [ ] `lib/db/index.ts` — server-only connection (guard against client import)
-- [ ] `lib/db/schema/users.ts`, `profiles.ts`, `watchlists.ts` (+ `watchlist_items`), `favorites.ts`, `history.ts`, `ratings.ts`, `reviews.ts`, `index.ts`
-- [ ] `lib/db/relations.ts`
-- [ ] `lib/db/queries/` — `users.ts`, `watchlists.ts`, `favorites.ts`, `history.ts`, `ratings.ts` (typed helpers only, no business rules)
-- [ ] `drizzle/` migrations generated + applied locally
-- [ ] Minimal seed for local dev (1 test user shape, no real passwords in repo)
+- [x] Install `drizzle-orm` + driver (`postgres` or `pg`) + `drizzle-kit`; add `drizzle.config.ts`
+- [x] `lib/db/index.ts` — server-only connection (guard against client import)
+- [x] `lib/db/schema/users.ts`, `profiles.ts`, `watchlists.ts` (+ `watchlist_items`), `favorites.ts`, `history.ts`, `ratings.ts`, `reviews.ts`, `index.ts`
+- [x] `lib/db/relations.ts`
+- [x] `lib/db/queries/` — `users.ts`, `watchlists.ts`, `favorites.ts`, `history.ts`, `ratings.ts` (typed helpers only, no business rules)
+- [x] `drizzle/` migrations generated + applied locally
+- [x] Minimal seed for local dev (1 test user shape, no real passwords in repo)
 
 **Schema shape (initial):**
 
-- [ ] `users`: `id`, `email`, `username`, auth identity, `created_at`, `updated_at`
-- [ ] `watchlist_items`: `id`, `user_id`, `tmdb_id`, `media_type`, `created_at`
-- [ ] Same reference pattern for `favorites`, `ratings`, `reviews`, `watch_history`
+- [x] `users`: `id`, `email`, `username`, auth identity, `created_at`, `updated_at`
+- [x] `watchlist_items`: `id`, `user_id`, `tmdb_id`, `media_type`, `created_at`
+- [x] Same reference pattern for `favorites`, `ratings`, `reviews`, `watch_history`
 
 **Do NOT:**
 
-- [ ] Do not create `movies`/`media` tables yet (§19 — only later for caching/analytics)
-- [ ] Do not import `lib/db/` from any Client Component (§15, §38)
-- [ ] Do not write `db.select()` in pages — pages call services (§23)
+- [x] Do not create `movies`/`media` tables yet (§19 — only later for caching/analytics)
+- [x] Do not import `lib/db/` from any Client Component (§15, §38)
+- [x] Do not write `db.select()` in pages — pages call services (§23)
 
 **Done when:**
 
-- [ ] `drizzle-kit generate` + `migrate` succeed from scratch
-- [ ] `lib/db/queries/` functions round-trip in a local script (create → read → delete)
-- [ ] `pnpm build` still passes with DB code tree-shaken out of client bundle
+- [x] `drizzle-kit generate` + `migrate` succeed from scratch
+- [x] `lib/db/queries/` functions round-trip in a local script (create → read → delete)
+- [x] `pnpm build` still passes with DB code tree-shaken out of client bundle
 
 ---
 
