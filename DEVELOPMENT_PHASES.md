@@ -21,7 +21,7 @@ Grow into the architecture phase by phase. Complete phases **in order**.
 - [x] Phase 5 — Details routes: `/movies/[id]` + `/tv/[id]`
 - [x] Phase 6 — Search + Discover with URL state
 - [x] Phase 7 — Database with Drizzle (no movies table)
-- [ ] Phase 8 — Server layer pattern: repository → service → action (watchlist slice)
+- [x] Phase 8 — Server layer pattern: repository → service → action (watchlist slice)
 - [ ] Phase 9 — Auth (`lib/auth/` + `(auth)` + protected `(app)` shell)
 - [ ] Phase 10 — User library: watchlist, favorites, ratings, history, profile, settings
 - [ ] Phase 11 — HTTP API routes (`app/api/`)
@@ -336,22 +336,22 @@ WatchlistButton → Server Action → Service → Repository → Drizzle → Pos
 
 **Build:**
 
-- [ ] `server/repositories/watchlist.repository.ts` — `findByUser()`, `findItem()`, `create()`, `delete()`, `exists()`
-- [ ] `server/services/watchlist.service.ts` — `addToWatchlist(userId, tmdbId)`: validate → auth check → duplicate check → insert
-- [ ] `server/actions/watchlist.actions.ts` — `addToWatchlist()`, `removeFromWatchlist()` with Zod validation + `getCurrentUser()` stub (real session in Phase 9)
-- [ ] `components/watchlist/watchlist-button.tsx` — client button calling the action, optimistic UI, error toast
-- [ ] Mount button on details page (read-only state until auth lands is fine)
+- [x] `server/repositories/watchlist.repository.ts` — `findByUser()`, `findItem()`, `create()`, `delete()`, `exists()`
+- [x] `server/services/watchlist.service.ts` — `addToWatchlist(userId, tmdbId)`: validate → auth check → duplicate check → insert
+- [x] `server/actions/watchlist.actions.ts` — `addToWatchlist()`, `removeFromWatchlist()` with Zod validation + `getCurrentUser()` stub (real session in Phase 9)
+- [x] `components/watchlist/watchlist-button.tsx` — client button calling the action, optimistic UI, error toast
+- [x] Mount button on details page (read-only state until auth lands is fine)
 
 **Do NOT:**
 
-- [ ] Do not let the client pass `userId` — server derives identity from session (§31)
-- [ ] Do not put business rules in the repository or SQL in the component
+- [x] Do not let the client pass `userId` — server derives identity from session (§31)
+- [x] Do not put business rules in the repository or SQL in the component
 
 **Done when:**
 
-- [ ] Clicking Add → row `(user_id, tmdb_id, media_type)` exists; clicking again is idempotent (no duplicates)
-- [ ] Unauthenticated call is rejected server-side
-- [ ] Invalid `tmdbId`/`mediaType` fails Zod before touching DB
+- [x] Clicking Add → row `(user_id, tmdb_id, media_type)` exists; clicking again is idempotent (no duplicates)
+- [x] Unauthenticated call is rejected server-side
+- [x] Invalid `tmdbId`/`mediaType` fails Zod before touching DB
 
 ---
 

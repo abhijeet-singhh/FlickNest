@@ -12,6 +12,7 @@ import { DetailsHero } from "@/components/details/details-hero";
 import { DetailsHeader } from "@/components/details/details-header";
 import { DetailsMeta } from "@/components/details/details-meta";
 import { DetailsOverview } from "@/components/details/details-overview";
+import { WatchlistButton } from "@/components/watchlist/watchlist-button";
 import { CastList } from "@/components/details/cast-list";
 import { TrailerSection } from "@/components/details/trailer-section";
 import { SimilarSection } from "@/components/details/similar-section";
@@ -63,6 +64,7 @@ export default async function TVDetailsPage({ params }: TVDetailsPageProps) {
       <DetailsHero media={tv}>
         <DetailsHeader mediaType="tv" media={tv} />
         <DetailsMeta mediaType="tv" media={tv} />
+        <WatchlistButton tmdbId={tv.id} mediaType="tv" />
         <DetailsOverview overview={tv.overview} />
         <TrailerSection trailerUrl={trailerUrl} />
       </DetailsHero>
